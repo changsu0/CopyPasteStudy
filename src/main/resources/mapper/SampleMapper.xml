@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.sample.mapper.SampleMapper">
+    <select id="selectSampleOne" resultType="sampleVO" parameterType="sampleVO">
+        SELECT A.user_id
+             , A.user_name
+             , A.user_phone
+             , A.dept_code
+        FROM tb_sample A
+        WHERE A.USER_ID = #{userId}
+    </select>
+
+    <select id="selectSampleList" resultType="sampleVO" parameterType="sampleVO">
+        SELECT A.user_id
+             , A.user_name
+             , A.user_phone
+             , A.dept_code
+        FROM tb_sample A
+        <where>
+            <if test="userId != null and !userId.equals('')">
+                AND A.user_id LIKE '%' || #{userId} || '%'
+            </if>
+            <if test="userName != null and !userName.equals('')">
+                AND A.user_name LIKE '%' || #{userName} || '%'
+            </if>
+            <if test="userPhone != null and !userPhone.equals('')">
+                AND A.user_phone LIKE '%' || #{userPhone} || '%'
+            </if>
+            <if test="deptCode != null and !deptCode.equals('')">
+                AND A.dept_code = #{deptCode}
+            </if>
+        </where>
+        ORDER BY A.user_id
+    </select>
+
+    <insert id="insertSample" parameterType="sampleVO">
+        INSERT INTO tb_sample (
+              user_id
+            , user_name
+            , user_phone
+            , dept_code
+        ) values (
+              #{userId}
+            , #{userName}
+            , #{userPhone}
+            , #{deptCode}
+        )
+    </insert>
+
+    <update id="updateSample" parameterType="sampleVO">
+        UPDATE tb_sample
+        SET user_name  = #{userName}
+          , user_phone = #{userPhone}
+          , dept_code = #{deptCode}
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteSample" parameterType="sampleVO">
+        DELETE
+        FROM tb_sample
+        WHERE user_id = #{userId}
+    </delete>
+</mapper>
