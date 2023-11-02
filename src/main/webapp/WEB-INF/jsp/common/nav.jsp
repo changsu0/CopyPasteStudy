@@ -29,6 +29,14 @@
 <%--                        <a class="dropdown-item" href="/gridSampleList">GridList</a>--%>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ASE
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ase">
+                        <a class="dropdown-item" href="/aseStudyList">ASE STUDY LIST</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

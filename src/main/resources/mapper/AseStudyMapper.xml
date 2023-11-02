@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseStudyMapper">
+
+    <select id="selectAseStudyList" resultType="aseStudyVO" parameterType="aseStudyVO">
+        SELECT TITLE
+             , COMMENT_1
+          FROM TB_ASE_STUDY
+        <where>
+            <if test="title != null and !title.equals('')">
+                AND TITLE = #{title}
+            </if>
+            <if test="comment1 != null and !comment1.equals('')">
+                AND COMMENT_1 LIKE '%' || #{comment1} || '%'
+            </if>
+        </where>
+        ORDER BY TITLE
+    </select>
+
+</mapper>
