@@ -18,7 +18,7 @@ public class AseStudyController {
     }
 
     @GetMapping("/aseStudyList")
-    public String syncSampleList(Model model, AseStudyVO aseStudyVO){
+    public String aseStudyList(Model model, AseStudyVO aseStudyVO){
 
         List<AseStudyVO> selectAseStudyList = aseStudyServiceImpl.selectAseStudyList(aseStudyVO);
         model.addAttribute("aseStudyList", selectAseStudyList);

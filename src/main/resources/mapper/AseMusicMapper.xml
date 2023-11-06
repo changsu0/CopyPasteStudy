@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseMusicMapper">
+
+    <select id="selectAseMusicOne" resultType="aseMusicVO" parameterType="aseMusicVO">
+        SELECT TITLE
+             , ARTIST
+             , GENRE
+             , RELEASE_DATE
+        FROM TB_ASE_MUSIC A
+        WHERE TITLE = #{title}
+    </select>
+
+    <select id="selectAseMusicList" resultType="aseMusicVO" parameterType="aseMusicVO">
+        SELECT TITLE
+             , ARTIST
+             , GENRE
+             , RELEASE_DATE
+          FROM TB_ASE_MUSIC
+        <where>
+            <if test="title != null and !title.equals('')">
+                AND TITLE = #{title}
+            </if>
+            <if test="artist != null and !artist.equals('')">
+                AND ARTIST LIKE '%' || #{artist} || '%'
+            </if>
+            <if test="genre != null and !genre.equals('')">
+                AND GENRE LIKE '%' || #{genre} || '%'
+            </if>
+            <if test="releaseDate != null and !releaseDate.equals('')">
+                AND RELEASE_DATE LIKE '%' || #{releaseDate} || '%'
+            </if>
+        </where>
+        ORDER BY TITLE
+    </select>
+
+    <insert id="insertAseMusic" parameterType="aseMusicVO">
+        INSERT INTO TB_ASE_MUSIC (
+               TITLE
+             , ARTIST
+             , GENRE
+             , RELEASE_DATE
+        ) values (
+               #{title}
+             , #{artist}
+             , #{genre}
+             , #{releaseDate}
+         )
+    </insert>
+
+    <update id="updateAseMusic" parameterType="aseMusicVO">
+        UPDATE TB_ASE_MUSIC
+        SET ARTIST  = #{artist}
+          , GENRE = #{genre}
+          , RELEASE_DATE = #{releaseDate}
+        WHERE TITLE = #{title}
+    </update>
+
+    <delete id="deleteAseMusic" parameterType="aseMusicVO">
+        DELETE
+        FROM TB_ASE_MUSIC
+        WHERE TITLE = #{title}
+    </delete>
+
+</mapper>

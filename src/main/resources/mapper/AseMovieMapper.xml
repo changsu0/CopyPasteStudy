@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseMovieMapper">
+
+    <select id="selectAseMovieList" resultType="aseMovieVO" parameterType="aseMovieVO">
+        SELECT TITLE
+             , CONTENT
+             , GENRE
+             , RUNNING_TIME
+          FROM TB_ASE_MOVIE
+        <where>
+            <if test="title != null and !title.equals('')">
+                AND TITLE = #{title}
+            </if>
+            <if test="content != null and !content.equals('')">
+                AND CONTENT LIKE '%' || #{content} || '%'
+            </if>
+            <if test="genre != null and !genre.equals('')">
+                AND GENRE LIKE '%' || #{genre} || '%'
+            </if>
+            <if test="runningTime != null and !runningTime.equals('')">
+                AND RUNNING_TIME LIKE '%' || #{runningTime} || '%'
+            </if>
+        </where>
+        ORDER BY TITLE
+    </select>
+
+</mapper>

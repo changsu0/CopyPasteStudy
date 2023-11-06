@@ -35,6 +35,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="ase">
                         <a class="dropdown-item" href="/aseStudyList">ASE STUDY LIST</a>
+                        <a class="dropdown-item" href="/aseMovieList">ASE MOVIE LIST</a>
+                        <a class="dropdown-item" href="/aseMusicList">ASE MUSIC LIST</a>
+                        <a class="dropdown-item" href="/aseMusicForm">ASE MUSIC LIST 등록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
