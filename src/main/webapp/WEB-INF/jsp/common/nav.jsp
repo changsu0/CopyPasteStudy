@@ -64,6 +64,15 @@
                         <a class="dropdown-item" href="/selectYjsMusicalList">YJS Musical List</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="lwj" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        LWJ
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="lwj">
+                        <a class="dropdown-item" href="/selectLwjSubwayList">LwjSubwayList</a>
+                        <a class="dropdown-item" href="/selectLwjCountryList">LwjCountryList</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

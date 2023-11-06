@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjCountryMapper">
+    <select id="selectLwjCountryList" resultType="lwjCountryVO" parameterType="lwjCountryVO">
+        select
+            name, code
+        from tb_lwj_country
+        <where>
+            <if test="name != null and !name.equals('')">
+                AND name LIKE '%' || #{name} || '%'
+            </if>
+            <if test="code != null and !code.equals('')">
+                AND code LIKE '%' || #{code} || '%'
+            </if>
+        </where>
+        ORDER BY name
+    </select>
+</mapper>
