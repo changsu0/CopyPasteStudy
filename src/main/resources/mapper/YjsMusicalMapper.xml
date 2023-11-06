@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsMusicalMapper">
+
+    <select id="selectYjsMusicalList" resultType="yjsMusicalVO" parameterType="yjsMusicalVO">
+        select
+            title, place,
+            first_schedule, last_schedule
+        from tb_yjs_musical
+        <where>
+            <if test="title != null and !title.equals('')">
+                AND title LIKE '%' || #{title} || '%'
+            </if>
+            <if test="place != null and !place.equals('')">
+                AND place LIKE '%' || #{place} || '%'
+            </if>
+            <if test="firstSchedule != null and !firstSchedule.equals('')">
+                AND first_schedule LIKE '%' || #{firstSchedule} || '%'
+            </if>
+            <if test="lastSchedule != null and !lastSchedule.equals('')">
+                AND last_schedule LIKE '%' || #{lastSchedule} || '%'
+            </if>
+        </where>
+        ORDER BY first_schedule
+    </select>
+
+</mapper>

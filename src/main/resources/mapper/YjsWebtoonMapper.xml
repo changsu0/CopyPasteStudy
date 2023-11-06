@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsWebtoonMapper">
+
+    <select id="selectYjsWebtoonList" resultType="yjsWebtoonVO" parameterType="yjsWebtoonVO">
+        select
+            title, author
+        from tb_yjs_webtoon
+        <where>
+            <if test="title != null and !title.equals('')">
+                AND title LIKE '%' || #{title} || '%'
+            </if>
+            <if test="author != null and !author.equals('')">
+                AND author LIKE '%' || #{author} || '%'
+            </if>
+        </where>
+        ORDER BY title
+    </select>
+
+</mapper>

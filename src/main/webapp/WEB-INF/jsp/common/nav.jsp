@@ -48,6 +48,22 @@
                         <a class="dropdown-item" href="/selectKcsFirstList">KCS List</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="yjs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        YJS List
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="yjs">
+                        <a class="dropdown-item" href="/selectYjsWebtoonList">YJS List</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="yjs_Musical" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        YJS Musical List
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="yjs_Musical">
+                        <a class="dropdown-item" href="/selectYjsMusicalList">YJS Musical List</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
