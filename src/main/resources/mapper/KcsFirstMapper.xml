@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.kcs.mapper.KcsFirstMapper">
+
+    <select id="selectKcsFirstList" resultType="kcsFirstVO" parameterType="kcsFirstVO">
+        select
+            col1, col2
+        from TB_KCS_FIRST
+        <where>
+            <if test="col1 != null and !col1.equals('')">
+                AND col1 LIKE '%' || #{col1} || '%'
+            </if>
+            <if test="col2 != null and !col2.equals('')">
+                AND col2 LIKE '%' || #{col2} || '%'
+            </if>
+        </where>
+        ORDER BY col1
+    </select>
+</mapper>

@@ -25,8 +25,8 @@
                     <div class="dropdown-menu" aria-labelledby="nav1">
                         <a class="dropdown-item" href="/syncSampleList">Sample리스트</a>
                         <a class="dropdown-item" href="/syncSampleForm">Sample등록</a>
-<%--                        <a class="dropdown-item" href="/asyncSampleList">ASyncList</a>--%>
-<%--                        <a class="dropdown-item" href="/gridSampleList">GridList</a>--%>
+                        <%--                        <a class="dropdown-item" href="/asyncSampleList">ASyncList</a>--%>
+                        <%--                        <a class="dropdown-item" href="/gridSampleList">GridList</a>--%>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -35,6 +35,14 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="ase">
                         <a class="dropdown-item" href="/aseStudyList">ASE STUDY LIST</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="kcs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        KCS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="kcs">
+                        <a class="dropdown-item" href="/selectKcsFirstList">KCS List</a>
                     </div>
                 </li>
             </ul>
