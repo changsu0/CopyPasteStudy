@@ -4,6 +4,15 @@
 
 <mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsMusicalMapper">
 
+    <select id="selectYjsMusicalOne" resultType="yjsMusicalVO" parameterType="yjsMusicalVO">
+        SELECT title
+             , place
+             , first_schedule
+             , last_schedule
+        FROM tb_yjs_musical
+        WHERE title = #{title}
+    </select>
+
     <select id="selectYjsMusicalList" resultType="yjsMusicalVO" parameterType="yjsMusicalVO">
         select
             title, place,
@@ -25,5 +34,34 @@
         </where>
         ORDER BY first_schedule
     </select>
+
+    <insert id="insertYjsMusical" parameterType="yjsMusicalVO">
+        INSERT INTO tb_yjs_musical (
+                                title
+                              , place
+                              , first_schedule
+                              , last_schedule
+        ) values (
+                     #{title}
+                 , #{place}
+                 , #{firstSchedule}
+                 , #{lastSchedule}
+                 )
+    </insert>
+
+    <update id="updateYjsMusical" parameterType="yjsMusicalVO">
+        UPDATE tb_yjs_musical
+        SET place  = #{place}
+          , last_schedule = #{lastSchedule}
+        WHERE title = #{title}
+          AND first_schedule = #{firstSchedule}
+    </update>
+
+    <delete id="deleteYjsMusical" parameterType="yjsMusicalVO">
+        DELETE
+        FROM tb_yjs_musical
+        WHERE title = #{title}
+          AND first_schedule = #{firstSchedule}
+    </delete>
 
 </mapper>
