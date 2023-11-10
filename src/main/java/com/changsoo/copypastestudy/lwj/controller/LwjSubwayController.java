@@ -36,7 +36,7 @@ public class LwjSubwayController {
         return "lwj/subway/lwjSubwayForm";
     }
 
-    @PostMapping("/LwjSubwaySave")
+    @PostMapping("/lwjSubwaySave")
     public String LwjSubwaySave(Model model, LwjSubwayVO lwjSubwayVO, @RequestParam(value="action", required=true) String action){
         int cnt = 0;
         if ("insert".equals(action)) {
@@ -47,7 +47,6 @@ public class LwjSubwayController {
             cnt = lwjSubwayServiceImpl.deleteLwjSubway(lwjSubwayVO);
         }
         System.out.println(" Save Count :: " + cnt);
-        return "redirect:/lwjSubwayList";
+        return "redirect:/selectLwjSubwayList";
     }
-
 }

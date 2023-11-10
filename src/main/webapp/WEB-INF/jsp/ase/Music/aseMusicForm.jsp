@@ -17,24 +17,23 @@
 
 <c:choose>
     <c:when test="${aseMusicVO.title == null}">
-    <h3>ASE MUSIC LIST 등록</h3>
+        <h3>ASE MUSIC LIST 등록</h3>
     </c:when>
     <c:otherwise>
         <h3>ASE MUSIC LIST 수정</h3>
     </c:otherwise>
 </c:choose>
 <br />
-
 <div>
     <form:form id="frm" name="frm" action="/aseMusicFormSave" method="post">
         <div class="form-group">
             <label for="title">제목</label>
-                <c:if test="${aseMusicVO.title != null}">
-                <input type="text" class="form-control" id="title" placeholder="제목" name="title" max="5" value="${aseMusicVO.title}" readonly>
-                </c:if>
-                <c:if test="${aseMusicVO.title == null}">
-                    <input type="text" class="form-control" id="title" placeholder="제목" name="title" max="5" value="${aseMusicVO.title}">
-                </c:if>
+            <c:if test="${aseMusicVO.title != null}">
+            <input type="text" class="form-control" id="title" placeholder="제목" name="title" max="5" value="${aseMusicVO.title}" readonly>
+            </c:if>
+            <c:if test="${aseMusicVO.title == null}">
+                <input type="text" class="form-control" id="title" placeholder="제목" name="title" max="5" value="${aseMusicVO.title}">
+            </c:if>
         </div>
         <div class="form-group">
             <label for="artist">아티스트</label>
@@ -49,14 +48,15 @@
             <input type="text" class="form-control" id="releaseDate" placeholder="발매일" name="releaseDate" value="${aseMusicVO.releaseDate}">
         </div>
 
-        <c:if test="${aseMusicVO.title == null}">
-            <button name="action" value="insert" type="submit" class="btn btn-success">저장</button>
-        </c:if>
-
-        <c:if test="${aseMusicVO.title != null}">
-            <button name="action" value="update" type="submit" class="btn btn-success">수정</button>
-            <button name="action" value="delete" type="submit" class="btn btn-danger">삭제</button>
-        </c:if>
+        <c:choose>
+            <c:when test="${aseMusicVO.title == null}">
+                <button name="action" value="insert" type="submit" class="btn btn-success">저장</button>
+            </c:when>
+            <c:otherwise>
+                <button name="action" value="update" type="submit" class="btn btn-success">수정</button>
+                <button name="action" value="delete" type="submit" class="btn btn-danger">삭제</button>
+            </c:otherwise>
+        </c:choose>
     </form:form>
 </body>
 
