@@ -79,7 +79,7 @@
             <c:forEach var="list" items="${selectYjsMusicalList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/syncSampleForm?title=${list.title}' />">${list.title}</a></td>
+                    <td><a href="<c:url value='/selectYjsMusicalForm?title=${list.title}' />">${list.title}</a></td>
                     <td>${list.place}</td>
                     <td>${list.firstSchedule}</td>
                     <td>${list.lastSchedule}</td>
