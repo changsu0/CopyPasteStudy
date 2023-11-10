@@ -52,7 +52,7 @@
     </update>
 
     <delete id="deleteLwjSubway" parameterType="lwjSubwayVO">
-        DELETE TB_LWJ_SUBWY
+        DELETE FROM TB_LWJ_SUBWAY
         WHERE NUM = #{num}
     </delete>
 </mapper>

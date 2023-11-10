@@ -25,27 +25,27 @@
             <label class="sr-only" for="num">num</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">num</div>
+                    <div class="input-group-text">역번호</div>
                 </div>
-                <input type="text" class="form-control" id="num" placeholder="num" name="num" value="${lwjSubwayVO.num}">
+                <input type="text" class="form-control" id="num" placeholder="역번호" name="num" value="${lwjSubwayVO.num}">
             </div>
         </div>
         <div class="col-auto">
             <label class="sr-only" for="line">line</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">line</div>
+                    <div class="input-group-text">호선</div>
                 </div>
-                <input type="text" class="form-control" id="line" placeholder="line" name="line" value="${lwjSubwayVO.line}">
+                <input type="text" class="form-control" id="line" placeholder="호선" name="line" value="${lwjSubwayVO.line}">
             </div>
         </div>
         <div class="col-auto">
             <label class="sr-only" for="name">name</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">name</div>
+                    <div class="input-group-text">역이름</div>
                 </div>
-                <input type="text" class="form-control" id="name" placeholder="name" name="name" value="${lwjSubwayVO.name}">
+                <input type="text" class="form-control" id="name" placeholder="역이름" name="name" value="${lwjSubwayVO.name}">
             </div>
         </div>
         <div class="col-auto">
@@ -67,7 +67,7 @@
             <c:forEach var="list" items="${selectLwjSubwayList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectLwjSubwayForm?num=${list.num}&line=${list.line}&name=${list.name}' />">${list.num}</a></td>
+                    <td><a href="<c:url value='/selectLwjSubwayForm?num=${list.num}' />">${list.num}</a></td>
                     <td>${list.line}</td>
                     <td>${list.name}</td>
                 </tr>
