@@ -70,6 +70,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="lwj">
                         <a class="dropdown-item" href="/selectLwjSubwayList">LwjSubwayList</a>
+                        <a class="dropdown-item" href="/selectLwjSubwayForm">LwjSubway등록</a>
                         <a class="dropdown-item" href="/selectLwjCountryList">LwjCountryList</a>
                     </div>
                 </li>

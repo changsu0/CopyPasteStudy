@@ -22,6 +22,15 @@
 <form:form action="/selectLwjSubwayList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
+            <label class="sr-only" for="num">num</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">num</div>
+                </div>
+                <input type="text" class="form-control" id="num" placeholder="num" name="num" value="${lwjSubwayVO.num}">
+            </div>
+        </div>
+        <div class="col-auto">
             <label class="sr-only" for="line">line</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -49,6 +58,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">역번호</th>
             <th scope="col">호선</th>
             <th scope="col">역이름</th>
         </tr>
@@ -57,7 +67,8 @@
             <c:forEach var="list" items="${selectLwjSubwayList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/syncSampleForm?userId=${list.name}' />">${list.line}</a></td>
+                    <td><a href="<c:url value='/selectLwjSubwayForm?num=${list.num}&line=${list.line}&name=${list.name}' />">${list.num}</a></td>
+                    <td>${list.line}</td>
                     <td>${list.name}</td>
                 </tr>
             </c:forEach>

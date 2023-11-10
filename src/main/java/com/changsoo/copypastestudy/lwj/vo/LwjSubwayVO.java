@@ -6,6 +6,7 @@ import org.apache.ibatis.type.Alias;
 @Data
 @Alias("lwjSubwayVO")
 public class LwjSubwayVO {
+    private String num;
     private String line;
     private String name;
 }

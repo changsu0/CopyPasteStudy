@@ -3,18 +3,56 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjSubwayMapper">
+    <select id="selectLwjSubwayOne" resultType="lwjSubwayVO" parameterType="lwjSubwayVO">
+        SELECT NUM
+             , LINE
+             , NAME
+        FROM TB_LWJ_SUBWAY
+        WHERE NUM = #{num}
+    </select>
+
     <select id="selectLwjSubwayList" resultType="lwjSubwayVO" parameterType="lwjSubwayVO">
-        select
-            line, name
-        from tb_lwj_subway
+        SELECT NUM
+             , LINE
+             , NAME
+        FROM TB_LWJ_SUBWAY
         <where>
+            <if test="num != null and !num.equals('')">
+                AND NUM LIKE '%' || #{num} || '%'
+            </if>
             <if test="line != null and !line.equals('')">
-                AND line LIKE '%' || #{line} || '%'
+                AND LINE LIKE '%' || #{line} || '%'
             </if>
             <if test="name != null and !name.equals('')">
-                AND name LIKE '%' || #{name} || '%'
+                AND NAME LIKE '%' || #{name} || '%'
             </if>
         </where>
-        ORDER BY line
+        ORDER BY NUM
     </select>
+
+    <insert id="insertLwjSubway" parameterType="lwjSubwayVO">
+        INSERT INTO TB_LWJ_SUBWAY
+        ( NUM
+        , LINE
+        , NAME
+        )
+        VALUES
+        ( #{num}
+        , #{line}
+        , #{name}
+        )
+    </insert>
+
+    <update id="updateLwjSubway" parameterType="lwjSubwayVO">
+        UPDATE TB_LWJ_SUBWAY
+        SET NUM = #{num}
+          , LINE = #{line}
+          , NAME = #{name}
+        WHERE NUM = #{num}
+    </update>
+
+    <delete id="deleteLwjSubway" parameterType="lwjSubwayVO">
+        DELETE TB_LWJ_SUBWY
+        WHERE NUM = #{num}
+    </delete>
 </mapper>
