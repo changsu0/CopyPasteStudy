@@ -38,6 +38,8 @@
                         <a class="dropdown-item" href="/aseMovieList">ASE MOVIE LIST</a>
                         <a class="dropdown-item" href="/aseMusicList">ASE MUSIC LIST</a>
                         <a class="dropdown-item" href="/aseMusicForm">ASE MUSIC LIST 등록</a>
+                        <a class="dropdown-item" href="/aseCatgHdList">ASE CATG HD LIST</a>
+                        <a class="dropdown-item" href="/aseCatgHdForm">ASE CATG HD LIST 등록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

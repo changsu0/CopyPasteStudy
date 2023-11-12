@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseCatgMapper">
+
+    <select id="selectAseCatgHdOne" resultType="aseCatgVO" parameterType="aseCatgVO">
+        SELECT CATG_HD_CD
+             , CATG_HD_NM
+        FROM TB_ASE_CATG_HD
+        WHERE CATG_HD_CD = #{catgHdCd}
+    </select>
+
+    <select id="selectAseCatgHdList" resultType="aseCatgVO" parameterType="aseCatgVO">
+        SELECT CATG_HD_CD
+             , CATG_HD_NM
+          FROM TB_ASE_CATG_HD
+        <where>
+            <if test="catgHdCd != null and !catgHdCd.equals('')">
+                AND CATG_HD_CD = #{catgHdCd}
+            </if>
+            <if test="catgHdNm != null and !catgHdNm.equals('')">
+                AND CATG_HD_NM LIKE '%' || #{catgHdNm} || '%'
+            </if>
+        </where>
+        ORDER BY CATG_HD_CD
+    </select>
+
+    <insert id="insertAseCatgHd" parameterType="aseCatgVO">
+        INSERT INTO TB_ASE_CATG_HD (
+               CATG_HD_CD
+             , CATG_HD_NM
+        ) values (
+               #{catgHdCd}
+             , #{catgHdNm}
+         )
+    </insert>
+
+    <update id="updateAseCatgHd" parameterType="aseCatgVO">
+        UPDATE TB_ASE_CATG_HD
+           SET CATG_HD_NM  = #{catgHdNm}
+         WHERE CATG_HD_CD = #{catgHdCd}
+    </update>
+
+    <delete id="deleteAseCatgHd" parameterType="aseCatgVO">
+        DELETE
+        FROM TB_ASE_CATG_HD
+        WHERE CATG_HD_CD = #{catgHdCd}
+    </delete>
+
+    <select id="selectAseCatgDtOne" resultType="aseCatgVO" parameterType="aseCatgVO">
+        SELECT CATG_HD_CD
+             , CATG_DT_CD
+             , CATG_DT_NM
+        FROM TB_ASE_CATG_DT
+        WHERE CATG_DT_CD = #{catgDtCd}
+    </select>
+
+    <select id="selectAseCatgDtList" resultType="aseCatgVO" parameterType="aseCatgVO">
+        SELECT CATG_HD_CD
+             , CATG_DT_CD
+             , CATG_DT_NM
+        FROM TB_ASE_CATG_DT
+        WHERE CATG_HD_CD = #{catgHdCd}
+        <where>
+            <if test="catgDtCd != null and !catgDtCd.equals('')">
+                AND CATG_DT_CD LIKE '%' || #{catgDtCd} || '%'
+            </if>
+            <if test="catgDtNm != null and !catgDtNm.equals('')">
+                AND CATG_DT_NM LIKE '%' || #{catgDtNm} || '%'
+            </if>
+        </where>
+        ORDER BY CATG_DT_CD
+    </select>
+
+    <insert id="insertAseCatgDt" parameterType="aseCatgVO">
+        INSERT INTO TB_ASE_CATG_DT (
+             CATG_HD_CD
+           , CATG_DT_CD
+           , CATG_DT_NM
+        ) values (
+             #{catgHdCd}
+           , #{catgDtCd}
+           , #{catgDtNm}
+         )
+    </insert>
+
+    <update id="updateAseCatgDt" parameterType="aseCatgVO">
+        UPDATE TB_ASE_CATG_DT
+           SET CATG_DT_NM  = #{catgDtNm}
+         WHERE CATG_DT_CD = #{catgDtCd}
+    </update>
+
+    <delete id="deleteAseCatgDt" parameterType="aseCatgVO">
+        DELETE
+        FROM TB_ASE_CATG_DT
+        WHERE CATG_DT_CD = #{catgDtCd}
+    </delete>
+
+</mapper>
