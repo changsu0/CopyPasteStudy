@@ -1,0 +1,13 @@
+package com.changsoo.copypastestudy.lwj.vo;
+
+import lombok.Data;
+import org.apache.ibatis.type.Alias;
+
+@Data
+@Alias("lwjCategoryVO")
+public class LwjCategoryVO {
+    private String catgHdCd;
+    private String catgHdNm;
+    private String catgDtCd;
+    private String catgDtNm;
+}
