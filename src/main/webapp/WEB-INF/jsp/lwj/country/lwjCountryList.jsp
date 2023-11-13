@@ -19,7 +19,7 @@
 <h3>Lwj Country List</h3>
 <br />
 
-<form:form action="/selectLwjCountryList" method="get">
+<form:form action="/lwjCountryList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
             <label class="sr-only" for="name">name</label>
@@ -57,7 +57,7 @@
             <c:forEach var="list" items="${selectLwjCountryList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/syncSampleForm?userId=${list.name}' />">${list.name}</a></td>
+                    <td><a href="<c:url value='/syncSampleForm?name=${list.name}' />">${list.name}</a></td>
                     <td>${list.code}</td>
                 </tr>
             </c:forEach>

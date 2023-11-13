@@ -17,7 +17,7 @@ public class LwjCountryController {
         this.lwjCountryServiceImpl = lwjCountryServiceImpl;
     }
 
-    @GetMapping("/selectLwjCountryList")
+    @GetMapping("/lwjCountryList")
     public String selectLwjCountryList(Model model, LwjCountryVO lwjCountryVO) {
         List<LwjCountryVO> selectLwjCountryList = lwjCountryServiceImpl.selectLwjCountryList(lwjCountryVO);
         model.addAttribute("selectLwjCountryList", selectLwjCountryList);

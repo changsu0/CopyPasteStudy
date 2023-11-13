@@ -19,7 +19,7 @@
 <h3>Lwj Subway List</h3>
 <br />
 
-<form:form action="/selectLwjSubwayList" method="get">
+<form:form action="/lwjSubwayList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
             <label class="sr-only" for="num">num</label>
@@ -67,7 +67,7 @@
             <c:forEach var="list" items="${selectLwjSubwayList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectLwjSubwayForm?num=${list.num}' />">${list.num}</a></td>
+                    <td><a href="<c:url value='/lwjSubwayForm?num=${list.num}' />">${list.num}</a></td>
                     <td>${list.line}</td>
                     <td>${list.name}</td>
                 </tr>

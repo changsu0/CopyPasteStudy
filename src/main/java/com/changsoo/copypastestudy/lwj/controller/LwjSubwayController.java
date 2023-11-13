@@ -19,7 +19,7 @@ public class LwjSubwayController {
         this.lwjSubwayServiceImpl = lwjSubwayServiceImpl;
     }
 
-    @GetMapping("/selectLwjSubwayList")
+    @GetMapping("/lwjSubwayList")
     public String selectLwjSubwayList(Model model, LwjSubwayVO lwjSubwayVO) {
         List<LwjSubwayVO> selectLwjSubwayList = lwjSubwayServiceImpl.selectLwjSubwayList(lwjSubwayVO);
         model.addAttribute("selectLwjSubwayList", selectLwjSubwayList);
@@ -27,7 +27,7 @@ public class LwjSubwayController {
         return "lwj/subway/lwjSubwayList";
     }
 
-    @GetMapping("/selectLwjSubwayForm")
+    @GetMapping("/lwjSubwayForm")
     public String selectLwjSubwayForm(Model model, LwjSubwayVO lwjSubwayVO){
         if (!StringUtils.isEmpty(lwjSubwayVO.getNum() )){
             LwjSubwayVO selectLwjSubwayForm = lwjSubwayServiceImpl.selectLwjSubwayOne(lwjSubwayVO);
@@ -47,6 +47,6 @@ public class LwjSubwayController {
             cnt = lwjSubwayServiceImpl.deleteLwjSubway(lwjSubwayVO);
         }
         System.out.println(" Save Count :: " + cnt);
-        return "redirect:/selectLwjSubwayList";
+        return "redirect:/lwjSubwayList";
     }
 }

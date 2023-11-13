@@ -67,11 +67,12 @@
                         LWJ
                     </a>
                     <div class="dropdown-menu" aria-labelledby="lwj">
-                        <a class="dropdown-item" href="/selectLwjCountryList">Lwj Country List</a>
-                        <a class="dropdown-item" href="/selectLwjSubwayList">Lwj Subway List</a>
-                        <a class="dropdown-item" href="/selectLwjSubwayForm">Lwj Subway 등록</a>
-                        <a class="dropdown-item" href="/selectLwjCategoryHeaderList">Lwj CategoryHeader List</a>
-                        <a class="dropdown-item" href="/selectLwjCategoryHeaderForm">Lwj CategoryHeader 등록</a>
+                        <a class="dropdown-item" href="/lwjCountryList">Lwj Country List</a>
+                        <a class="dropdown-item" href="/lwjSubwayList">Lwj Subway List</a>
+                        <a class="dropdown-item" href="/lwjSubwayForm">Lwj Subway 등록</a>
+                        <a class="dropdown-item" href="/lwjCategoryHeaderList">Lwj CategoryHeader List</a>
+                        <a class="dropdown-item" href="/lwjCategoryHeaderForm">Lwj CategoryHeader 등록</a>
+                        <a class="dropdown-item" href="/lwjCommDtForm">공통상세코드 등록</a>
                     </div>
                 </li>
             </ul>
