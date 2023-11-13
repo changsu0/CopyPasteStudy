@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
 <c:choose>
-    <c:when test="${selectLwjCategoryHeaderForm.catgHdCd == null}">
+    <c:when test="${lwj.catgHdCd == null}">
         <h3>CATEGORY HEADER 등록</h3>
     </c:when>
     <c:otherwise>
@@ -27,20 +27,20 @@
 <div>
     <form:form id="frm" name="frm" action="/lwjCategoryHeaderSave" method="post">
         <div class="form-group">
-            <label for="catg_hd_cd">헤더 코드</label>
-            <c:if test="${selectLwjCategoryHeaderForm.catgHdCd != null}">
-                <input type="text" class="form-control" id="catg_hd_cd" placeholder="헤더 코드" name="catg_hd_cd" value="${selectLwjCategoryHeaderForm.catgHdCd}" readonly>
+            <label for="catgHdCd">헤더 코드</label>
+            <c:if test="${lwj.catgHdCd != null}">
+                <input type="text" class="form-control" id="catgHdCd" placeholder="헤더 코드" name="catgHdCd" value="${lwj.catgHdCd}" readonly>
             </c:if>
-            <c:if test="${selectLwjCategoryHeaderForm.catgHdCd == null}">
-                <input type="text" class="form-control" id="catg_hd_cd" placeholder="헤더 코드" name="catg_hd_cd" value="${selectLwjCategoryHeaderForm.catgHdCd}">
+            <c:if test="${lwj.catgHdCd == null}">
+                <input type="text" class="form-control" id="catgHdCd" placeholder="헤더 코드" name="catgHdCd" value="${lwj.catgHdCd}">
             </c:if>
         </div>
         <div class="form-group">
-            <label for="catg_hd_nm">헤더 이름</label>
-            <input type="text" class="form-control" id="catg_hd_nm" placeholder="헤더 이름" name="catg_hd_nm" value="${selectLwjCategoryHeaderForm.catgHdNm}">
+            <label for="catgHdNm">헤더 이름</label>
+            <input type="text" class="form-control" id="catgHdNm" placeholder="헤더 이름" name="catgHdNm" value="${lwj.catgHdNm}">
         </div>
         <c:choose>
-            <c:when test="${selectLwjCategoryHeaderForm.catgHdCd == null}">
+            <c:when test="${lwj.catgHdCd == null}">
                 <button name="action" value="insert" type="submit" class="btn btn-success">저장</button>
             </c:when>
             <c:otherwise>

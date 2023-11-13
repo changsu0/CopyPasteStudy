@@ -22,21 +22,21 @@
 <form:form action="/selectLwjCategoryHeaderList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="catg_hd_cd">catg_hd_cd</label>
+            <label class="sr-only" for="catgHdCd">catg_hd_cd</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">헤더 코드</div>
                 </div>
-                <input type="text" class="form-control" id="catg_hd_cd" placeholder="헤더 코드" name="catg_hd_cd" value="${lwjCategoryVO.catgHdCd}">
+                <input type="text" class="form-control" id="catgHdCd" placeholder="헤더 코드" name="catgHdCd" value="${lwjCategoryVO.catgHdCd}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="catg_hd_nm">catg_hd_nm</label>
+            <label class="sr-only" for="catgHdNm">catg_hd_nm</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">헤더 이름</div>
                 </div>
-                <input type="text" class="form-control" id="catg_hd_nm" placeholder="헤더 이름" name="catg_hd_nm" value="${lwjCategoryVO.catgHdNm}">
+                <input type="text" class="form-control" id="catgHdNm" placeholder="헤더 이름" name="catgHdNm" value="${lwjCategoryVO.catgHdNm}">
             </div>
         </div>
         <div class="col-auto">
@@ -57,8 +57,8 @@
             <c:forEach var="list" items="${selectLwjCategoryHeaderList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectLwjCategoryHeaderForm?catg_Hd_Cd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
-                    <td><a href="<c:url value='/selectLwjCategoryDetailList?catg_Hd_Nm=${list.catgHdNm}' />">${list.catgHdNm}</a></td>
+                    <td><a href="<c:url value='/selectLwjCategoryHeaderForm?catgHdCd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
+                    <td><a href="<c:url value='/selectLwjCategoryDetailList?catgHdNm=${list.catgHdNm}' />">${list.catgHdNm}</a></td>
                 </tr>
             </c:forEach>
         </tbody>

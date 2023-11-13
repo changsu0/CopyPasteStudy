@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class SyncSampleController {
     }
 
     @GetMapping("/syncSampleList")
-    public String syncSampleList(Model model, SampleVO sampleVO){
+    public String syncSampleList(Model model, SampleVO sampleVO, @RequestParam(value="action", required=false) String action){
+        System.out.println("@@@@@ = " + action);
 
         List<SampleVO> selectSampleList = sampleServiceImpl.selectSampleList(sampleVO);
         model.addAttribute("syncSampleList", selectSampleList);
@@ -41,7 +43,7 @@ public class SyncSampleController {
     }
 
     @PostMapping("/syncSampleFormSave")
-    public String syncSampleFormSave(Model model, SampleVO sampleVO, @RequestParam(value="action", required=true) String action){
+    public String syncSampleFormSave(Model model, RedirectAttributes redirectAttributes, SampleVO sampleVO, @RequestParam(value="action", required=true) String action){
         int cnt = 0;
         if ("insert".equals(action)) {
             cnt = sampleServiceImpl.insertSample(sampleVO);
@@ -50,6 +52,7 @@ public class SyncSampleController {
         }else if ("delete".equals(action)){
             cnt = sampleServiceImpl.deleteSample(sampleVO);
         }
+        redirectAttributes.addAttribute("action", "1234");
         System.out.println(" Save Count :: " + cnt);
         return "redirect:/syncSampleList";
     }
