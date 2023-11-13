@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LwjCategoryController {
@@ -35,17 +37,25 @@ public class LwjCategoryController {
         return "lwj/category/lwjDetailList";
     }
 
-    @GetMapping("/selectLwjCategoryHeaderForm")
-    public String selectlwjCategoryForm(Model model, LwjCategoryVO lwjCategoryVO){
+
+    @GetMapping("/selectLwjCategoryHeaderForm") // 화면 -> 컨트롤러를 호출하는 URL == Form Action 같아야해
+    public String selectlwjCategoryForm(Model model, LwjCategoryVO lwjCategoryVO){ // Method 함수명
+
         if (!StringUtils.isEmpty(lwjCategoryVO.getCatgHdCd() )){
-            LwjCategoryVO selectLwjCategoryHeaderForm = lwjCategoryServiceImpl.selectLwjCategoryOne(lwjCategoryVO);
-            model.addAttribute("selectLwjCategoryHeaderForm", selectLwjCategoryHeaderForm);
+            LwjCategoryVO selectLwjCategoryOne = lwjCategoryServiceImpl.selectLwjCategoryOne(lwjCategoryVO);
+
+            // 컨트롤러 -> 화면 보내주는 이름!!
+            // 화면에서 쓰는 값의 시작은 반드시!! attributeName으로 써야함!!!
+            model.addAttribute("lwj", selectLwjCategoryOne);
         }
+        // 데이터의 종류!!
+
+
         return "lwj/category/lwjHeaderForm";
     }
 
-    @PostMapping("/LwjCategoryHeaderSave")
-    public String LwjCategorySave(Model model, LwjCategoryVO lwjCategoryVO, @RequestParam(value="action", required=true) String action){
+    @PostMapping("/lwjCategoryHeaderSave")
+    public String lwjCategoryHeaderSave(Model model, LwjCategoryVO lwjCategoryVO, @RequestParam(value="action", required=true) String action){
         int cnt = 0;
         if ("insert".equals(action)) {
             cnt = lwjCategoryServiceImpl.insertLwjCategory(lwjCategoryVO);
