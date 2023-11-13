@@ -47,7 +47,7 @@
                         KCS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="kcs">
-                        <a class="dropdown-item" href="/selectKcsFirstList">KCS List</a>
+                        <a class="dropdown-item" href="/kcsCommDtForm">공통상세코드 등록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
