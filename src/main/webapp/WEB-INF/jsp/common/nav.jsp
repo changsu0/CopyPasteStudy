@@ -53,9 +53,11 @@
                         YJS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="yjs">
-                        <a class="dropdown-item" href="/selectYjsWebtoonList">YJS Webtoon List</a>
-                        <a class="dropdown-item" href="/selectYjsMusicalList">YJS Musical List</a>
-                        <a class="dropdown-item" href="/selectYjsMusicalForm">YJS Musical List 등록</a>
+                        <a class="dropdown-item" href="/yjsWebtoonList">YJS Webtoon List</a>
+                        <a class="dropdown-item" href="/yjsMusicalList">YJS Musical List</a>
+                        <a class="dropdown-item" href="/yjsMusicalForm">YJS Musical List 등록</a>
+                        <a class="dropdown-item" href="/yjsCategoryHDList">YJS Category List</a>
+                        <a class="dropdown-item" href="/yjsCategoryHdForm">YJS Category List 등록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

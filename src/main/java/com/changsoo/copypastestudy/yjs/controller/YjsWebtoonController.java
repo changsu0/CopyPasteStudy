@@ -17,7 +17,7 @@ public class YjsWebtoonController {
         this.yjsWebtoonServiceImpl = yjsWebtoonServiceImpl;
     }
 
-    @GetMapping("/selectYjsWebtoonList")
+    @GetMapping("/yjsWebtoonList")
     public String selectYjsWebtoonList(Model model, YjsWebtoonVO yjsWebtoonVO){
 
         List<YjsWebtoonVO> selectYjsWebtoonList = yjsWebtoonServiceImpl.selectYjsWebtoonList(yjsWebtoonVO);

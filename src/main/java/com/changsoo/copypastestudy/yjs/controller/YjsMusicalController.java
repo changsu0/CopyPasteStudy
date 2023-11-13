@@ -21,7 +21,7 @@ public class YjsMusicalController {
         this.yjsMusicalServiceImpl = yjsMusicalServiceImpl;
     }
 
-    @GetMapping("/selectYjsMusicalList")
+    @GetMapping("/yjsMusicalList")
     public String selectYjsMusicalList(Model model, YjsMusicalVO yjsMusicalVO){
 
         List<YjsMusicalVO> selectYjsMusicalList = yjsMusicalServiceImpl.selectYjsMusicalList(yjsMusicalVO);
@@ -30,7 +30,7 @@ public class YjsMusicalController {
         return "yjs/musical/yjsMusicalList";
     }
 
-    @GetMapping("/selectYjsMusicalForm")
+    @GetMapping("/yjsMusicalForm")
     public String selectYjsMusicalForm(Model model, YjsMusicalVO yjsMusicalVO){
         if (!StringUtils.isEmpty( yjsMusicalVO.getTitle() )){
             YjsMusicalVO selectYjsMusical = yjsMusicalServiceImpl.selectYjsMusicalOne(yjsMusicalVO);
@@ -50,7 +50,7 @@ public class YjsMusicalController {
             cnt = yjsMusicalServiceImpl.deleteYjsMusical(yjsMusicalVO);
         }
         System.out.println(" Save Count :: " + cnt);
-        return "redirect:/selectYjsMusicalList";
+        return "redirect:/yjsMusicalList";
     }
 
 }

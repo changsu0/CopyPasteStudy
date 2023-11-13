@@ -19,43 +19,43 @@
 <h3>Yjs Musical List</h3>
 <br />
 
-<form:form action="/selectYjsMusicalList" method="get">
+<form:form action="/yjsMusicalList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="title">Title</label>
+            <label class="sr-only" for="title">제목</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">Title</div>
+                    <div class="input-group-text">제목</div>
                 </div>
-                <input type="text" class="form-control" id="title" placeholder="title" name="title" value="${yjsMusicalVO.title}">
+                <input type="text" class="form-control" id="title" placeholder="제목" name="title" value="${yjsMusicalVO.title}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="place">Place</label>
+            <label class="sr-only" for="place">공연장소</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">Place</div>
+                    <div class="input-group-text">공연장소</div>
                 </div>
-                <input type="text" class="form-control" id="place" placeholder="place" name="place" value="${yjsMusicalVO.place}">
+                <input type="text" class="form-control" id="place" placeholder="공연장소" name="place" value="${yjsMusicalVO.place}">
             </div>
         </div>
         <div class="form-row align-items-center">
             <div class="col-auto">
-                <label class="sr-only" for="first_schedule">First_schedule</label>
+                <label class="sr-only" for="first_schedule">첫공연일</label>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">First_schedule</div>
+                        <div class="input-group-text">첫공연일</div>
                     </div>
-                    <input type="text" class="form-control" id="first_schedule" placeholder="first_schedule" name="first_schedule" value="${yjsMusicalVO.firstSchedule}">
+                    <input type="text" class="form-control" id="first_schedule" placeholder="첫공연일" name="first_schedule" value="${yjsMusicalVO.firstSchedule}">
                 </div>
             </div>
             <div class="col-auto">
-                <label class="sr-only" for="last_schedule">Last_schedule</label>
+                <label class="sr-only" for="last_schedule">막공연일</label>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">Last_schedule</div>
+                        <div class="input-group-text">막공연일</div>
                     </div>
-                    <input type="text" class="form-control" id="last_schedule" placeholder="last_schedule" name="last_schedule" value="${yjsMusicalVO.lastSchedule}">
+                    <input type="text" class="form-control" id="last_schedule" placeholder="막공연일" name="last_schedule" value="${yjsMusicalVO.lastSchedule}">
                 </div>
             </div>
             <div class="col-auto">
@@ -69,17 +69,17 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Place</th>
-            <th scope="col">First_schedule</th>
-            <th scope="col">Last_schedule</th>
+            <th scope="col">제목</th>
+            <th scope="col">공연장소</th>
+            <th scope="col">첫공연일</th>
+            <th scope="col">막공연일</th>
         </tr>
         </thead>
         <tbody>
             <c:forEach var="list" items="${selectYjsMusicalList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectYjsMusicalForm?title=${list.title}' />">${list.title}</a></td>
+                    <td><a href="<c:url value='/yjsMusicalForm?title=${list.title}' />">${list.title}</a></td>
                     <td>${list.place}</td>
                     <td>${list.firstSchedule}</td>
                     <td>${list.lastSchedule}</td>

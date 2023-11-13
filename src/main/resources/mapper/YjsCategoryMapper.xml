@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsCategoryMapper">
+
+    <select id="selectYjsCategoryHD" resultType="yjsCategoryVO" parameterType="yjsCategoryVO">
+        select
+            CATG_HD_CD, CATG_HD_NM
+        from TB_YJS_CATG_HD
+        <where>
+            <if test="catgHdCd != null and !catgHdCd.equals('')">
+                AND CATG_HD_CD LIKE '%' || #{catgHdCd} || '%'
+            </if>
+            <if test="catgHdNm != null and !catgHdNm.equals('')">
+                AND CATG_HD_NM LIKE '%' || #{catgHdNm} || '%'
+            </if>
+        </where>
+        ORDER BY CATG_HD_CD
+    </select>
+
+    <select id="yjsCategoryHDOne" resultType="yjsCategoryVO" parameterType="yjsCategoryVO">
+        SELECT CATG_HD_CD
+             , CATG_HD_NM
+        FROM TB_YJS_CATG_HD
+        WHERE CATG_HD_CD = #{catgHdCd}
+    </select>
+
+    <select id="selectYjsCategoryDT" resultType="yjsCategoryVO" parameterType="yjsCategoryVO">
+        SELECT CATG_HD_CD
+             , CATG_DT_CD
+             , CATG_DT_NM
+        FROM TB_YJS_CATG_DT
+        WHERE CATG_HD_CD = #{catgHdCd}
+        ORDER BY CATG_HD_CD, CATG_DT_CD
+    </select>
+
+    <insert id="insertYjsCategoryHD" parameterType="yjsCategoryVO">
+        INSERT INTO TB_YJS_CATG_HD (
+                                     CATG_HD_CD
+                                   , CATG_HD_NM
+        ) values (
+                     #{catgHdCd}
+                 , #{catgHdNm}
+                 )
+    </insert>
+
+    <update id="updateYjsCategoryHD" parameterType="yjsCategoryVO">
+        UPDATE TB_YJS_CATG_HD
+        SET CATG_HD_NM  = #{catgHdNm}
+        WHERE CATG_HD_CD = #{catgHdCd}
+    </update>
+
+    <delete id="deleteYjsCategoryHD" parameterType="yjsCategoryVO">
+        DELETE
+        FROM TB_YJS_CATG_HD
+        WHERE CATG_HD_NM = #{catgHdNm}
+    </delete>
+
+</mapper>

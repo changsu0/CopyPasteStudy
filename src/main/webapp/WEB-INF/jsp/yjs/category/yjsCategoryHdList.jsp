@@ -16,31 +16,33 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
 
-<h3>Yjs Webtoon List</h3>
+<h3>Yjs Category HD List</h3>
 <br />
 
-<form:form action="/yjsWebtoonList" method="get">
+<form:form action="/yjsCategoryHDList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="title">제목</label>
+            <label class="sr-only" for="catgHdCd">HD Code</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">제목</div>
+                    <div class="input-group-text">HD Code</div>
                 </div>
-                <input type="text" class="form-control" id="title" placeholder="제목" name="title" value="${yjsWebtoonVO.title}">
+                <input type="text" class="form-control" id="catgHdCd" placeholder="HD Code" name="catgHdCd" value="${yjsCategoryVO.catgHdCd}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="author">작가</label>
+            <label class="sr-only" for="catgHdNm">HD Name</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">작가</div>
+                    <div class="input-group-text">HD Name</div>
                 </div>
-                <input type="text" class="form-control" id="author" placeholder="작가" name="author" value="${yjsWebtoonVO.author}">
+                <input type="text" class="form-control" id="catgHdNm" placeholder="HD Name" name="catgHdNm" value="${yjsCategoryVO.catgHdNm}">
             </div>
         </div>
-        <div class="col-auto">
-            <button name="action" class="btn btn-info" type="submit">조회</button>
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <button name="action" class="btn btn-info" type="submit">조회</button>
+            </div>
         </div>
     </div>
 </form:form>
@@ -49,16 +51,16 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">제목</th>
-            <th scope="col">작가</th>
+            <th scope="col">HD Code</th>
+            <th scope="col">HD Name</th>
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="list" items="${selectYjsWebtoonList}" varStatus="status">
+            <c:forEach var="list" items="${selectYjsCategoryHD}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/syncSampleForm?title=${list.title}' />">${list.title}</a></td>
-                    <td>${list.author}</td>
+                    <td><a href="<c:url value='/yjsCategoryHdForm?catgHdCd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
+                    <td><a href="<c:url value='/yjsCategoryDtList?catgHdCd=${list.catgHdCd}' />">${list.catgHdNm}</a></td>
                 </tr>
             </c:forEach>
         </tbody>
