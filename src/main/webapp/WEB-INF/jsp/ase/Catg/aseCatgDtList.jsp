@@ -16,40 +16,32 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
 
-<h3>Lwj Subway List</h3>
+<h3>ASE CATG DT LIST</h3>
 <br />
 
-<form:form action="/selectLwjSubwayList" method="get">
+<form:form action="/aseCatgDtList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="num">num</label>
+            <label class="sr-only" for="catgDtCd">TITLE</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">역번호</div>
+                    <div class="input-group-text">제목</div>
                 </div>
-                <input type="text" class="form-control" id="num" placeholder="역번호" name="num" value="${lwjSubwayVO.num}">
+                <input type="text" class="form-control" id="catgDtCd" placeholder="DT코드" name="catgDtCd" value="${aseCatgVO.catgDtCd}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="line">line</label>
+            <label class="sr-only" for="catgDtNm">artist</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">호선</div>
+                    <div class="input-group-text">DT코드명</div>
                 </div>
-                <input type="text" class="form-control" id="line" placeholder="호선" name="line" value="${lwjSubwayVO.line}">
-            </div>
-        </div>
-        <div class="col-auto">
-            <label class="sr-only" for="name">name</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">역이름</div>
-                </div>
-                <input type="text" class="form-control" id="name" placeholder="역이름" name="name" value="${lwjSubwayVO.name}">
+                <input type="text" class="form-control" id="catgDtNm" placeholder="DT코드명" name="catgDtNm" value="${aseCatgVO.catgDtNm}">
             </div>
         </div>
         <div class="col-auto">
             <button name="action" class="btn btn-info" type="submit">조회</button>
+            <button type="button" onclick="location.href='/aseCatgDtForm?catgHdCd=${aseCatgVO.catgHdCd}'" class="btn btn-success">추가</button>
         </div>
     </div>
 </form:form>
@@ -58,18 +50,18 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">역번호</th>
-            <th scope="col">호선</th>
-            <th scope="col">역이름</th>
+            <th scope="col">HD코드</th>
+            <th scope="col">DT코드</th>
+            <th scope="col">DT코드명</th>
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="list" items="${selectLwjSubwayList}" varStatus="status">
+            <c:forEach var="list" items="${aseCatgDtList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectLwjSubwayForm?num=${list.num}' />">${list.num}</a></td>
-                    <td>${list.line}</td>
-                    <td>${list.name}</td>
+                    <td>${list.catgHdCd}</td>
+                    <td><a href="<c:url value='/aseCatgDtForm?catgDtCd=${list.catgDtCd}' />">${list.catgDtCd}</a></td>
+                    <td>${list.catgDtNm}</td>
                 </tr>
             </c:forEach>
         </tbody>

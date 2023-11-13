@@ -14,37 +14,40 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
+
 <c:choose>
-    <c:when test="${selectLwjSubwayForm.num == null}">
-        <h3>Lwj Subway 등록</h3>
+    <c:when test="${aseCatgVO.catgDtCd == null}">
+        <h3>ASE CATG DT LIST 등록</h3>
     </c:when>
     <c:otherwise>
-        <h3>Lwj Subway 수정</h3>
+        <h3>ASE CATG DT LIST 수정</h3>
     </c:otherwise>
 </c:choose>
 <br />
-
 <div>
-    <form:form id="frm" name="frm" action="/lwjSubwaySave" method="post">
+    <form:form id="frm" name="frm" action="/aseCatgDtFormSave" method="post">
         <div class="form-group">
-            <label for="line">역번호</label>
-            <c:if test="${selectLwjSubwayForm.num != null}">
-                <input type="text" class="form-control" id="num" placeholder="역번호" name="num" value="${selectLwjSubwayForm.num}" readonly>
-            </c:if>
-            <c:if test="${selectLwjSubwayForm.num == null}">
-                <input type="text" class="form-control" id="num" placeholder="역번호" name="num" value="${selectLwjSubwayForm.num}">
-            </c:if>
+            <label for="catgHdCd">HD코드</label>
+            <input type="text" class="form-control" id="catgHdCd" placeholder="HD코드" name="catgHdCd" value="${aseCatgVO.catgHdCd}" readonly>
         </div>
         <div class="form-group">
-            <label for="line">호선</label>
-            <input type="text" class="form-control" id="line" placeholder="호선" name="line" value="${selectLwjSubwayForm.line}">
+            <label for="catgDtCd">DT코드</label>
+            <c:choose>
+                <c:when test="${aseCatgVO.catgDtCd == null}">
+                    <input type="text" class="form-control" id="catgDtCd" placeholder="DT코드" name="catgDtCd" value="${aseCatgVO.catgDtCd}">
+                </c:when>
+                <c:otherwise>
+                    <input type="text" class="form-control" id="catgDtCd" placeholder="DT코드" name="catgDtCd" value="${aseCatgVO.catgDtCd}" readonly>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="form-group">
-            <label for="name">역이름</label>
-            <input type="text" class="form-control" id="name" placeholder="역이름" name="name" value="${selectLwjSubwayForm.name}">
+            <label for="catgDtNm">DT코드명</label>
+            <input type="text" class="form-control" id="catgDtNm" placeholder="HD코드명" name="catgDtNm" value="${aseCatgVO.catgDtNm}">
         </div>
+
         <c:choose>
-            <c:when test="${selectLwjSubwayForm.num == null}">
+            <c:when test="${aseCatgVO.catgDtCd == null}">
                 <button name="action" value="insert" type="submit" class="btn btn-success">저장</button>
             </c:when>
             <c:otherwise>

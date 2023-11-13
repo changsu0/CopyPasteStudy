@@ -16,36 +16,27 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
 
-<h3>Lwj Subway List</h3>
+<h3>ASE CATG HD LIST</h3>
 <br />
 
-<form:form action="/selectLwjSubwayList" method="get">
+<form:form action="/aseCatgHdList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="num">num</label>
+            <label class="sr-only" for="catgHdCd">TITLE</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">역번호</div>
+                    <div class="input-group-text">HD코드</div>
                 </div>
-                <input type="text" class="form-control" id="num" placeholder="역번호" name="num" value="${lwjSubwayVO.num}">
+                <input type="text" class="form-control" id="catgHdCd" placeholder="HD코드" name="catgHdCd" value="${aseCatgVO.catgHdCd}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="line">line</label>
+            <label class="sr-only" for="catgHdNm">artist</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">호선</div>
+                    <div class="input-group-text">HD코드명</div>
                 </div>
-                <input type="text" class="form-control" id="line" placeholder="호선" name="line" value="${lwjSubwayVO.line}">
-            </div>
-        </div>
-        <div class="col-auto">
-            <label class="sr-only" for="name">name</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">역이름</div>
-                </div>
-                <input type="text" class="form-control" id="name" placeholder="역이름" name="name" value="${lwjSubwayVO.name}">
+                <input type="text" class="form-control" id="catgHdNm" placeholder="HD코드명" name="catgHdNm" value="${aseCatgVO.catgHdNm}">
             </div>
         </div>
         <div class="col-auto">
@@ -58,18 +49,16 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">역번호</th>
-            <th scope="col">호선</th>
-            <th scope="col">역이름</th>
+            <th scope="col">HD코드</th>
+            <th scope="col">HD코드명</th>
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="list" items="${selectLwjSubwayList}" varStatus="status">
+            <c:forEach var="list" items="${aseCatgHdList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectLwjSubwayForm?num=${list.num}' />">${list.num}</a></td>
-                    <td>${list.line}</td>
-                    <td>${list.name}</td>
+                    <td><a href="<c:url value='/aseCatgHdForm?catgHdCd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
+                    <td><a href="<c:url value='/aseCatgDtList?catgHdCd=${list.catgHdCd}' />">${list.catgHdNm}</td>
                 </tr>
             </c:forEach>
         </tbody>
