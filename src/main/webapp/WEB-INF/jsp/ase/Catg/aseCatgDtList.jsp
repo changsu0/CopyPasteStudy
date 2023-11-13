@@ -22,25 +22,6 @@
 <form:form action="/aseCatgDtList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="catgDtCd">TITLE</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">제목</div>
-                </div>
-                <input type="text" class="form-control" id="catgDtCd" placeholder="DT코드" name="catgDtCd" value="${aseCatgVO.catgDtCd}">
-            </div>
-        </div>
-        <div class="col-auto">
-            <label class="sr-only" for="catgDtNm">artist</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">DT코드명</div>
-                </div>
-                <input type="text" class="form-control" id="catgDtNm" placeholder="DT코드명" name="catgDtNm" value="${aseCatgVO.catgDtNm}">
-            </div>
-        </div>
-        <div class="col-auto">
-            <button name="action" class="btn btn-info" type="submit">조회</button>
             <button type="button" onclick="location.href='/aseCatgDtForm?catgHdCd=${aseCatgVO.catgHdCd}'" class="btn btn-success">추가</button>
         </div>
     </div>
