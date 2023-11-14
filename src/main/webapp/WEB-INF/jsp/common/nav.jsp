@@ -60,6 +60,7 @@
                         <a class="dropdown-item" href="/yjsMusicalForm">YJS Musical List 등록</a>
                         <a class="dropdown-item" href="/yjsCategoryHDList">YJS Category List</a>
                         <a class="dropdown-item" href="/yjsCategoryHdForm">YJS Category List 등록</a>
+                        <a class="dropdown-item" href="/yjsCommDtForm">공통상세코드 등록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
