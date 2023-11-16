@@ -7,6 +7,8 @@ import org.apache.ibatis.type.Alias;
 @Alias("yjsCommDtVO")
 public class YjsCommDtVO {
     private String commCd;
+    private String commNm;
+    private String commDesc;
     private String commDtCd;
     private String commDtNm;
     private String commDtDesc;
