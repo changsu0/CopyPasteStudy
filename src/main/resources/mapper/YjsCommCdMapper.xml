@@ -12,7 +12,7 @@
         FROM TB_COMM_CD
         <where>
             <if test="commCd != null and !commCd.equals('')">
-                AND COMM_CD = #{commCd}
+                AND COMM_CD LIKE '%' || #{commCd} || '%'
             </if>
             <if test="commNm != null and !commNm.equals('')">
                 AND COMM_NM LIKE '%' || #{commNm} || '%'
@@ -72,10 +72,10 @@
         FROM TB_COMM_DT
         <where>
             <if test="commCd != null and !commCd.equals('')">
-                AND COMM_CD = #{commCd}
+                AND COMM_CD LIKE '%' || #{commCd} || '%'
             </if>
             <if test="commDtCd != null and !commDtCd.equals('')">
-                AND COMM_DT_CD = #{commDtCd}
+                AND COMM_DT_CD LIKE '%' || #{commDtCd} || '%'
             </if>
             <if test="commDtNm != null and !commDtNm.equals('')">
                 AND COMM_DT_NM LIKE '%' || #{commDtNm} || '%'
