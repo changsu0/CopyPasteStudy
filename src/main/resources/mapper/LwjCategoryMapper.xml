@@ -30,6 +30,7 @@
              , CATG_DT_CD
              , CATG_DT_NM
         FROM TB_LWJ_CATG_DT
+        WHERE CATG_HD_CD = #{catgHdCd}
         <where>
             <if test="catgHdCd != null and !catgHdCd.equals('')">
                 AND CATG_HD_CD LIKE '%' || #{catgHdCd} || '%'

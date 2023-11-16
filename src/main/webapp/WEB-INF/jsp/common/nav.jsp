@@ -81,6 +81,9 @@
                         <a class="dropdown-item" href="/lwjSubwayForm">Lwj Subway 등록</a>
                         <a class="dropdown-item" href="/lwjCategoryHeaderList">Lwj CategoryHeader List</a>
                         <a class="dropdown-item" href="/lwjCategoryHeaderForm">Lwj CategoryHeader 등록</a>
+                        <a class="dropdown-item" href="/lwjCommCdList">공통코드 조회</a>
+                        <a class="dropdown-item" href="/lwjCommCdForm">공통코드 등록</a>
+                        <a class="dropdown-item" href="/lwjCommDtList">공통상세코드 조회</a>
                         <a class="dropdown-item" href="/lwjCommDtForm">공통상세코드 등록</a>
                     </div>
                 </li>

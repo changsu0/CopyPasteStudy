@@ -21,7 +21,7 @@ public class LwjCategoryController {
         this.lwjCategoryServiceImpl = lwjCategoryServiceImpl;
     }
 
-    @GetMapping("/selectLwjCategoryHeaderList")
+    @GetMapping("/lwjCategoryHeaderList")
     public String selectlwjCategoryList(Model model, LwjCategoryVO lwjCategoryVO) {
         List<LwjCategoryVO> selectLwjCategoryHeaderList = lwjCategoryServiceImpl.selectLwjCategoryList(lwjCategoryVO);
         model.addAttribute("selectLwjCategoryHeaderList", selectLwjCategoryHeaderList);
@@ -29,7 +29,7 @@ public class LwjCategoryController {
         return "lwj/category/lwjHeaderList";
     }
 
-    @GetMapping("/selectLwjCategoryDetailList")
+    @GetMapping("/lwjCategoryDetailList")
     public String selectlwjCategoryDetailList(Model model, LwjCategoryVO lwjCategoryVO) {
         List<LwjCategoryVO> selectLwjCategoryDetailList = lwjCategoryServiceImpl.selectLwjCategoryDetailList(lwjCategoryVO);
         model.addAttribute("selectLwjCategoryDetailList", selectLwjCategoryDetailList);
@@ -38,7 +38,7 @@ public class LwjCategoryController {
     }
 
 
-    @GetMapping("/selectLwjCategoryHeaderForm") // 화면 -> 컨트롤러를 호출하는 URL == Form Action 같아야해
+    @GetMapping("/lwjCategoryHeaderForm") // 화면 -> 컨트롤러를 호출하는 URL == Form Action 같아야해
     public String selectlwjCategoryForm(Model model, LwjCategoryVO lwjCategoryVO){ // Method 함수명
 
         if (!StringUtils.isEmpty(lwjCategoryVO.getCatgHdCd() )){
@@ -65,6 +65,6 @@ public class LwjCategoryController {
             cnt = lwjCategoryServiceImpl.deleteLwjCategory(lwjCategoryVO);
         }
         System.out.println(" Save Count :: " + cnt);
-        return "redirect:/selectLwjCategoryHeaderList";
+        return "redirect:/lwjCategoryHeaderList";
     }
 }

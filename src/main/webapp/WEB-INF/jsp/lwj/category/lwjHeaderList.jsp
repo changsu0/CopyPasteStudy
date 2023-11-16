@@ -19,7 +19,8 @@
 <h3>CATEGORY HEADER LIST</h3>
 <br />
 
-<form:form action="/selectLwjCategoryHeaderList" method="get">
+
+<form:form action="/lwjCategoryHeaderList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
             <label class="sr-only" for="catgHdCd">catg_hd_cd</label>
@@ -57,8 +58,8 @@
             <c:forEach var="list" items="${selectLwjCategoryHeaderList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/selectLwjCategoryHeaderForm?catgHdCd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
-                    <td><a href="<c:url value='/selectLwjCategoryDetailList?catgHdNm=${list.catgHdNm}' />">${list.catgHdNm}</a></td>
+                    <td><a href="<c:url value='/lwjCategoryHeaderForm?catgHdCd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
+                    <td><a href="<c:url value='/lwjCategoryDetailList?catgHdNm=${list.catgHdNm}' />">${list.catgHdNm}</a></td>
                 </tr>
             </c:forEach>
         </tbody>
