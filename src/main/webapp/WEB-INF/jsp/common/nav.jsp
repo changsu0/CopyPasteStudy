@@ -40,6 +40,11 @@
                         <a class="dropdown-item" href="/aseMusicForm">ASE MUSIC LIST 등록</a>
                         <a class="dropdown-item" href="/aseCatgHdList">ASE CATG HD LIST</a>
                         <a class="dropdown-item" href="/aseCatgHdForm">ASE CATG HD LIST 등록</a>
+                        <a class="dropdown-item" href="/aseCommCdList">ASE COMM LIST</a>
+                        <a class="dropdown-item" href="/aseCommCdForm">ASE COMM LIST 등록</a>
+                        <a class="dropdown-item" href="/aseCommDtList">ASE COMM DT LIST</a>
+                        <a class="dropdown-item" href="/aseCommDtForm">ASE COMM DT LIST 등록</a>
+                        <a class="dropdown-item" href="/aseCommDtForm">ASE 공통 상세코드 등록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
