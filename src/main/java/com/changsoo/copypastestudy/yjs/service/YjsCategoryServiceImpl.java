@@ -31,6 +31,11 @@ public class YjsCategoryServiceImpl implements YjsCategoryService {
     }
 
     @Override
+    public YjsCategoryVO yjsCategoryDTOne(YjsCategoryVO yjsCategoryVO){
+        return yjsCategoryMapper.yjsCategoryDTOne(yjsCategoryVO);
+    }
+
+    @Override
     public int insertYjsCategoryHD(YjsCategoryVO yjsCategoryVO) {
         return yjsCategoryMapper.insertYjsCategoryHD(yjsCategoryVO);
     }
@@ -43,6 +48,21 @@ public class YjsCategoryServiceImpl implements YjsCategoryService {
     @Override
     public int deleteYjsCategoryHD(YjsCategoryVO yjsCategoryVO) {
         return yjsCategoryMapper.deleteYjsCategoryHD(yjsCategoryVO);
+    }
+
+    @Override
+    public int insertYjsCategoryDT(YjsCategoryVO yjsCategoryVO) {
+        return yjsCategoryMapper.insertYjsCategoryDT(yjsCategoryVO);
+    }
+
+    @Override
+    public int updateYjsCategoryDT(YjsCategoryVO yjsCategoryVO) {
+        return yjsCategoryMapper.updateYjsCategoryDT(yjsCategoryVO);
+    }
+
+    @Override
+    public int deleteYjsCategoryDT(YjsCategoryVO yjsCategoryVO) {
+        return yjsCategoryMapper.deleteYjsCategoryDT(yjsCategoryVO);
     }
 
 }

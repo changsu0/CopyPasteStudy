@@ -18,6 +18,12 @@
 
 <h3>Yjs Category DT List</h3>
 <br />
+<div class="form-row align-items-center">
+    <div class="col-auto">
+        <button type="submit" class="btn btn-success" onclick="location.href='/yjsCategoryDtForm'">등록</button>
+    </div>
+</div>
+<br /><br />
     <table class="table table-striped">
         <thead>
         <tr>
@@ -32,7 +38,7 @@
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
                     <td>${list.catgHdCd}</td>
-                    <td>${list.catgDtCd}</td>
+                    <td><a href="<c:url value='/yjsCategoryDtForm?catgHdCd=${list.catgHdCd}&catgDtCd=${list.catgDtCd}' />">${list.catgDtCd}</a></td>
                     <td>${list.catgDtNm}</td>
                 </tr>
             </c:forEach>

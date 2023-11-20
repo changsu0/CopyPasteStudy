@@ -35,6 +35,15 @@
         ORDER BY CATG_HD_CD, CATG_DT_CD
     </select>
 
+    <select id="yjsCategoryDTOne" resultType="yjsCategoryVO" parameterType="yjsCategoryVO">
+        SELECT CATG_HD_CD
+             , CATG_DT_CD
+             , CATG_DT_NM
+        FROM TB_YJS_CATG_DT
+        WHERE CATG_HD_CD = #{catgHdCd}
+          AND CATG_DT_CD = #{catgDtCd}
+    </select>
+
     <insert id="insertYjsCategoryHD" parameterType="yjsCategoryVO">
         INSERT INTO TB_YJS_CATG_HD (
                                      CATG_HD_CD
@@ -55,6 +64,32 @@
         DELETE
         FROM TB_YJS_CATG_HD
         WHERE CATG_HD_NM = #{catgHdNm}
+    </delete>
+
+    <insert id="insertYjsCategoryDT" parameterType="yjsCategoryVO">
+        INSERT INTO TB_YJS_CATG_DT (
+                                     CATG_HD_CD
+                                   , CATG_DT_CD
+                                   , CATG_DT_NM
+        ) values (
+                     #{catgHdCd}
+                 , #{catgDtCd}
+                 , #{catgDtNm}
+                 )
+    </insert>
+
+    <update id="updateYjsCategoryDT" parameterType="yjsCategoryVO">
+        UPDATE TB_YJS_CATG_DT
+        SET CATG_DT_NM  = #{catgDtNm}
+        WHERE CATG_HD_CD = #{catgHdCd}
+          AND CATG_DT_CD = #{catgDtCd}
+    </update>
+
+    <delete id="deleteYjsCategoryDT" parameterType="yjsCategoryVO">
+        DELETE
+        FROM TB_YJS_CATG_DT
+        WHERE CATG_HD_CD = #{catgHdCd}
+          AND CATG_DT_CD = #{catgDtCd}
     </delete>
 
 </mapper>

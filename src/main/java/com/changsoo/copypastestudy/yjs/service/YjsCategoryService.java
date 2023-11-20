@@ -13,10 +13,18 @@ public interface YjsCategoryService {
 
     public YjsCategoryVO yjsCategoryHDOne(YjsCategoryVO yjsCategoryVO);
 
+    public YjsCategoryVO yjsCategoryDTOne(YjsCategoryVO yjsCategoryVO);
+
     public int insertYjsCategoryHD(YjsCategoryVO yjsCategoryVO);
 
     public int updateYjsCategoryHD(YjsCategoryVO yjsCategoryVO);
 
     public int deleteYjsCategoryHD(YjsCategoryVO yjsCategoryVO);
+
+    public int insertYjsCategoryDT(YjsCategoryVO yjsCategoryVO);
+
+    public int updateYjsCategoryDT(YjsCategoryVO yjsCategoryVO);
+
+    public int deleteYjsCategoryDT(YjsCategoryVO yjsCategoryVO);
 
 }

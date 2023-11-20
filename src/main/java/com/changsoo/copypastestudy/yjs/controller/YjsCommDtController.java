@@ -36,8 +36,6 @@ public class YjsCommDtController {
     public String yjsCommCdForm(Model model, YjsCommDtVO yjsCommDtVO){
         // 화면이 최초 열릴 때 필요한 데이터가 있다면 조회
         // 필요한 데이터가 없다면 아무것도 안하기 > 파라미터 필요 없다.
-        List<YjsCommDtVO> selectYjsCommCd = yjsCommDtService.selectYjsCommCd(yjsCommDtVO);
-        model.addAttribute("selectYjsCommCd", selectYjsCommCd);
         if (!StringUtils.isEmpty( yjsCommDtVO.getCommCd() )){
             YjsCommDtVO yjsCommCdForm = yjsCommDtService.yjsCommCdForm(yjsCommDtVO);
             model.addAttribute("yjsCommCdForm", yjsCommCdForm);
@@ -71,6 +69,8 @@ public class YjsCommDtController {
     public String yjsCommDtForm(Model model, YjsCommDtVO yjsCommDtVO){
         // 화면이 최초 열릴 때 필요한 데이터가 있다면 조회
         // 필요한 데이터가 없다면 아무것도 안하기 > 파라미터 필요 없다.
+        List<YjsCommDtVO> selectYjsCommCd = yjsCommDtService.selectYjsCommCd(yjsCommDtVO);
+        model.addAttribute("selectYjsCommCd", selectYjsCommCd);
         if (!StringUtils.isEmpty( yjsCommDtVO.getCommDtCd() )){
             YjsCommDtVO yjsCommDtForm = yjsCommDtService.yjsCommDtForm(yjsCommDtVO);
             model.addAttribute("yjsCommDtForm", yjsCommDtForm);

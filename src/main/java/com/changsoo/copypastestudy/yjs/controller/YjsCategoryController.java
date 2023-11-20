@@ -62,4 +62,27 @@ public class YjsCategoryController {
         return "redirect:/yjsCategoryHDList";
     }
 
+    @GetMapping("/yjsCategoryDtForm")
+    public String yjsCategoryDTOne(Model model, YjsCategoryVO yjsCategoryVO){
+        if (!StringUtils.isEmpty( yjsCategoryVO.getCatgHdCd() )){
+            YjsCategoryVO yjsCategoryDTOne = yjsCategoryServiceImpl.yjsCategoryDTOne(yjsCategoryVO);
+            model.addAttribute("yjsCategoryVO", yjsCategoryDTOne);
+        }
+        return "yjs/category/yjsCategoryDtForm";
+    }
+
+    @PostMapping("/yjsCategoryDTFormSave")
+    public String yjsCategoryDTFormSave(Model model, YjsCategoryVO yjsCategoryVO, @RequestParam(value="action", required=true) String action){
+        int cnt = 0;
+        if ("insert".equals(action)) {
+            cnt = yjsCategoryServiceImpl.insertYjsCategoryDT(yjsCategoryVO);
+        }else if ("update".equals(action)){
+            cnt = yjsCategoryServiceImpl.updateYjsCategoryDT(yjsCategoryVO);
+        }else if ("delete".equals(action)){
+            cnt = yjsCategoryServiceImpl.deleteYjsCategoryDT(yjsCategoryVO);
+        }
+        System.out.println(" Save Count :: " + cnt);
+        return "redirect:/yjsCategoryDtList";
+    }
+
 }

@@ -30,17 +30,17 @@
         <div class="form-group">
             <label>공통 코드</label>
             <select class="form-control" name="commCd">
-                <c:choose>
-                    <c:when test="${empty yjsCommDtForm.commCd}">
-                        <c:forEach var="list" items="${selectYjsCommCd}">
+                <c:forEach var="list" items="${selectYjsCommCd}">
+                    <c:choose>
+                        <c:when test="${list.commCd eq yjsCommDtForm.commCd}">
+                            <option selected="selected" disabled="disabled" value="${list.commCd}" >${list.commNm}</option>
+                        </c:when>
+                        <c:otherwise>
                             <option value="${list.commCd}" >${list.commNm}</option>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <option value="${selectYjsCommCd.commCd}" readonly>${selectYjsCommCd.commNm}</option>
-                    </c:otherwise>
-                </c:choose>
-<%--                <option value="DBData">화면에보이는이름</option>--%>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+<%--            <option value="DBData">화면에보이는이름</option>--%>
             </select>
         </div>
         <div class="form-group">
