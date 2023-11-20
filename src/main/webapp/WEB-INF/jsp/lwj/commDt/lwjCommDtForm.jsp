@@ -31,12 +31,21 @@
             <label>공통코드</label>
             <c:if test="${lwjCommDtForm.commDtCd != null}">
                 <select class="form-control" name="commCd">
-                    <option value="DBData">화면에 보이는 이름</option>
+                    <c:forEach var="list" items="${lwjCommCdList}" varStatus="status">
+                        <c:if test ="${lwjCommDtForm.commCd eq list.commCd}">
+                            <option value="${list.commCd}" selected="selected">${list.commNm}</option>
+                        </c:if>
+                        <c:if test ="${lwjCommDtForm.commCd != list.commCd}">
+                            <option value="${list.commCd}">${list.commNm}</option>
+                        </c:if>
+                    </c:forEach>
                 </select>
             </c:if>
             <c:if test="${lwjCommDtForm.commDtCd == null}">
                 <select class="form-control" name="commCd">
-                    <option value="<c:out value="${lwjCommCdForm.commCd}"/>"><c:out value="${lwjCommCdForm.commCd}"/>
+                    <c:forEach var="list" items="${lwjCommCdList}" varStatus="status">
+                        <option value="${list.commCd}">${list.commNm}</option>
+                    </c:forEach>
                 </select>
             </c:if>
         </div>

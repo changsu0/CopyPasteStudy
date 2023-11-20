@@ -59,7 +59,7 @@
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
                     <td><a href="<c:url value='/lwjCategoryHeaderForm?catgHdCd=${list.catgHdCd}' />">${list.catgHdCd}</a></td>
-                    <td><a href="<c:url value='/lwjCategoryDetailList?catgHdNm=${list.catgHdNm}' />">${list.catgHdNm}</a></td>
+                    <td><a href="<c:url value='/lwjCategoryDetailList?catgHdCd=${list.catgHdCd}' />">${list.catgHdNm}</a></td>
                 </tr>
             </c:forEach>
         </tbody>

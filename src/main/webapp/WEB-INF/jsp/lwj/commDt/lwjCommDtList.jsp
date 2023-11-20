@@ -19,7 +19,7 @@
 <h3>공통상세코드</h3>
 <br />
 
-<form:form action="/lwjCommDTList" method="get">
+<form:form action="/lwjCommDtList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
             <label class="sr-only" for="commCd">comm_cd</label>
@@ -97,8 +97,8 @@
             <c:forEach var="list" items="${lwjCommDtList}" varStatus="status">
                 <tr>
                     <td scope="row"><c:out value="${status.count}" /></td>
-                    <td><a href="<c:url value='/lwjCommDtForm?commCd=${list.commCd}&commDtCd=${list.commDtCd}' />">${list.commCd}</td>
-                    <td>${list.commDtCd}</td>
+                    <td>${list.commCd}</td>
+                    <td><a href="<c:url value='/lwjCommDtForm?commCd=${list.commCd}&commDtCd=${list.commDtCd}' />">${list.commDtCd}</td>
                     <td>${list.commDtNm}</td>
                     <td>${list.commDtDesc}</td>
                     <td>${list.sortOrder}</td>

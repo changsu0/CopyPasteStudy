@@ -91,7 +91,7 @@
             <if test="commDtDesc != null and !commDtDesc.equals('')">
                 AND COMM_DT_DESC LIKE '%' || #{commDtDesc} || '%'
             </if>
-            <if test="sortOrder != null and !sortOrder.equals('')">
+            <if test="sortOrder > 0">
                 AND SORT_ORDER LIKE '%' || #{sortOrder} || '%'
             </if>
             <if test="commDtGrp != null and !commDtGrp.equals('')">
