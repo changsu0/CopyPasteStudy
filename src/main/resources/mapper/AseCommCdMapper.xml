@@ -30,7 +30,6 @@
         </where>
         ORDER BY COMM_CD
     </select>
-    <select id=""/>
 
     <insert id="insertAseCommCd" parameterType="aseCommDtVO">
         INSERT INTO TB_COMM_CD (
@@ -92,6 +91,9 @@
             </if>
             <if test="commDtDesc != null and !commDtDesc.equals('')">
                 AND COMM_DT_DESC LIKE '%' || #{commDtDesc} || '%'
+            </if>
+            <if test="sortOrder > 0 ">
+                AND SORT_ORDER LIKE '%' || #{sortOrder} || '%'
             </if>
             <if test="commDtGrp != null and !commDtGrp.equals('')">
                 AND COMM_DT_GRP LIKE '%' || #{commDtGrp} || '%'

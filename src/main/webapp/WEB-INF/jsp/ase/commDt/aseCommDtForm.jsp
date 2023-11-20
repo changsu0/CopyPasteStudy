@@ -29,13 +29,14 @@
         <div class="form-group">
             <label>공통 코드</label>
             <select class="form-control" name="commCd">
+                <option value="">공통코드를 선택해주세요.</option>
                 <c:forEach var="list" items="${aseCommCd}">
                     <c:choose>
                         <c:when test="${aseCommDtVO.commCd == list.commCd}">
-                            <option value="${list.commCd}" selected>${list.commNm}</option>
+                            <option value="${list.commCd}" selected> ${list.commNm}</option>
                         </c:when>
                         <c:otherwise>
-                            <option value="${list.commCd}" >${list.commNm}</option>
+                            <option value="${list.commCd}" > ${list.commNm}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>

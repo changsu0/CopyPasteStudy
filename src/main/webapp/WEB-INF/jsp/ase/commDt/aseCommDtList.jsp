@@ -58,6 +58,14 @@
             </div>
         </div>
         <div class="col-auto">
+            <label class="sr-only" for="sortOrder">상세코드순서</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">상세코드순서</div>
+                </div>
+                <input type="text" class="form-control" id="sortOrder" placeholder="상세코드순서" name="sortOrder" value="${aseCommDtVO.sortOrder}">
+            </div>
+        </div><div class="col-auto">
             <label class="sr-only" for="commDtGrp">상세코드그룹</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
