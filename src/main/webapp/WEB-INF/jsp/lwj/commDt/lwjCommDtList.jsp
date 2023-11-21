@@ -63,7 +63,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">상세코드순서</div>
                 </div>
-                <input type="text" class="form-control" id="sortOrder" placeholder="상세코드순서" name="sortOrder" value="${lwjCommDtForm.sortOrder}">
+                <input type="number" class="form-control" id="sortOrder" placeholder="상세코드순서" name="sortOrder" value="${lwjCommDtForm.sortOrder}">
             </div>
         </div>
         <div class="col-auto">

@@ -29,7 +29,6 @@
     <form:form id="frm" name="frm" action="/lwjcommDtSave" method="post">
         <div class="form-group">
             <label>공통코드</label>
-            <c:if test="${lwjCommDtForm.commDtCd != null}">
                 <select class="form-control" name="commCd">
                     <c:forEach var="list" items="${lwjCommCdList}" varStatus="status">
                         <c:if test ="${lwjCommDtForm.commCd eq list.commCd}">
@@ -40,14 +39,6 @@
                         </c:if>
                     </c:forEach>
                 </select>
-            </c:if>
-            <c:if test="${lwjCommDtForm.commDtCd == null}">
-                <select class="form-control" name="commCd">
-                    <c:forEach var="list" items="${lwjCommCdList}" varStatus="status">
-                        <option value="${list.commCd}">${list.commNm}</option>
-                    </c:forEach>
-                </select>
-            </c:if>
         </div>
         <div class="form-group">
             <label>상세코드</label>

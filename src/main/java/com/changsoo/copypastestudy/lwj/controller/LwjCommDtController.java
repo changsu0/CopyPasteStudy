@@ -63,10 +63,11 @@ public class LwjCommDtController {
     public String lwjCommDtForm(Model model, LwjCommDtVO lwjCommDtVO) {
         if (!StringUtils.isEmpty(lwjCommDtVO.getCommDtCd() )){
             LwjCommDtVO lwjCommDtForm = lwjCommDtServiceImpl.selectLwjCommDtOne(lwjCommDtVO);
-            List<LwjCommDtVO> lwjCommCdList = lwjCommDtServiceImpl.selectLwjCommCdList(new LwjCommDtVO()); //혹은 null(빈 객체 넘김)
             model.addAttribute("lwjCommDtForm", lwjCommDtForm);
-            model.addAttribute("lwjCommCdList", lwjCommCdList);
         }
+        List<LwjCommDtVO> lwjCommCdList = lwjCommDtServiceImpl.selectLwjCommCdList(new LwjCommDtVO()); //혹은 null(빈 객체 넘김)
+        model.addAttribute("lwjCommCdList", lwjCommCdList);
+
         return "lwj/commDt/lwjCommDtForm";
     }
 

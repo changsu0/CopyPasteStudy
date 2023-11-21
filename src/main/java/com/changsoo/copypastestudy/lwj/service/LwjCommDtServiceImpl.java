@@ -1,7 +1,6 @@
 package com.changsoo.copypastestudy.lwj.service;
 
 import com.changsoo.copypastestudy.lwj.mapper.LwjCommCdMapper;
-import com.changsoo.copypastestudy.lwj.vo.LwjCategoryVO;
 import com.changsoo.copypastestudy.lwj.vo.LwjCommDtVO;
 import org.springframework.stereotype.Service;
 
