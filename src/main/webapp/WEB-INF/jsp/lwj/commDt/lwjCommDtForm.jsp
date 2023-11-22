@@ -29,12 +29,12 @@
     <form:form id="frm" name="frm" action="/lwjcommDtSave" method="post">
         <div class="form-group">
             <label>공통코드</label>
-                <select class="form-control" name="commCd">
+                <select class="form-control" name="commCd" disabled>
                     <c:forEach var="list" items="${lwjCommCdList}" varStatus="status">
                         <c:if test ="${lwjCommDtForm.commCd eq list.commCd}">
                             <option value="${list.commCd}" selected="selected">${list.commNm}</option>
                         </c:if>
-                        <c:if test ="${lwjCommDtForm.commCd != list.commCd}">
+                        <c:if test ="${lwjCommDtForm.commCd ne list.commCd}">
                             <option value="${list.commCd}">${list.commNm}</option>
                         </c:if>
                     </c:forEach>
