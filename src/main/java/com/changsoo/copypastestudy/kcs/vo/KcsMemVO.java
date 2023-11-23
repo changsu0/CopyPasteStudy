@@ -3,6 +3,8 @@ package com.changsoo.copypastestudy.kcs.vo;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+import java.util.List;
+
 @Data
 @Alias("kcsMemVO")
 public class KcsMemVO {
@@ -19,4 +21,5 @@ public class KcsMemVO {
     private String memRdo;
     private String memDesc;
     private String aprvMemUid;
+    private List<String> memChkList;
 }

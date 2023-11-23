@@ -7,6 +7,7 @@ import com.changsoo.copypastestudy.kcs.vo.KcsMemVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -36,6 +37,10 @@ public class KcsMemServiceImpl implements KcsMemService {
     }
     @Override
     public KcsMemVO selectKcsMemOne(KcsMemVO kcsMemVO) {
-        return kcsMemMapper.selectKcsMemOne(kcsMemVO);
+        KcsMemVO memVO = kcsMemMapper.selectKcsMemOne(kcsMemVO);
+        if (memVO.getMemChk() != null){
+            memVO.setMemChkList( Arrays.asList(memVO.getMemChk().split(",")) );
+        }
+        return memVO;
     }
 }

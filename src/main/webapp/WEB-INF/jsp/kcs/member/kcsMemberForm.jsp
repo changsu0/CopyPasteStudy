@@ -49,8 +49,19 @@
         </div>
         <div class="form-group">
             <label>취미</label>
-            <c:forEach var="list" items="${chk}">
-                <input type="checkbox" name="memChk" value="${list.commDtCd}" /> ${list.commDtNm}
+            <c:forEach var="list" items="${modelChkCommCd}">
+                <c:set var="chkFlag" value="N" />
+                <c:forEach var="chkList" items="${memVO.memChkList}">
+                    <c:if test="${list.commDtCd eq chkList}">
+                        <c:set var="chkFlag" value="Y" />
+                    </c:if>
+                </c:forEach>
+                <c:if test="${chkFlag eq 'Y'}">
+                    <input type="checkbox" name="memChk" value="${list.commDtCd}" checked/> ${list.commDtNm}
+                </c:if>
+                <c:if test="${chkFlag eq 'N'}">
+                    <input type="checkbox" name="memChk" value="${list.commDtCd}" /> ${list.commDtNm}
+                </c:if>
             </c:forEach>
         </div>
         <div class="form-group">
