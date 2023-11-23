@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseMemberMapper">
+
+    <insert id="insertAseMember" parameterType="aseMemberVO">
+        insert into TB_COMM_MEMBER_TEMP (
+                      MEM_UID
+                    , MEM_NAME
+                    , MEM_PHONE
+                    , MEM_REG_NUM
+                    , MEM_CHK
+                    , MEM_RDO
+                    , MEM_DESC
+                    , CREATE_DT
+        ) values (
+                    SYS_GUID()
+                    , #{memName}
+                    , #{memPhone}
+                    , #{memRegNum}
+                    , #{memChk}
+                    , #{memRdo}
+                    , #{memDesc}
+                    , SYSDATE + 9/24
+        )
+    </insert>
+
+    <select id="selectAseMember" resultType="aseMemberVO" parameterType="aseMemberVO">
+        SELECT TCMT.MEM_UID
+             , REPLACE(TCMT.MEM_NAME, SUBSTR(TCMT.MEM_NAME, 2,1), '*') AS MEM_NAME
+             , SUBSTR(TCMT.MEM_PHONE, 1, 3) || '-' || '****' || '-' || SUBSTR(TCMT.MEM_PHONE, 8, 4) AS MEM_PHONE
+             , RPAD(SUBSTR(TCMT.MEM_REG_NUM, 1, 6) || '-' || SUBSTR(TCMT.MEM_REG_NUM, 7, 1), 14, '*') AS MEM_REG_NUM
+             , REPLACE(REPLACE(REPLACE(REPLACE(TCMT.MEM_CHK, 'C', 'CRUD'), 'Q', 'Query'), 'F', 'Function'), 'P', 'Procedure') AS MEM_CHK
+             , CASE WHEN TCMT.MEM_RDO = 'J' THEN '일본'
+                    WHEN TCMT.MEM_RDO = 'S' THEN '동남아'
+                    WHEN TCMT.MEM_RDO = 'E' THEN '유럽'
+                    ELSE TCMT.MEM_RDO
+                END AS MEM_RDO
+             , TCMT.MEM_DESC
+             , TCMT.CREATE_DT
+             , CASE WHEN nullif (TCMT.MEM_UID, TCM.MEM_UID) IS NULL THEN 'Y'
+                    ELSE 'N'
+                END AS CHECKYN
+          FROM TB_COMM_MEMBER_TEMP TCMT
+          LEFT OUTER JOIN (
+               SELECT TCM.MEM_UID
+                    , TCM.MEM_NAME
+                    , TCM.MEM_PHONE
+                    , TCM.MEM_REG_NUM
+                    , TCM.MEM_CHK
+                    , TCM.MEM_RDO
+                    , TCM.MEM_DESC
+                    , TCM.CREATE_DT
+                 FROM TB_COMM_MEMBER TCM
+          )TCM ON TCM.MEM_UID = TCMT.MEM_UID
+        <where>
+            <if test="memName != null and !memName.equals('')">
+                AND TCMT.MEM_NAME = #{memName}
+            </if>
+            <if test="memRegNum != null and !memRegNum.equals('')">
+                AND TCMT.MEM_REG_NUM LIKE '%' || #{memRegNum} || '%'
+            </if>
+            <if test="memPhone != null and !memPhone.equals('')">
+                AND TCMT.MEM_PHONE LIKE '%' || #{memPhone} || '%'
+            </if>
+        </where>
+    </select>
+
+    <select id="selectAseMemberOne" resultType="aseMemberVO" parameterType="aseMemberVO">
+        SELECT TCMT.MEM_UID
+             , TCMT.MEM_NAME
+             , TCMT.MEM_PHONE
+             , SUBSTR(MEM_PHONE, 0, 3) AS MEM_PHONE1
+             , SUBSTR(MEM_PHONE, 4, 4) AS MEM_PHONE2
+             , SUBSTR(MEM_PHONE, 8, 4) AS MEM_PHONE3
+             , TCMT.MEM_REG_NUM
+             , SUBSTR(MEM_REG_NUM, 0, 6) AS MEM_REG_NUM1
+             , SUBSTR(MEM_REG_NUM, 7, 7) AS MEM_REG_NUM2
+             , TCMT.MEM_CHK
+             , TCMT.MEM_RDO
+             , TCMT.MEM_DESC
+             , TCMT.CREATE_DT
+        FROM TB_COMM_MEMBER_TEMP TCMT
+        <where>
+            <if test="memUid != null and !memUid.equals('')">
+                AND MEM_UID LIKE '%' || #{memUid} || '%'
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertAseCheckMember" parameterType="aseMemberVO">
+        insert into TB_COMM_MEMBER (
+              MEM_UID
+            , MEM_NAME
+            , MEM_PHONE
+            , MEM_REG_NUM
+            , MEM_CHK
+            , MEM_RDO
+            , MEM_DESC
+            , CREATE_DT
+        )
+        SELECT MEM_UID
+             , MEM_NAME
+             , MEM_PHONE
+             , MEM_REG_NUM
+             , MEM_CHK
+             , MEM_RDO
+             , MEM_DESC
+             , SYSDATE + 9/24 AS CREATE_DT
+        FROM TB_COMM_MEMBER_TEMP
+        WHERE MEM_UID = #{memUid}
+    </insert>
+ 
+
+</mapper>

@@ -44,6 +44,10 @@
                         <a class="dropdown-item" href="/aseCommCdForm">ASE COMM LIST 등록</a>
                         <a class="dropdown-item" href="/aseCommDtList">ASE COMM DT LIST</a>
                         <a class="dropdown-item" href="/aseCommDtForm">ASE COMM DT LIST 등록</a>
+                        <a class="dropdown-item" href="/aseCtfcList">ASE CTFC LIST</a>
+                        <a class="dropdown-item" href="/aseCtfcForm">ASE CTFC LIST 등록</a>
+                        <a class="dropdown-item" href="/aseMemberForm">회원가입</a>
+                        <a class="dropdown-item" href="/aseMemberList">회원 목록</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
