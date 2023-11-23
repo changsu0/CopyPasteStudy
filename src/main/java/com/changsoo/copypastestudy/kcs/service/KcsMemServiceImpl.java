@@ -17,16 +17,25 @@ public class KcsMemServiceImpl implements KcsMemService {
     public int insertKcsMem(KcsMemVO kcsMemVO) {
 
         String phone = "";
-                phone += kcsMemVO.getMemPhone1();
-                phone += kcsMemVO.getMemPhone2();
+                phone += kcsMemVO.getMemPhone1() + "-";
+                phone += kcsMemVO.getMemPhone2() + "-";
                 phone += kcsMemVO.getMemPhone3();
         String regNum = "";
-                regNum += kcsMemVO.getMemRegNum1();
+                regNum += kcsMemVO.getMemRegNum1() + "-";
                 regNum += kcsMemVO.getMemRegNum2();
 
         kcsMemVO.setMemPhone( phone );
         kcsMemVO.setMemRegNum( regNum );
 
         return kcsMemMapper.insertKcsMem(kcsMemVO);
+    }
+
+    @Override
+    public List<KcsMemVO> selectKcsMemList(KcsMemVO kcsMemVO) {
+        return kcsMemMapper.selectKcsMemList(kcsMemVO);
+    }
+    @Override
+    public KcsMemVO selectKcsMemOne(KcsMemVO kcsMemVO) {
+        return kcsMemMapper.selectKcsMemOne(kcsMemVO);
     }
 }

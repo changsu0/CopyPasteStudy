@@ -6,6 +6,7 @@ import org.apache.ibatis.type.Alias;
 @Data
 @Alias("kcsMemVO")
 public class KcsMemVO {
+    private String memUid;
     private String memName;
     private String memPhone;
     private String memPhone1;
@@ -17,4 +18,5 @@ public class KcsMemVO {
     private String memChk;
     private String memRdo;
     private String memDesc;
+    private String aprvMemUid;
 }

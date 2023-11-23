@@ -24,4 +24,50 @@
              , SYSDATE
         )
     </insert>
+
+    <select id="selectKcsMemList" parameterType="kcsMemVO" resultType="kcsMemVO">
+        select
+            TEMP.MEM_UID
+             , TEMP.MEM_NAME
+             , TEMP.MEM_PHONE
+             , TEMP.MEM_REG_NUM
+             , TEMP.MEM_CHK
+             , TEMP.MEM_RDO
+             , TEMP.MEM_DESC
+             , TEMP.CREATE_DT
+             , MEM.MEM_UID AS APRV_MEM_UID
+        from TB_COMM_MEMBER_TEMP TEMP
+                 LEFT JOIN KCS.TB_COMM_MEMBER MEM
+                           on TEMP.MEM_UID = MEM.MEM_UID
+        <where>
+            <if test="memName neq '' and memName neq null">
+                AND TEMP.MEM_NAME LIKE '%' || #{memName} || '%'
+            </if>
+            <if test="memPhone neq '' and memPhone neq null">
+                AND TEMP.MEM_PHONE LIKE '%' || #{memPhone} || '%'
+           Q  </if>
+            <if test="memRegNum neq '' and memRegNum neq null">
+                AND TEMP.MEM_REG_NUM LIKE '%' || #{memRegNum} || '%'
+            </if>
+        </where>
+        ORDER BY TEMP.CREATE_DT DESC
+    </select>
+
+    <select id="selectKcsMemOne" parameterType="kcsMemVO" resultType="kcsMemVO">
+        select
+            MEM_UID
+             , MEM_NAME
+             , MEM_PHONE
+             , MEM_REG_NUM
+             , REGEXP_SUBSTR(MEM_PHONE, '[^-]+', 1, 1) AS mem_phone1
+             , REGEXP_SUBSTR(MEM_PHONE, '[^-]+', 1, 2) AS mem_phone2
+             , REGEXP_SUBSTR(MEM_PHONE, '[^-]+', 1, 3) AS mem_phone3
+             , REGEXP_SUBSTR(MEM_REG_NUM, '[^-]+', 1, 1) AS mem_reg_num1
+             , REGEXP_SUBSTR(MEM_REG_NUM, '[^-]+', 1, 2) AS mem_reg_num2
+             , MEM_CHK
+             , MEM_RDO
+             , MEM_DESC
+        from TB_COMM_MEMBER_TEMP TEMP
+        WHERE MEM_UID = #{memUid}
+    </select>
 </mapper>

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface KcsMemService {
     int insertKcsMem(KcsMemVO kcsMemVO);
+    List<KcsMemVO> selectKcsMemList(KcsMemVO kcsMemVO);
+    KcsMemVO selectKcsMemOne(KcsMemVO kcsMemVO);
 }

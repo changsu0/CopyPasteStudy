@@ -99,7 +99,7 @@
                 AND COMM_DT_GRP LIKE '%' || #{commDtGrp} || '%'
             </if>
         </where>
-        ORDER BY COMM_CD, COMM_DT_CD
+        ORDER BY SORT_ORDER
     </select>
 
     <insert id="insertAseCommDt" parameterType="aseCommDtVO">
