@@ -90,6 +90,8 @@
                         <a class="dropdown-item" href="/lwjCommCdForm">공통코드 등록</a>
                         <a class="dropdown-item" href="/lwjCommDtList">공통상세코드 조회</a>
                         <a class="dropdown-item" href="/lwjCommDtForm">공통상세코드 등록</a>
+                        <a class="dropdown-item" href="/lwjMemberList">회원가입 리스트</a>
+                        <a class="dropdown-item" href="/lwjMemberForm">회원가입 신청</a>
                     </div>
                 </li>
             </ul>
