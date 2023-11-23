@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsMemberMapper">
+    <select id="selectYjsMemberList" resultType="yjsMemberVo" parameterType="yjsMemberVo">
+        SELECT TEM.MEM_UID
+             , REPLACE(TEM.MEM_NAME, SUBSTR(TEM.MEM_NAME, 2, 1), '*') AS MEM_NAME
+             , (SUBSTR(TEM.MEM_PHONE, 1, 3) || '-****-' || SUBSTR(TEM.MEM_PHONE, 8, 4)) AS MEM_PHONE
+             , (SUBSTR(TEM.MEM_REG_NUM, 1, 6) || '-' || SUBSTR(TEM.MEM_REG_NUM, 7, 1) || '******') AS MEM_REG_NUM
+             , REPLACE(REPLACE(REPLACE(REPLACE(TEM.MEM_CHK, 'C', 'CRUD'),'Q','Query'),'F','Function'),'P','Procedure') AS MEM_CHK
+             , REPLACE(REPLACE(REPLACE(TEM.MEM_RDO, 'E', '유럽'),'S','동남아'),'J','일본') AS MEM_RDO
+             , TEM.MEM_DESC
+             , MEM.CREATE_DT AS MEM_DT
+             , TEM.CREATE_DT AS TEM_DT
+        FROM TB_COMM_MEMBER MEM
+        FULL OUTER JOIN TB_COMM_MEMBER_TEMP TEM
+          ON MEM.MEM_UID = TEM.MEM_UID
+        <where>
+            <if test="memName != null and !memName.equals('')">
+                AND TEM.MEM_NAME LIKE '%' || #{memName} || '%'
+            </if>
+            <if test="memRegNum != null and !memRegNum.equals('')">
+                AND TEM.MEM_REG_NUM LIKE '%' || #{memRegNum} || '%'
+            </if>
+            <if test="memPhone != null and !memPhone.equals('')">
+                AND TEM.MEM_PHONE LIKE '%' || #{memPhone} || '%'
+            </if>
+        </where>
+        ORDER BY TEM.MEM_NAME
+    </select>
+
+    <select id="selectYjsMemberForm" resultType="yjsMemberVo" parameterType="yjsMemberVo">
+        SELECT MEM_UID
+             , MEM_NAME
+             , (SUBSTR(MEM_PHONE, 1, 3)) AS MEM_PHONE_1
+             , (SUBSTR(MEM_PHONE, 4, 4)) AS MEM_PHONE_2
+             , (SUBSTR(MEM_PHONE, 8, 4)) AS MEM_PHONE_3
+             , (SUBSTR(MEM_PHONE, 8, 4)) AS MEM_PHONE_3
+             , (SUBSTR(MEM_PHONE, 8, 4)) AS MEM_PHONE_3
+             , (SUBSTR(MEM_REG_NUM, 1, 6)) AS MEM_REG_NUM_1
+             , (SUBSTR(MEM_REG_NUM, 7, 7)) AS MEM_REG_NUM_2
+             , MEM_CHK
+             , MEM_RDO
+             , MEM_DESC
+        FROM TB_COMM_MEMBER_TEMP
+        WHERE MEM_UID = #{memUid}
+    </select>
+
+    <insert id="insertYjsMemberTemp" parameterType="yjsMemberVo">
+        insert into TB_COMM_MEMBER_TEMP (
+                                          MEM_UID
+                                        , MEM_NAME
+                                        , MEM_PHONE
+                                        , MEM_REG_NUM
+                                        , MEM_CHK
+                                        , MEM_RDO
+                                        , MEM_DESC
+                                        , CREATE_DT
+        )
+        values (
+                   sys_guid()
+               , #{memName}
+               , #{memPhone}
+               , #{memRegNum}
+               , #{memChk}
+               , #{memRdo}
+               , #{memDesc}
+               , SYSDATE
+               )
+    </insert>
+
+    <insert id="insertYjsMember" parameterType="yjsMemberVo">
+        insert into TB_COMM_MEMBER (
+                                          MEM_UID
+                                        , MEM_NAME
+                                        , MEM_PHONE
+                                        , MEM_REG_NUM
+                                        , MEM_CHK
+                                        , MEM_RDO
+                                        , MEM_DESC
+                                        , CREATE_DT
+        )
+            SELECT MEM_UID
+                 , MEM_NAME
+                 , MEM_PHONE
+                 , MEM_REG_NUM
+                 , MEM_CHK
+                 , MEM_RDO
+                 , MEM_DESC
+                 , SYSDATE AS CREATE_DT
+            FROM TB_COMM_MEMBER_TEMP
+            WHERE MEM_UID = #{memUid}
+    </insert>
+
+</mapper>

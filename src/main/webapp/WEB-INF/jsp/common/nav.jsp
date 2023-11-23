@@ -74,6 +74,8 @@
                         <a class="dropdown-item" href="/yjsCommCdForm">공통코드 등록</a>
                         <a class="dropdown-item" href="/yjsCommDtList">공통상세코드</a>
                         <a class="dropdown-item" href="/yjsCommDtForm">공통상세코드 등록</a>
+                        <a class="dropdown-item" href="/yjsMemberForm">회원 등록</a>
+                        <a class="dropdown-item" href="/yjsMemberList">회원 등록 승인 List</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
