@@ -24,7 +24,13 @@
                 AND TEM.MEM_REG_NUM LIKE '%' || #{memRegNum} || '%'
             </if>
             <if test="memPhone != null and !memPhone.equals('')">
-                AND TEM.MEM_PHONE LIKE '%' || #{memPhone} || '%'
+                AND TEM.MEM_PHONE LIKE #{memPhone} || '%'
+            </if>
+            <if test="memRdo != null and !memRdo.equals('')">
+                AND TEM.MEM_RDO = #{memRdo}
+            </if>
+            <if test="memChk != null and !memChk.equals('')">
+                AND TEM.MEM_CHK LIKE '%' || #{memChk} || '%'
             </if>
         </where>
         ORDER BY TEM.MEM_NAME

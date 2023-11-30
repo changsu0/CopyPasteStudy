@@ -41,50 +41,20 @@
         </div>
         <div class="form-group">
             <label>전화번호</label>
-            <c:choose>
-                <c:when test="${empty yjsMemberVO.memName}">
-                    <select class="" name="memPhone1">
-                        <option>010</option>
-                        <option>011</option>
-                        <option>012</option>
-                        <option>013</option>
-                    </select> -
-                    <input type="text" minlength="4" maxlength="4" class="" placeholder="" name="memPhone2" value="${yjsMemberVO.memPhone2}"> -
-                    <input type="text" minlength="4" maxlength="4" class="" placeholder="" name="memPhone3" value="${yjsMemberVO.memPhone3}">
-                </c:when>
-                <c:otherwise>
-                    <select class="" name="memPhone1" disabled="disabled">
-                        <c:choose>
-                            <c:when test="${yjsMemberVO.memPhone1 eq '010'}">
-                                <option selected="selected">010</option>
-                                <option>011</option>
-                                <option>012</option>
-                                <option>013</option>
-                            </c:when>
-                            <c:when test="${yjsMemberVO.memPhone1 eq '011'}">
-                                <option>010</option>
-                                <option selected="selected">011</option>
-                                <option>012</option>
-                                <option>013</option>
-                            </c:when>
-                            <c:when test="${yjsMemberVO.memPhone1 eq '012'}">
-                                <option>010</option>
-                                <option>011</option>
-                                <option selected="selected">012</option>
-                                <option>013</option>
-                            </c:when>
-                            <c:otherwise>
-                                <option>010</option>
-                                <option>011</option>
-                                <option>012</option>
-                                <option selected="selected">013</option>
-                            </c:otherwise>
-                        </c:choose>
-                    </select> -
-                    <input type="text" minlength="4" maxlength="4" class="" placeholder="" name="memPhone2" value="${yjsMemberVO.memPhone2}" readonly> -
-                    <input type="text" minlength="4" maxlength="4" class="" placeholder="" name="memPhone3" value="${yjsMemberVO.memPhone3}" readonly>
-                </c:otherwise>
-            </c:choose>
+            <select class="" name="memPhone1" <c:if test="${yjsMemberVO.memName != null}">disabled="disabled"</c:if>>
+                <c:forEach var="list" items="${phone}">
+                    <c:choose>
+                        <c:when test="${list.commDtCd eq yjsMemberVO.memPhone1}">
+                            <option value="${list.commDtCd}" selected="selected">${list.commDtNm}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${list.commDtCd}">${list.commDtNm}</option>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </select> -
+            <input type="text" minlength="4" maxlength="4" class="" placeholder="" name="memPhone2" value="${yjsMemberVO.memPhone2}" <c:if test="${yjsMemberVO.memPhone2 != null}">readonly</c:if>> -
+            <input type="text" minlength="4" maxlength="4" class="" placeholder="" name="memPhone3" value="${yjsMemberVO.memPhone3}" <c:if test="${yjsMemberVO.memPhone3 != null}">readonly</c:if>>
         </div>
         <div class="form-group">
             <label>주민번호</label>
