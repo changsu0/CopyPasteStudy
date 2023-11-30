@@ -57,12 +57,7 @@
                 AND TEMP.MEM_RDO = #{memRdo}
             </if>
             <if test="memChk != null and !memChk.equals('')">
-                AND TEMP.MEM_CHK IN (
-                <foreach item="item" index="index" collection="memChk.split(',')" separator=",">
-                    #{item}
-                </foreach>
-                    )
-                /*AND TEMP.MEM_CHK LIKE '%' || #{memChk} || '%'*/
+                AND TEMP.MEM_CHK = #{memChk}
             </if>
         </where>
     </select>

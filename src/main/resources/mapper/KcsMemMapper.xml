@@ -43,11 +43,14 @@
             <if test="memName neq '' and memName neq null">
                 AND TEMP.MEM_NAME LIKE '%' || #{memName} || '%'
             </if>
-            <if test="memPhone neq '' and memPhone neq null">
-                AND TEMP.MEM_PHONE LIKE '%' || #{memPhone} || '%'
-           Q  </if>
+            <if test="memPhone3 neq '' and memPhone3 neq null">
+                AND TEMP.MEM_PHONE LIKE #{memPhone3} || '%'
+            </if>
             <if test="memRegNum neq '' and memRegNum neq null">
                 AND TEMP.MEM_REG_NUM LIKE '%' || #{memRegNum} || '%'
+            </if>
+            <if test="memRdo neq '' and memRdo neq null">
+                AND TEMP.MEM_RDO = #{memRdo}
             </if>
         </where>
         ORDER BY TEMP.CREATE_DT DESC

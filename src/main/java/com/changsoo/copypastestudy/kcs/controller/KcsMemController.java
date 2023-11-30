@@ -49,9 +49,13 @@ public class KcsMemController {
     }
     @GetMapping("/selectKcsMemList")
     public String selectKcsMemList(Model model, KcsMemVO kcsMemVO){
+        model.addAttribute("lwj", kcsMemVO.getMemPhone3());
+        model.addAttribute("rdo", kcsMemVO.getMemRdo());
+
         model.addAttribute("memList", kcsMemService.selectKcsMemList(kcsMemVO));
         return "kcs/member/kcsMemberList";
     }
+
     @GetMapping("/kcsMemAprv")
     public String kcsMemAprv(KcsMemVO kcsMemVO){
         List<KcsMemVO> selectKcsMemList = kcsMemService.selectKcsMemList(kcsMemVO);
