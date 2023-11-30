@@ -5,6 +5,7 @@ import com.changsoo.copypastestudy.ase.vo.AseMemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -14,7 +15,12 @@ public class AseMemberServiceImpl implements AseMemberService {
 
     @Override
     public AseMemberVO selectAseMemberOne(AseMemberVO aseMemberVO) {
-        return aseMemberMapper.selectAseMemberOne(aseMemberVO);
+        AseMemberVO memberVO = aseMemberMapper.selectAseMemberOne(aseMemberVO);
+        if(memberVO.getMemChk() != null){
+            memberVO.setMemChkList(Arrays.asList(aseMemberVO.getMemChk().split(",")));
+        }
+
+        return memberVO;
     }
 
     @Override

@@ -46,7 +46,37 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">전화번호</div>
                 </div>
-                <input type="text" class="form-control" id="memPhone" placeholder="전화번호" name="memPhone" value="${aseMemberVO.memPhone}">
+                <select name="memPhone" id="memPhone">
+                    <option value="">ALL</option>
+                    <option value="010" <c:if test="${chkPhone == '010'}">selected</c:if>>010</option>
+                    <option value="011" <c:if test="${chkPhone == '011'}">selected</c:if>>011</option>
+                    <option value="012" <c:if test="${chkPhone == '012'}">selected</c:if>>012</option>
+                    <option value="013" <c:if test="${chkPhone == '013'}">selected</c:if>>013</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only">라디오</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">라디오</div>
+                </div>
+                <input type="radio" name="memRdo" value="" <c:if test="${chkRdo == ''}">checked</c:if>>전체
+                <input type="radio" name="memRdo" value="E" <c:if test="${chkRdo == 'E'}">checked</c:if>>유럽
+                <input type="radio" name="memRdo" value="J" <c:if test="${chkRdo == 'J'}">checked</c:if>>일본
+                <input type="radio" name="memRdo" value="A" <c:if test="${chkRdo == 'A'}">checked</c:if>>동남 아시아
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only">취미</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">체크</div>
+                </div>
+                <input type="checkbox" name="memChk" value="C" <c:if test="${fn:contains(saveChk, 'C')}">checked</c:if> >CRUD
+                <input type="checkbox" name="memChk" value="Q" <c:if test="${fn:contains(saveChk, 'Q')}">checked</c:if> >Query
+                <input type="checkbox" name="memChk" value="F" <c:if test="${fn:contains(saveChk, 'F')}">checked</c:if> >Function
+                <input type="checkbox" name="memChk" value="P" <c:if test="${fn:contains(saveChk, 'P')}">checked</c:if> >Procedure
             </div>
         </div>
         <div class="col-auto">
@@ -82,7 +112,7 @@
                     <td>${list.memDesc}</td>
                     <td>${list.createDt}</td>
                     <td>
-                        <c:if test="${list.checkYn ne 'Y'}">
+                        <c:if test="${list.confDate eq null}">
                             <button type="button" name="approve" class="btn btn-info" onclick="location.href='/aseMemberForm?memUid=${list.memUid}'">승인</button>
                         </c:if>
                     </td>

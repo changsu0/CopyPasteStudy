@@ -3,6 +3,8 @@ package com.changsoo.copypastestudy.ase.vo;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+import java.util.List;
+
 @Data
 @Alias("aseMemberVO")
 public class AseMemberVO {
@@ -18,7 +20,8 @@ public class AseMemberVO {
     private String memRdo;
     private String memDesc;
     private String createDt;
-    private String checkYn;
+    private String confDate;
     private String memUid;
+    private List<String> memChkList;
 
 }
