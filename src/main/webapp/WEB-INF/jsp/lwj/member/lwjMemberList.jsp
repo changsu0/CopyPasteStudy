@@ -23,7 +23,7 @@
 <form:form action="/lwjMemberList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="memName">mem_name</label>
+            <label class="sr-only" for="memName">이름</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">이름</div>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="memRegNum">mem_reg_num</label>
+            <label class="sr-only" for="memRegNum">주민번호</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">주민번호</div>
@@ -41,12 +41,35 @@
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="memPhone">mem_phone</label>
+            <label class="sr-only" for="memPhone">전화번호</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text">전화번호</div>
                 </div>
                 <input type="text" class="form-control" id="memPhone" placeholder="전화번호" name="memPhone" value="${lwjMemberVO.memPhone}">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">전화번호</div>
+                </div>
+                <select name="memPhone1">
+                    <option value="010" <c:if test="${selectNum == '010'}">selected="selected"</c:if>>010</option>
+                    <option value="011" <c:if test="${selectNum == '011'}">selected="selected"</c:if>>011</option>
+                    <option value="012" <c:if test="${selectNum == '012'}">selected="selected"</c:if>>012</option>
+                    <option value="013" <c:if test="${selectNum == '013'}">selected="selected"</c:if>>013</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">라디오</div>
+                </div>
+                <input type="radio" name="memRdo" value="J" <c:if test="${rdo == 'J'}">checked="checked"</c:if>> 일본
+                <input type="radio" name="memRdo" value="S" <c:if test="${rdo == 'S'}">checked="checked"</c:if>> 동남아
+                <input type="radio" name="memRdo" value="E" <c:if test="${rdo == 'E'}">checked="checked"</c:if>> 유럽
             </div>
         </div>
         <div class="col-auto">
@@ -65,6 +88,8 @@
             <th scope="col">취미</th>
             <th scope="col">골라</th>
             <th scope="col">설명</th>
+            <th scope="col">신청 시간</th>
+            <th scope="col">승인 시간</th>
             <th scope="col">승인여부</th>
         </tr>
         </thead>
@@ -78,7 +103,14 @@
                     <td>${list.memChk}</td>
                     <td>${list.memRdo}</td>
                     <td>${list.memDesc}</td>
-                    <td><input type="button" class="btn btn-info" value="승인" onClick="location.href='/lwjMemberForm?memUid=${list.memUid}'"></td>
+                    <td>${list.memCreate}</td>
+                    <td>${list.memAllow}</td>
+                    <c:if test="${list.memAllow == null}">
+                        <td><input type="button" class="btn btn-info" value="승인" onClick="location.href='/lwjMemberForm?memUid=${list.memUid}'"></td>
+                    </c:if>
+                    <c:if test="${list.memAllow != null}">
+                        <td></td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </tbody>

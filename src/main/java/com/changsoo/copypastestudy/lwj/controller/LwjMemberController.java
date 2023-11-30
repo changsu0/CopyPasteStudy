@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public class LwjMemberController {
         List<LwjMemberVO> lwjMemberList = lwjMemberServiceImpl.selectLwjMemberList(lwjMemberVO);
         model.addAttribute("lwjMemberList",lwjMemberList);
 
+        model.addAttribute("selectNum", lwjMemberVO.getMemPhone1()); //조회 검색조건(셀렉트박스)
+        model.addAttribute("rdo", lwjMemberVO.getMemRdo()); //조회 검색조건(라디오)
+
         return "lwj/member/lwjMemberList";
     }
 
@@ -43,11 +47,13 @@ public class LwjMemberController {
     }
 
     @PostMapping("/insertLwjMemberTemp")
-    public String insertLwjMemberTemp(LwjMemberVO lwjMemberVO) {
-        if (!StringUtils.isEmpty(lwjMemberVO.getMemUid() )) {
+    public String insertLwjMemberTemp(LwjMemberVO lwjMemberVO, @RequestParam(value="action", required=true) String action) {
+        if (!StringUtils.isEmpty(lwjMemberVO.getMemUid()) && "insert".equals(action)) {
             LwjMemberVO lwjMemberOne = lwjMemberServiceImpl.selectLwjMemberOne(lwjMemberVO);
             int insertMember = lwjMemberService.insertLwjMember(lwjMemberVO);
-        } else {
+        } else if ("cancel".equals(action)) {
+            return "redirect:/lwjMemberList";
+        } else if(StringUtils.isEmpty(lwjMemberVO.getMemUid())) {
             int insertCnt = lwjMemberService.insertLwjMemberTemp(lwjMemberVO);//변수를 쓰는 이유 : return이 있어서
         }
         return "redirect:/lwjMemberList"; //ctrl+Space 누르면 자동완성

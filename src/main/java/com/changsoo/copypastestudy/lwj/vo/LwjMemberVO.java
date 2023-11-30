@@ -18,4 +18,6 @@ public class LwjMemberVO {
     private String memChk;
     private String memRdo;
     private String memDesc;
+    private String memCreate;
+    private String memAllow;
 }
