@@ -26,7 +26,7 @@
                         <a class="dropdown-item" href="/syncSampleList">Sample리스트</a>
                         <a class="dropdown-item" href="/syncSampleForm">Sample등록</a>
                         <%--                        <a class="dropdown-item" href="/asyncSampleList">ASyncList</a>--%>
-                        <%--                        <a class="dropdown-item" href="/gridSampleList">GridList</a>--%>
+                        <a class="dropdown-item" href="/asyncSampleList">AsyncSampleList</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

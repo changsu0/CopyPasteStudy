@@ -24,44 +24,27 @@
     <form id="frmSave" onsubmit="return false">
         <div class="row">
             <div class="col">
-                <label class="sr-only" for="userId">User ID</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">User ID</div>
-                    </div>
-                    <input type="text" class="form-control" id="userId" placeholder="UserID" name="userId" value="" />
+                <div class="form-group">
+                    <label for="userId">userId</label>
+                    <input type="text" class="form-control" id="userId" placeholder="userId" name="userId">
                 </div>
             </div>
             <div class="col">
-                <label class="sr-only" for="userName">userName</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">userName</div>
-                    </div>
-                    <input type="text" class="form-control" id="userName" placeholder="UserName" name="userName" value="" />
+                <div class="form-group">
+                    <label for="userName">userName</label>
+                    <input type="text" class="form-control" id="userName" placeholder="userName" name="userName">
                 </div>
             </div>
             <div class="col">
-                <label class="sr-only" for="userPhone">userPhone</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">userPhone</div>
-                    </div>
-                    <input type="text" class="form-control" id="userPhone" placeholder="userPhone" name="userPhone" value="" />
+                <div class="form-group">
+                    <label for="userPhone">userPhone</label>
+                    <input type="text" class="form-control" id="userPhone" placeholder="userPhone" name="userPhone">
                 </div>
             </div>
             <div class="col">
-                <label class="sr-only" for="deptCode">deptCode</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">deptCode</div>
-                    </div>
-                    <select class="form-control" id="deptCode" name="deptCode">
-                        <option value="">선택하세요</option>
-                        <c:forEach var="list" items="${deptCodeList}" varStatus="status">
-                            <option value="${list.deptCode}" <c:if test="${list.deptCode eq sampleVO.deptCode}">selected="selected"</c:if> >${list.deptName}</option>
-                        </c:forEach>
-                    </select>
+                <div class="form-group">
+                    <label for="userPhone">부서코드</label>
+                    <input type="text" class="form-control" id="deptCode" placeholder="deptCode" name="deptCode">
                 </div>
             </div>
             <div class="col">
@@ -83,44 +66,27 @@
     <form id="frmSearch" onsubmit="return false">
     <div class="row">
         <div class="col">
-            <label class="sr-only" for="userId1">User ID</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">User ID</div>
-                </div>
-                <input type="text" class="form-control" placeholder="UserID" name="userId" value="" />
+            <div class="form-group">
+                <label for="userId">userId</label>
+                <input type="text" class="form-control" id="userId" placeholder="userId" name="userId">
             </div>
         </div>
         <div class="col">
-            <label class="sr-only" for="userName1">userName</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">userName</div>
-                </div>
-                <input type="text" class="form-control" placeholder="UserName" name="userName" value="" />
+            <div class="form-group">
+                <label for="userName">userName</label>
+                <input type="text" class="form-control" id="userName" placeholder="userName" name="userName">
             </div>
         </div>
         <div class="col">
-            <label class="sr-only" for="userPhone1">userPhone</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">userPhone</div>
-                </div>
-                <input type="text" class="form-control" placeholder="userPhone" name="userPhone" value="" />
+            <div class="form-group">
+                <label for="userPhone">userPhone</label>
+                <input type="text" class="form-control" id="userPhone" placeholder="userPhone" name="userPhone">
             </div>
         </div>
         <div class="col">
-            <label class="sr-only" for="">deptCode</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">deptCode</div>
-                </div>
-                <select class="form-control" id="" name="deptCode">
-                    <option value="">전체</option>
-                    <c:forEach var="list" items="${deptCodeList}" varStatus="status">
-                        <option value="${list.deptCode}" <c:if test="${list.deptCode eq sampleVO.deptCode}">selected="selected"</c:if> >${list.deptName}</option>
-                    </c:forEach>
-                </select>
+            <div class="form-group">
+                <label for="userPhone">부서코드</label>
+                <input type="text" class="form-control" id="deptCode" placeholder="deptCode" name="deptCode">
             </div>
         </div>
         <div class="col">
@@ -167,7 +133,8 @@
     });
 
     function selectSampleList(){
-        fn_callAjax('/selectAsyncSampleList', $('#frmSearch').serialize(), 'get', cb_selectSampleList);
+        JS_COMMON.fn_callAjaxForm('/selectAsyncSampleList', $('#frmSearch').serialize(), 'get', cb_selectSampleList, true);
+        // JS_COMMON.fn_callAjaxJson('/selectAsyncSampleList', {userId: '1'}, 'get', cb_selectSampleList, true);
     }
 
     function cb_selectSampleList( rstData ){
@@ -181,23 +148,23 @@
             innerHtml += '<td><a href="' + jsParam + '">' + sampleMap.userId + '</a></td>';
             innerHtml += '<td>' + sampleMap.userName + '</td>';
             innerHtml += '<td>' + sampleMap.userPhone + '</td>';
-            innerHtml += '<td>' + sampleMap.deptName + '</td>';
+            innerHtml += '<td>' + sampleMap.deptCode + '</td>';
             innerHtml += '</tr>';
         }
         $('#tbodySampleList').html( innerHtml );
 
-        fn_formReset('frmSave');
+        JS_COMMON.fn_formReset('frmSave');
     }
 
     function saveSample(){
         $('#action').val('save');
         $('#btnDelete').hide();
-        fn_callAjax('/saveAsyncSample', $('#frmSave').serialize(), 'POST', cb_saveSample);
+        JS_COMMON.fn_callAjaxForm('/saveAsyncSample', $('#frmSave').serialize(), 'POST', cb_saveSample, true);
     }
 
     function cb_saveSample( rstData ){
         selectSampleList();
-        fn_formReset('frmSave');
+        JS_COMMON.fn_formReset('frmSave');
         alert('저장완료');
     }
 
@@ -219,12 +186,12 @@
     function deleteSample(){
         $('#action').val('delete');
         $('#btnDelete').hide();
-        fn_callAjax('/saveAsyncSample', $('#frmSave').serialize(), 'POST', cb_deleteSample);
+        JS_COMMON.fn_callAjaxForm('/saveAsyncSample', $('#frmSave').serialize(), 'POST', cb_deleteSample, true);
     }
 
     function cb_deleteSample( rstData ){
         selectSampleList();
-        fn_formReset('frmSave');
+        JS_COMMON.fn_formReset('frmSave');
         alert('삭제완료');
     }
 

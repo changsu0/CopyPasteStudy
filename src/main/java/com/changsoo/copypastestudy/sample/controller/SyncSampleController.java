@@ -24,8 +24,6 @@ public class SyncSampleController {
 
     @GetMapping("/syncSampleList")
     public String syncSampleList(Model model, SampleVO sampleVO, @RequestParam(value="action", required=false) String action){
-        System.out.println("@@@@@ = " + action);
-
         List<SampleVO> selectSampleList = sampleServiceImpl.selectSampleList(sampleVO);
         model.addAttribute("syncSampleList", selectSampleList);
         model.addAttribute("sampleVO", sampleVO);
