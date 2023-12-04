@@ -61,10 +61,10 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">라디오</div>
                 </div>
-                <input type="radio" name="memRdo" value="" <c:if test="${chkRdo == ''}">checked</c:if>>전체
-                <input type="radio" name="memRdo" value="E" <c:if test="${chkRdo == 'E'}">checked</c:if>>유럽
-                <input type="radio" name="memRdo" value="J" <c:if test="${chkRdo == 'J'}">checked</c:if>>일본
-                <input type="radio" name="memRdo" value="A" <c:if test="${chkRdo == 'A'}">checked</c:if>>동남 아시아
+                <input type="radio" name="memRdo" id="All" value="" <c:if test="${chkRdo == ''}">checked</c:if>>전체
+                <input type="radio" name="memRdo" id="E" value="E" <c:if test="${chkRdo == 'E'}">checked</c:if>>유럽
+                <input type="radio" name="memRdo" id="J" value="J" <c:if test="${chkRdo == 'J'}">checked</c:if>>일본
+                <input type="radio" name="memRdo" id="A" value="A" <c:if test="${chkRdo == 'A'}">checked</c:if>>동남 아시아
             </div>
         </div>
         <div class="col-auto">
@@ -113,13 +113,75 @@
                     <td>${list.createDt}</td>
                     <td>
                         <c:if test="${list.confDate eq null}">
-                            <button type="button" name="approve" class="btn btn-info" onclick="location.href='/aseMemberForm?memUid=${list.memUid}'">승인</button>
+                            <button type="button" name="action" value="check" class="btn btn-info" onclick="location.href='/aseMemberForm?memUid=${list.memUid}'">승인</button>
                         </c:if>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+
+<script>
+    var setInputValue = function (inputID, inputVal){
+        document.getElementById(inputID).value = inputVal;
+    }
+
+    function setSelectValue(selectID, selectVal) {
+        var memPhoneObj = document.getElementById(selectID);
+
+        for (var i = 0; i < memPhoneObj.options.length; i++){
+            var phoneOne = memPhoneObj.options[i];
+            if(phoneOne.value === selectVal){
+                phoneOne.selected = true;
+            }
+        }
+    }
+
+    function setRadioValue(rdoID, rdoVal){
+        var memRdoObj = document.getElementsByName(rdoID);
+
+        for(var i=0; i < memRdoObj.length; i++) {
+            if(memRdoObj[i].value == rdoVal){
+                memRdoObj[i].checked = true;
+            }
+        }
+    }
+
+    function setCheckValues(checkName, checkValList){
+        var checkObj = document.getElementsByName(checkName);
+
+        for(var i=0; i < checkObj.length; i++) {
+            var memChkOne = checkObj[i];
+
+            for (var j = 0; j < checkValList.length; j++) {
+                var valOne = checkValList[j];
+
+                if(memChkOne.value === valOne){
+                    memChkOne.checked = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    window.onload = function (){
+
+        //1. input 값 넣기
+        setInputValue('memName', '1');
+        setInputValue('memRegNum', '030714');
+
+        //2. 셀렉트박스 값 선택
+        setSelectValue('memPhone', '012');
+
+        //3. 라디오 값 선택
+        setRadioValue('memRdo', 'J');
+
+        //4. 체크박스 값 선택 (다중)
+        setCheckValues('memChk', ['C','P']);
+
+    }
+</script>
+
 </body>
 
 </html>

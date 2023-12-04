@@ -49,6 +49,15 @@
             </div>
         </div>
         <div class="col-auto">
+            <label class="sr-only" for="commDtNm"></label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">상세코드명</div>
+                </div>
+                <input type="text" class="form-control" id="sort" placeholder="상세코드명" name="commDtNm" value="${aseCommDtVO.commDtNm}">
+            </div>
+        </div>
+        <div class="col-auto">
             <label class="sr-only" for="commDtDesc">상세코드설명</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">

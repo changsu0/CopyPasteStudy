@@ -17,7 +17,7 @@ public class AseMemberServiceImpl implements AseMemberService {
     public AseMemberVO selectAseMemberOne(AseMemberVO aseMemberVO) {
         AseMemberVO memberVO = aseMemberMapper.selectAseMemberOne(aseMemberVO);
         if(memberVO.getMemChk() != null){
-            memberVO.setMemChkList(Arrays.asList(aseMemberVO.getMemChk().split(",")));
+            memberVO.setMemChkList(Arrays.asList(memberVO.getMemChk().split(",")));
         }
 
         return memberVO;

@@ -33,7 +33,7 @@
              , RPAD(SUBSTR(TEMP.MEM_REG_NUM, 1, 6) || '-' || SUBSTR(TEMP.MEM_REG_NUM, 7, 1), 14, '*') AS MEM_REG_NUM
              , REPLACE(REPLACE(REPLACE(REPLACE(TEMP.MEM_CHK, 'C', 'CRUD'), 'Q', 'Query'), 'F', 'Function'), 'P', 'Procedure') AS MEM_CHK
              , CASE WHEN TEMP.MEM_RDO = 'J' THEN '일본'
-                    WHEN TEMP.MEM_RDO = 'S' THEN '동남아'
+                    WHEN TEMP.MEM_RDO = 'A' THEN '동남아'
                     WHEN TEMP.MEM_RDO = 'E' THEN '유럽'
                     ELSE TEMP.MEM_RDO
                 END AS MEM_RDO
@@ -57,31 +57,32 @@
                 AND TEMP.MEM_RDO = #{memRdo}
             </if>
             <if test="memChk != null and !memChk.equals('')">
+                <!--AND TEMP.MEM_CHK IN (
+                <foreach item="item" index="index" collection="memChk.split(',')" separator=",">
+                    #{item}
+                </foreach>
+                    )-->
                 AND TEMP.MEM_CHK = #{memChk}
             </if>
         </where>
     </select>
 
     <select id="selectAseMemberOne" resultType="aseMemberVO" parameterType="aseMemberVO">
-        SELECT TEMP.MEM_UID
-             , TEMP.MEM_NAME
-             , TEMP.MEM_PHONE
+        SELECT MEM_UID
+             , MEM_NAME
+             , MEM_PHONE
              , SUBSTR(MEM_PHONE, 0, 3) AS MEM_PHONE1
              , SUBSTR(MEM_PHONE, 4, 4) AS MEM_PHONE2
              , SUBSTR(MEM_PHONE, 8, 4) AS MEM_PHONE3
-             , TEMP.MEM_REG_NUM
+             , MEM_REG_NUM
              , SUBSTR(MEM_REG_NUM, 0, 6) AS MEM_REG_NUM1
              , SUBSTR(MEM_REG_NUM, 7, 7) AS MEM_REG_NUM2
-             , TEMP.MEM_CHK
-             , TEMP.MEM_RDO
-             , TEMP.MEM_DESC
-             , TEMP.CREATE_DT
-        FROM TB_COMM_MEMBER_TEMP TEMP
-        <where>
-            <if test="memUid != null and !memUid.equals('')">
-                AND MEM_UID LIKE '%' || #{memUid} || '%'
-            </if>
-        </where>
+             , MEM_CHK
+             , MEM_RDO
+             , MEM_DESC
+             , CREATE_DT
+        FROM TB_COMM_MEMBER_TEMP
+       WHERE MEM_UID LIKE '%' || #{memUid} || '%'
     </select>
 
     <insert id="insertAseCheckMember" parameterType="aseMemberVO">

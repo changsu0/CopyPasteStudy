@@ -24,7 +24,7 @@
             <label>이름</label>
             <input type="hidden" class="" id="memUid" name="memUid" value="${aseMemberVO.memUid}">
             <c:choose>
-                <c:when test="${aseMemberVO.memUid == null}">
+                <c:when test="${aseMemberVO.memUid eq null}">
                     <input type="text" class="" id="memName" name="memName" value="${aseMemberVO.memName}" maxlength="3">
                 </c:when>
                 <c:otherwise>
@@ -34,40 +34,26 @@
         </div>
         <div class="form-group">
             <label>전화번호</label>
+            <select name="memPhone1">
+                <c:forEach var="list" items="${phone}">
+                    <c:choose>
+                        <c:when test="${list.commDtCd eq aseMemberVO.memPhone1}">
+                            <option value="${list.commDtCd}" selected disabled>${list.commDtNm}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${list.commDtCd}">${list.commDtNm}</option>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </select>-
             <c:choose>
-                <c:when test="${aseMemberVO.memUid == null}">
-                    <select class="" name="memPhone1">
-                        <option value="010">010</option>
-                        <option value="011">011</option>
-                        <option value="012">012</option>
-                        <option value="013">013</option>
-                    </select>
-                    -
-                    <input type="text" class="" name="memPhone2" value="${aseMemberVO.memPhone2}" maxlength="4" pattern="[0-9]+">
-                    -
-                    <input type="text" class="" name="memPhone3" value="${aseMemberVO.memPhone3}" maxlength="4" pattern="[0-9]+">
+                <c:when test="${aseMemberVO.memUid eq null}">
+                    <input type="text" name="memPhone2" maxlength="4" value="${aseMemberVO.memPhone2}" /> -
+                    <input type="text" name="memPhone3" maxlength="4" value="${aseMemberVO.memPhone3}" />
                 </c:when>
                 <c:otherwise>
-                    <select class="" name="memPhone1" id="memPhone1" disabled>
-                        <c:choose>
-                            <c:when test="${aseMemberVO.memPhone1 == '010'}">
-                                <option value="010" selected>010</option>
-                            </c:when>
-                            <c:when test="${aseMemberVO.memPhone1 == '011'}">
-                                <option value="011" selected>011</option>
-                            </c:when>
-                            <c:when test="${aseMemberVO.memPhone1 == '012'}">
-                                <option value="012" selected>012</option>
-                            </c:when>
-                            <c:otherwise>
-                                <option value="013" selected>013</option>
-                            </c:otherwise>
-                        </c:choose>
-                    </select>
-                    -
-                    <input type="text" class="" name="memPhone2" value="${aseMemberVO.memPhone2}" readonly>
-                    -
-                    <input type="text" class="" name="memPhone3" value="${aseMemberVO.memPhone3}" readonly>
+                    <input type="text" name="memPhone2" maxlength="4" value="${aseMemberVO.memPhone2}" readonly/> -
+                    <input type="text" name="memPhone3" maxlength="4" value="${aseMemberVO.memPhone3}" readonly />
                 </c:otherwise>
             </c:choose>
         </div>
@@ -88,40 +74,31 @@
         </div>
         <div class="form-group">
             <label>취미</label>
-            <c:choose>
-                <c:when test="${aseMemberVO.memUid eq null}">
-                <input type="checkbox" class="" name="memChk" value="C">CRUD
-                <input type="checkbox" class="" name="memChk" value="Q">Query
-                <input type="checkbox" class="" name="memChk" value="F">Function
-                <input type="checkbox" class="" name="memChk" value="P">Procedure
-                </c:when>
-                <c:otherwise>
-                <input type="checkbox" class="" name="memChk" value="C" <c:if test="${fn:contains(aseMemberVO.memChk, 'C')}">checked</c:if> disabled>CRUD
-                <input type="checkbox" class="" name="memChk" value="Q" <c:if test="${fn:contains(aseMemberVO.memChk, 'Q')}">checked</c:if> disabled>Query
-                <input type="checkbox" class="" name="memChk" value="F" <c:if test="${fn:contains(aseMemberVO.memChk, 'F')}">checked</c:if> disabled>Function
-                <input type="checkbox" class="" name="memChk" value="P" <c:if test="${fn:contains(aseMemberVO.memChk, 'P')}">checked</c:if> disabled>Procedure
-                </c:otherwise>
-            </c:choose>
+            <c:forEach var="list" items="${check}">
+                <c:set var="chk" value="N"/>
+                    <c:forEach var="chkList" items="${aseMemberVO.memChkList}">
+                        <c:if test="${list.commDtCd eq chkList}">
+                            <c:set var="chk" value="Y" />
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${chk eq 'Y'}">
+                        <input type="checkbox" name="memChk" value="${list.commDtCd}" checked disabled/> ${list.commDtNm}
+                    </c:if>
+                    <c:if test="${chk eq 'N'}">
+                        <input type="checkbox" name="memChk" value="${list.commDtCd}" /> ${list.commDtNm}
+                    </c:if>
+            </c:forEach>
         </div>
         <div class="form-group">
             <label>선택</label>
-            <c:choose>
-                <c:when test="${aseMemberVO.memUid eq null}">
-                    <input type="radio" class="" name="memRdo" value="E">유럽
-                    <input type="radio" class="" name="memRdo" value="SA">동남아
-                    <input type="radio" class="" name="memRdo" value="J">일본
-                </c:when>
-                <c:otherwise>
-                    <input type="radio" class="" name="memRdo" value="E" <c:if test="${aseMemberVO.memRdo == 'E'}">checked</c:if> disabled>유럽
-                    <input type="radio" class="" name="memRdo" value="SA" <c:if test="${aseMemberVO.memRdo == 'S'}">checked</c:if> disabled>동남아
-                    <input type="radio" class="" name="memRdo" value="J" <c:if test="${aseMemberVO.memRdo == 'J'}">checked</c:if> disabled>일본
-                </c:otherwise>
-            </c:choose>
+            <c:forEach var="list" items="${radio}">
+                    <input type="radio" class="" name="memRdo" value="${list.commDtCd}" <c:if test="${list.commDtCd == aseMemberVO.memRdo}">checked disabled</c:if>> ${list.commDtNm}
+            </c:forEach>
         </div>
         <div class="form-group">
             <label>설명</label>
             <c:choose>
-                <c:when test="${aseMemberVO.memUid == null}">
+                <c:when test="${aseMemberVO.memUid eq null}">
                     <p><textarea cols="50" rows="10" name="memDesc"></textarea></p>
                 </c:when>
                 <c:otherwise>

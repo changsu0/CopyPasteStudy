@@ -25,11 +25,10 @@
 <br />
 
 <div>
-    <form:form id="frm" name="frm" action="/aseCommDtFormSave" method="post">
+    <form:form id="frm" name="frm" action="/aseCommDtFormSave" method="post" onsubmit="return submitReturn();">
         <div class="form-group">
             <label>공통 코드</label>
-            <select class="form-control" name="commCd">
-                <option value="">공통코드를 선택해주세요.</option>
+            <select class="form-control" name="commCd" id="commCd" disabled>
                 <c:forEach var="list" items="${aseCommCd}">
                     <c:choose>
                         <c:when test="${aseCommDtVO.commCd == list.commCd}">
@@ -67,10 +66,17 @@
                 <button name="action" value="insert" type="submit" class="btn btn-success">저장</button>
             </c:when>
             <c:otherwise>
-                <button name="action" value="update" type="submit" class="btn btn-success">수정</button>
-                <button name="action" value="delete" type="submit" class="btn btn-danger">삭제</button>
+                <button name="action" value="update" type="submit" class="btn btn-success" onsubmit="return submitReturn();">수정</button>
+                <button name="action" value="delete" type="submit" class="btn btn-danger" onsubmit="return submitReturn();">삭제</button>
             </c:otherwise>
         </c:choose>
     </form:form>
+
+    <script>
+        function submitReturn(){
+            var commCd = document.getElementById('commCd');
+            commCd.disabled = false;
+        }
+    </script>
 </body>
 </html>

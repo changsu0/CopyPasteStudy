@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper
 public interface AseMemberMapper {
 
-    public AseMemberVO selectAseMemberOne(AseMemberVO aseMemberVO);
-    public List<AseMemberVO> selectAseMember(AseMemberVO aseMemberVO);
+    AseMemberVO selectAseMemberOne(AseMemberVO aseMemberVO);
+    List<AseMemberVO> selectAseMember(AseMemberVO aseMemberVO);
     int insertAseMember(AseMemberVO aseMemberVO);
     int insertAseCheckMember(AseMemberVO aseMemberVO);
 }
