@@ -22,19 +22,19 @@
 <form:form action="/lwjCountryList" method="get">
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <label class="sr-only" for="name">name</label>
+            <label class="sr-only" for="name">나라이름</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">name</div>
+                    <div class="input-group-text">나라이름</div>
                 </div>
                 <input type="text" class="form-control" id="name" placeholder="name" name="name" value="${lwjCountryVO.name}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="code">code</label>
+            <label class="sr-only" for="code">코드</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">code</div>
+                    <div class="input-group-text">코드</div>
                 </div>
                 <input type="text" class="form-control" id="code" placeholder="code" name="code" value="${lwjCountryVO.code}">
             </div>
@@ -64,5 +64,4 @@
         </tbody>
     </table>
 </body>
-
 </html>
