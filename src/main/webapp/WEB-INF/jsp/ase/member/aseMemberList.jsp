@@ -79,11 +79,132 @@
                 <input type="checkbox" name="memChk" value="P" <c:if test="${fn:contains(saveChk, 'P')}">checked</c:if> >Procedure
             </div>
         </div>
+
+        <p>
+
+        <div class="col-auto">
+            <label class="sr-only" for="memName">이름_JQ</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">이름_JQ</div>
+                </div>
+                <input type="text" class="form-control" id="inputName_JQ" placeholder="이름_JQ" name="inputName_JQ" value="${aseMemberVO.memName}">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="memRegNum">주민번호_JQ</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">주민번호_JQ</div>
+                </div>
+                <input type="text" class="form-control" id="inputReg_JQ" placeholder="주민번호" name="inputReg_JQ" value="${aseMemberVO.memRegNum}">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="selPhone_JQ">전화번호_JQ</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">전화번호_JQ</div>
+                </div>
+                <select name="selPhone_JQ" id="selPhone_JQ">
+                    <option value="">선택하세요</option>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="012">012</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only">라디오_JQ</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">라디오_JQ</div>
+                </div>
+                <input type="radio" name="rdoHo_JQ" value="">전체
+                <input type="radio" name="rdoHo_JQ" value="E">유럽
+                <input type="radio" name="rdoHo_JQ" value="J">일본
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only">취미_JQ</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">체크_JQ</div>
+                </div>
+                <input type="checkbox" name="chkTech_JQ" value="C">CRUD
+                <input type="checkbox" name="chkTech_JQ" value="Q">Query
+                <input type="checkbox" name="chkTech_JQ" value="F">Function
+                <input type="checkbox" name="chkTech_JQ" value="P">Procedure
+            </div>
+        </div>
+
         <div class="col-auto">
             <button name="action" class="btn btn-info" type="submit">조회</button>
         </div>
+
+        <br>
+
+        <div class="col-auto">
+            <label class="sr-only" for="inputName_JJan">이름_JJan</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">이름_JJan</div>
+                </div>
+                <input type="text" class="form-control" id="inputName_JJan" placeholder="이름" name="inputName_JJan">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inputReg_JJan">주민번호_JJan</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">주민번호_JJan</div>
+                </div>
+                <input type="text" class="form-control" id="inputReg_JJan" placeholder="주민번호" name="inputReg_JJan">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="selPhone_JJan">전화번호_JJan</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">전화번호_JJan</div>
+                </div>
+                <select name="selPhone_JJan" id="selPhone_JJan">
+                    <option value="">선택하세요</option>
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="012">012</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only">라디오_JJan</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">라디오_JJan</div>
+                </div>
+                <input type="radio" name="rdoHo_JJan" value="">전체
+                <input type="radio" name="rdoHo_JJan" value="E">유럽
+                <input type="radio" name="rdoHo_JJan" value="J">일본
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only">체크_JJan</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">체크_JJan</div>
+                </div>
+                <input type="checkbox" name="chkTech_JJan" value="C">CRUD
+                <input type="checkbox" name="chkTech_JJan" value="Q">Query
+                <input type="checkbox" name="chkTech_JJan" value="F">Function
+                <input type="checkbox" name="chkTech_JJan" value="P">Procedure
+            </div>
+        </div>
+
     </div>
 </form:form>
+
+    <button id="btnJJan" class="btn btn-info">짠</button>
+
 <br /><br />
     <table class="table table-striped">
         <thead>
@@ -164,6 +285,90 @@
         }
     }
 
+    const setInputValueJQ = function(nameID, nameVal){
+        $('#'+ nameID).val(nameVal);
+    }
+
+    const getInputValueJQ = function(nameID){
+        return $('#'+ nameID).val();
+    }
+
+    const setSelectValueJQ = function (selectID, selectVal){
+        $('#'+ selectID + ' option').each(function (){
+           if( $(this).val() === selectVal ){
+               $(this).prop('selected', true);
+               return false;
+           }
+        });
+
+    }
+
+
+
+    const setRadioValueJQ = function (radioName, radioVal){
+        $('input[name=' + radioName + ']').each(function (){
+            if( $(this).val() === radioVal ){
+                $(this).prop('checked', true);
+                return false;
+            }
+        });
+    }
+
+    const getRadioValueJQ = function(radioName){
+        return $('input[name='+radioName+']:checked').val();
+    }
+
+    const setCheckValuesJQ = function( checkName, checkValList ){
+        $('input[name=' + checkName + ']').prop('checked', false);
+
+        $('input[name=' + checkName + ']').each(function (){
+            for (let i = 0; i < checkValList.length; i++) {
+                if($(this).val() === checkValList[i]){
+                    $(this).prop('checked', true);
+                    break;
+                }
+            }
+        });
+    }
+
+    const getCheckValuesJQ = function( checkName ){
+        let chkValues = [];
+        $('input:checkbox[name='+checkName+']').each(function (){
+            if($(this).is(":checked") === true){
+                let chkTechVal = $(this).val();
+                chkValues.push(chkTechVal);
+            }
+        })
+        console.log(chkValues+'!');
+        return chkValues;
+    }
+
+    const JJan = function(){
+
+/*        //데이터 비우기
+        setInputValueJQ('inputName_JJan', '');
+        setInputValueJQ('inputReg_JJan', '');
+        setSelectValueJQ('selPhone_JJan', '');
+        $('input[name=rdoHo_JJan]').prop("checked", false);
+        $('input:checkbox[name=chkTech_JJan]').prop("checked", false);*/
+
+        //윗줄 데이터 복사 버튼 동작
+        //1. input 값 넣기
+        setInputValueJQ('inputName_JJan', getInputValueJQ('inputName_JQ'));
+        setInputValueJQ('inputReg_JJan', getInputValueJQ('inputReg_JQ'));
+
+        //2. selectBox 값 넣기
+        setSelectValueJQ('selPhone_JJan', getInputValueJQ('selPhone_JQ'));
+
+        //3. radio 값 선택
+        setRadioValueJQ('rdoHo_JJan', getRadioValueJQ('rdoHo_JQ'));
+
+        //4.check 값 선택
+        setCheckValuesJQ('chkTech_JJan' , getCheckValuesJQ('chkTech_JQ'));
+    }
+
+
+
     window.onload = function (){
 
         //1. input 값 넣기
@@ -179,7 +384,28 @@
         //4. 체크박스 값 선택 (다중)
         setCheckValues('memChk', ['C','P']);
 
+        //jQuery는 $로 시작
+        //1. input 값 넣기
+        setInputValueJQ('inputName_JQ', '1234');
+        setInputValueJQ('inputReg_JQ', '123456678');
+
+        //2.select 값 선택
+        setSelectValueJQ('selPhone_JQ', '010');
+
+        //3.radio 값 선택
+        setRadioValueJQ('rdoHo_JQ', 'J');
+
+        //4.check 값 선택
+        setCheckValuesJQ('chkTech_JQ', '[C,Q]')
+
+        $('#btnJJan').click(function (){
+            //이 버튼을 누르면 두번째줄에 입력된 값이 아래 (세번째)검색조건으로 복사됨
+            //JQuery 문법으로만 작성
+            JJan();
+        });
     }
+
+
 </script>
 
 </body>
