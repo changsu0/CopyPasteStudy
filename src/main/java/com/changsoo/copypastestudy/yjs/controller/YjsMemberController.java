@@ -33,6 +33,8 @@ public class YjsMemberController {
         model.addAttribute("selectNum", yjsMemberVO.getMemPhone());
         model.addAttribute("selectRdo", yjsMemberVO.getMemRdo());
         model.addAttribute("selectChk", yjsMemberVO.getMemChk());
+//        List<YjsMemberVO> selectChk = yjsMemberService.
+//        model.addAttribute("selectChk", yjsMemberVO.getMemChk());
 
         return "yjs/member/yjsMemberList";
     }
