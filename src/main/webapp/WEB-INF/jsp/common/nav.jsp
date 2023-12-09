@@ -46,6 +46,7 @@
                         <a class="dropdown-item" href="/aseCommDtForm">ASE COMM DT LIST 등록</a>
                         <a class="dropdown-item" href="/aseMemberForm">회원가입</a>
                         <a class="dropdown-item" href="/aseMemberList">회원 목록</a>
+                        <a class="dropdown-item" href="/aseMoveDataForm">moveData</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

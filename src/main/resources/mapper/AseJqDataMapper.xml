@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseJqDataMapper">
+
+    <insert id="insertAseMultiRow" parameterType="aseJqDataVO">
+        insert into TB_JQ_MULTI_ROWS (
+                      SEQ
+                 , INP_VAL
+                 , SEL_VAL
+                 , RDO_VAL
+                 , CHK_VAL
+        ) values (
+                SYS_GUID()
+                 , #{inpVal}
+                 , #{selVal}
+                 , #{rdoVal}
+                 , #{chkVal}
+                 )
+    </insert>
+
+</mapper>
