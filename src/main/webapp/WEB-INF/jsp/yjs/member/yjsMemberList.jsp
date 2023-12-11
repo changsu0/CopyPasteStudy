@@ -340,6 +340,7 @@
     }
 
     const setChkValJQ = function(checkName, checkValList) {
+        $('input[name=' + checkName + ']').prop('checked', false);
         $('input[name=' + checkName + ']').each(function () {
             // console.log($(this));
             for (let i = 0; i < checkValList.length; i++) {

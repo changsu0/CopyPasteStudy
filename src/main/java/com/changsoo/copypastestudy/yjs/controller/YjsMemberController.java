@@ -24,6 +24,7 @@ public class YjsMemberController {
     @Autowired
     YjsCommDtServiceImpl yjsCommDtService;
 
+
     @GetMapping("/yjsMemberList")
     public String selectMemberList(Model model, YjsMemberVO yjsMemberVO){
 
@@ -73,5 +74,6 @@ public class YjsMemberController {
         System.out.println(" Save Count :: " + cnt);
         return "redirect:/yjsMemberList";
     }
+
 
 }

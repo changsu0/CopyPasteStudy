@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsJqDataMapper">
+    <insert id="insertYjsJqMultiRows" parameterType="yjsJqDataVO">
+        insert into TB_JQ_MULTI_ROWS (
+                                          SEQ
+                                        , INP_VAL
+                                        , SEL_VAL
+                                        , RDO_VAL
+                                        , CHK_VAL
+        )
+        values (
+                   sys_guid()
+               , #{inpVal}
+               , #{selVal}
+               , #{rdoVal}
+               , #{chkVal}
+               )
+    </insert>
+
+    <insert id="insertYjsJqMultiRowsForeach" parameterType="yjsJqDataVO">
+        insert into TB_JQ_MULTI_ROWS (
+                                       SEQ
+                                     , INP_VAL
+                                     , SEL_VAL
+                                     , RDO_VAL
+                                     , CHK_VAL
+        )
+        <foreach collection="checkArr" item="item" index="index" open="values (" close=")" separator=",">
+            sys_guid()
+            , #{inpVal}
+            , #{selVal}
+            , #{rdoVal}
+            , #{chkVal}
+        </foreach>
+    </insert>
+
+</mapper>

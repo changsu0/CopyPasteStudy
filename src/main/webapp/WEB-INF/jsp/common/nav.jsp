@@ -75,6 +75,7 @@
                         <a class="dropdown-item" href="/yjsCommDtForm">공통상세코드 등록</a>
                         <a class="dropdown-item" href="/yjsMemberForm">회원 등록</a>
                         <a class="dropdown-item" href="/yjsMemberList">회원 등록 승인 List</a>
+                        <a class="dropdown-item" href="/yjsJqDataForm">JQ Multi Rows</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
