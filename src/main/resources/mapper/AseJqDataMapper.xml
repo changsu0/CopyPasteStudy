@@ -4,20 +4,38 @@
 
 <mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseJqDataMapper">
 
-    <insert id="insertAseMultiRow" parameterType="aseJqDataVO">
+<!--    <update id="insertAseMultiRow" parameterType="aseJqDataVO">
+        <foreach item="item" index="index" collection="chkVal.split(',')" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+            into TB_JQ_MULTI_ROWS (
+                          SEQ
+                     , INP_VAL
+                     , SEL_VAL
+                     , RDO_VAL
+                     , CHK_VAL
+            ) values (
+                    SYS_GUID()
+                     , #{inpVal}
+                     , #{selVal}
+                     , #{rdoVal}
+                     , #{item}
+            )
+        </foreach>
+    </update>-->
+
+    <update id="insertAseMultiRow" parameterType="aseJqDataVO">
         insert into TB_JQ_MULTI_ROWS (
-                      SEQ
-                 , INP_VAL
-                 , SEL_VAL
-                 , RDO_VAL
-                 , CHK_VAL
-        ) values (
-                SYS_GUID()
-                 , #{inpVal}
-                 , #{selVal}
-                 , #{rdoVal}
-                 , #{chkVal}
-                 )
-    </insert>
+            SEQ
+            , INP_VAL
+            , SEL_VAL
+            , RDO_VAL
+            , CHK_VAL
+            ) values (
+            SYS_GUID()
+            , #{inpVal}
+            , #{selVal}
+            , #{rdoVal}
+            , #{chkVal}
+            )
+    </update>
 
 </mapper>

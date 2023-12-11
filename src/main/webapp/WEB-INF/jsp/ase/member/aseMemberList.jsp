@@ -339,7 +339,6 @@
                 chkValues.push(chkTechVal);
             }
         })
-        console.log(chkValues+'!');
         return chkValues;
     }
 
