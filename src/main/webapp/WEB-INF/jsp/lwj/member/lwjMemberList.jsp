@@ -69,9 +69,11 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">라디오</div>
                 </div>
-                <input type="radio" name="memRdo" value="J" <c:if test="${rdo == 'J'}">checked="checked"</c:if>> 일본
-                <input type="radio" name="memRdo" value="S" <c:if test="${rdo == 'S'}">checked="checked"</c:if>> 동남아
-                <input type="radio" name="memRdo" value="E" <c:if test="${rdo == 'E'}">checked="checked"</c:if>> 유럽
+                <div class="form-control">
+                    <input type="radio" name="memRdo" value="J" <c:if test="${rdo == 'J'}">checked="checked"</c:if>> 일본
+                    <input type="radio" name="memRdo" value="S" <c:if test="${rdo == 'S'}">checked="checked"</c:if>> 동남아
+                    <input type="radio" name="memRdo" value="E" <c:if test="${rdo == 'E'}">checked="checked"</c:if>> 유럽
+                </div>
             </div>
         </div>
         <div class="col-auto">
@@ -80,10 +82,12 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">체크</div>
                 </div>
-                <input type="checkbox" name="memChk" value="C">CRUD
-                <input type="checkbox" name="memChk" value="Q">Query
-                <input type="checkbox" name="memChk" value="F">Function
-                <input type="checkbox" name="memChk" value="P">Procedure
+                <div class="form-control">
+                    <input type="checkbox" name="memChk" value="C">CRUD
+                    <input type="checkbox" name="memChk" value="Q">Query
+                    <input type="checkbox" name="memChk" value="F">Function
+                    <input type="checkbox" name="memChk" value="P">Procedure
+                </div>
             </div>
         </div>
         <div class="col-auto">
@@ -92,7 +96,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">이름_JQ</div>
                 </div>
-                <input type="text" class="form-control" id="inputName_JQ" placeholder="이름" name="inputName_JQ" size="6" maxlength="3" value="${lwjMemberVO.memName}">
+                <input type="text" class="form-control" id="inputName_JQ" placeholder="이름" name="inputName_JQ" size="3" maxlength="3" value="${lwjMemberVO.memName}">
             </div>
         </div>
         <div class="col-auto">
@@ -131,9 +135,11 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">라디오_JQ</div>
                 </div>
-                <input type="radio" name="rdoHo_JQ" value="J"> 일본
-                <input type="radio" name="rdoHo_JQ" value="S"> 동남아
-                <input type="radio" name="rdoHo_JQ" value="E"> 유럽
+                <div class="form-control">
+                    <input type="radio" name="rdoHo_JQ" value="J"> 일본
+                    <input type="radio" name="rdoHo_JQ" value="S"> 동남아
+                    <input type="radio" name="rdoHo_JQ" value="E"> 유럽
+                </div>
             </div>
         </div>
         <div class="col-auto">
@@ -142,43 +148,45 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">체크_JQ</div>
                 </div>
-                <input type="checkbox" name="chkTech_JQ" value="C">CRUD
-                <input type="checkbox" name="chkTech_JQ" value="Q">Query
-                <input type="checkbox" name="chkTech_JQ" value="F">Function
-                <input type="checkbox" name="chkTech_JQ" value="P">Procedure
-            </div>
-        </div>
-        <div class="col-auto">
-            <label class="sr-only" for="memName">이름_HW</label>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">이름_HW</div>
+                <div class="form-control">
+                    <input type="checkbox" name="chkTech_JQ" value="C">CRUD
+                    <input type="checkbox" name="chkTech_JQ" value="Q">Query
+                    <input type="checkbox" name="chkTech_JQ" value="F">Function
+                    <input type="checkbox" name="chkTech_JQ" value="P">Procedure
                 </div>
-                <input type="text" class="form-control" id="inputName_HW" placeholder="이름" name="inputName_HW" size="4" maxlength="3" value="${lwjMemberVO.memName}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="memRegNum">주민번호_HW</label>
+            <label class="sr-only" for="memName">이름_H</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">주민번호_HW</div>
+                    <div class="input-group-text">이름_H</div>
                 </div>
-                <input type="text" class="form-control" id="inputReq_HW" placeholder="주민번호" name="inputReq_HW" size="3" maxlength="6" value="${lwjMemberVO.memRegNum}">
+                <input type="text" class="form-control" id="inputName_HW" placeholder="이름" name="inputName_HW" size="2" maxlength="3" value="${lwjMemberVO.memName}">
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only" for="memPhone">전화번호_HW</label>
+            <label class="sr-only" for="memRegNum">주민번호_H</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">전화번호_HW</div>
+                    <div class="input-group-text">주민번호_H</div>
                 </div>
-                <input type="text" class="form-control" id="inputPhone_HW" placeholder="전화번호" name="inputPhone_HW" size=9 maxlength="11" value="${lwjMemberVO.memPhone}">
+                <input type="text" class="form-control" id="inputReq_HW" placeholder="주민번호" name="inputReq_HW" size="4" maxlength="6" value="${lwjMemberVO.memRegNum}">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="memPhone">전화번호_H</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">전화번호_H</div>
+                </div>
+                <input type="text" class="form-control" id="inputPhone_HW" placeholder="전화번호" name="inputPhone_HW" size="9" maxlength="11" value="${lwjMemberVO.memPhone}">
             </div>
         </div>
         <div class="col-auto">
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">전화번호_HW</div>
+                    <div class="input-group-text">전화번호_H</div>
                 </div>
                 <select id="selPhone_HW" name="selPhone_HW">
                     <option value="010">010</option>
@@ -191,23 +199,26 @@
         <div class="col-auto">
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">라디오_HW</div>
+                    <div class="input-group-text">라디오_H</div>
                 </div>
-                <input type="radio" name="rdoHo_HW" value="J"> 일본
-                <input type="radio" name="rdoHo_HW" value="S"> 동남아
-                <input type="radio" name="rdoHo_HW" value="E"> 유럽
+                <div class="form-control">
+                    <input type="radio" name="rdoHo_HW" value="J"> 일본
+                    <input type="radio" name="rdoHo_HW" value="S"> 동남아
+                    <input type="radio" name="rdoHo_HW" value="E"> 유럽
+                </div>
             </div>
         </div>
         <div class="col-auto">
-            <label class="sr-only">취미_HW</label>
             <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">체크_HW</div>
+                    <div class="input-group-text">체크_H</div>
                 </div>
-                <input type="checkbox" name="chkTech_HW" value="C">CRUD
-                <input type="checkbox" name="chkTech_HW" value="Q">Query
-                <input type="checkbox" name="chkTech_HW" value="F">Function
-                <input type="checkbox" name="chkTech_HW" value="P">Procedure
+                <div class="form-control">
+                    <input type="checkbox" name="chkTech_HW" value="C">CRUD
+                    <input type="checkbox" name="chkTech_HW" value="Q">Query
+                    <input type="checkbox" name="chkTech_HW" value="F">Function
+                    <input type="checkbox" name="chkTech_HW" value="P">Procedure
+                </div>
             </div>
         </div>
         <div class="col-auto">
@@ -343,6 +354,8 @@
 
 
     const setCheckValuesJQ = function(chkName, chkValList) {
+        $('input[name=' + chkName + ']').prop('checked', false);
+
         $('input[name=' + chkName + ']').each(function () {
             for (let i = 0; i < chkValList.length; i++) {
                 if($(this).val() === chkValList[i]) {

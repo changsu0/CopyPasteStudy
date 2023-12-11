@@ -93,6 +93,7 @@
                         <a class="dropdown-item" href="/lwjCommDtForm">공통상세코드 등록</a>
                         <a class="dropdown-item" href="/lwjMemberList">회원가입 리스트</a>
                         <a class="dropdown-item" href="/lwjMemberForm">회원가입 신청</a>
+                        <a class="dropdown-item" href="/lwjJQDataForm">JQ Multi Rows</a>
                     </div>
                 </li>
             </ul>
