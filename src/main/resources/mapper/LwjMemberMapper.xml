@@ -4,6 +4,7 @@
 
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjMemberMapper">
     <select id="selectLwjMemberList" resultType="lwjMemberVO" parameterType="lwjMemberVO"> -- 회원가입 신청 목록
+        /*LwjMemberMapper.selectLwjMemberList*/
         SELECT MT.MEM_UID
              , REPLACE(MT.MEM_NAME, SUBSTR(MT.MEM_NAME, 2, 1), '*') AS mem_name
              , SUBSTR(MT.MEM_PHONE, 1, 3) || '-' || '****' || '-' || SUBSTR(MT.MEM_PHONE, 8) AS MEM_PHONE
@@ -42,6 +43,7 @@
     </select>
 
     <select id="selectLwjMemberOne" resultType="lwjMemberVO" parameterType="lwjMemberVO"> -- 회원가입 승인 이벤트
+        /*LwjMemberMapper.selectLwjMemberOne*/
         SELECT MEM_UID
              , MEM_NAME
              , MEM_PHONE
@@ -54,6 +56,7 @@
     </select>
 
     <insert id="insertLwjMemberTemp" parameterType="lwjMemberVO"> -- 회원가입 승인 신청
+        /*LwjMemberMapper.insertLwjMemberTemp*/
         INSERT INTO TB_COMM_MEMBER_TEMP
         ( MEM_UID
         , MEM_NAME
@@ -76,6 +79,7 @@
     </insert>
 
     <insert id="insertLwjMember" parameterType="lwjMemberVO"> -- 회원가입 최종 승인
+        /*LwjMemberMapper.insertLwjMember*/
         INSERT INTO TB_COMM_MEMBER
         ( MEM_UID
         , MEM_NAME

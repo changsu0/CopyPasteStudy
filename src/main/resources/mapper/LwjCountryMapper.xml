@@ -4,9 +4,10 @@
 
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjCountryMapper">
     <select id="selectLwjCountryList" resultType="lwjCountryVO" parameterType="lwjCountryVO">
-        select
+        /*LwjCountryMapper.selectLwjCountryList*/
+        SELECT
             name, code
-        from tb_lwj_country
+        FROM TB_LWJ_COUNTRY
         <where>
             <if test="name != null and !name.equals('')">
                 AND name LIKE '%' || #{name} || '%'

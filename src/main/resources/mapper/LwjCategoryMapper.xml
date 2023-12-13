@@ -4,6 +4,7 @@
 
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjCategoryMapper">
     <select id="selectLwjCategoryOne" resultType="lwjCategoryVO" parameterType="lwjCategoryVO">
+        /*LwjCategoryMapper.selectLwjCategoryOne*/
         SELECT CATG_HD_CD
              , CATG_HD_NM
         FROM TB_LWJ_CATG_HD
@@ -11,6 +12,7 @@
     </select>
 
     <select id="selectLwjCategoryList" resultType="lwjCategoryVO" parameterType="lwjCategoryVO">
+        /*LwjCategoryMapper.selectLwjCategoryList*/
         SELECT CATG_HD_CD
              , CATG_HD_NM
         FROM TB_LWJ_CATG_HD
@@ -26,6 +28,7 @@
     </select>
 
     <select id="selectLwjCategoryDetailList" resultType="lwjCategoryVO" parameterType="lwjCategoryVO">
+        /*LwjCategoryMapper.selectLwjCategoryDetailList*/
         SELECT CATG_HD_CD
              , CATG_DT_CD
              , CATG_DT_NM
@@ -45,6 +48,7 @@
     </select>
 
     <insert id="insertLwjCategory" parameterType="lwjCategoryVO">
+        /*LwjCategoryMapper.insertLwjCategory*/
         INSERT INTO TB_LWJ_CATG_HD
         ( CATG_HD_CD
         , CATG_HD_NM
@@ -56,6 +60,7 @@
     </insert>
 
     <update id="updateLwjCategory" parameterType="lwjCategoryVO">
+        /*LwjCategoryMapper.updateLwjCategory*/
         UPDATE TB_LWJ_CATG_HD
         SET CATG_HD_CD = #{catgHdCd}
           , CATG_HD_NM = #{catgHdNm}
@@ -63,6 +68,7 @@
     </update>
 
     <delete id="deleteLwjCategory" parameterType="lwjCategoryVO">
+        /*LwjCategoryMapper.deleteLwjCategory*/
         DELETE FROM TB_LWJ_CATG_HD
         WHERE CATG_HD_CD = #{catgHdCd}
     </delete>

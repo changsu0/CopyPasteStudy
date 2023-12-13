@@ -4,6 +4,7 @@
 
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjSubwayMapper">
     <select id="selectLwjSubwayOne" resultType="lwjSubwayVO" parameterType="lwjSubwayVO">
+        /*LwjSubwayMapper.selectLwjSubwayOne*/
         SELECT NUM
              , LINE
              , NAME
@@ -12,6 +13,7 @@
     </select>
 
     <select id="selectLwjSubwayList" resultType="lwjSubwayVO" parameterType="lwjSubwayVO">
+        /*LwjSubwayMapper.selectLwjSubwayList*/
         SELECT NUM
              , LINE
              , NAME
@@ -31,6 +33,7 @@
     </select>
 
     <insert id="insertLwjSubway" parameterType="lwjSubwayVO">
+        /*LwjSubwayMapper.insertLwjSubway*/
         INSERT INTO TB_LWJ_SUBWAY
         ( NUM
         , LINE
@@ -44,6 +47,7 @@
     </insert>
 
     <update id="updateLwjSubway" parameterType="lwjSubwayVO">
+        /*LwjSubwayMapper.updateLwjSubway*/
         UPDATE TB_LWJ_SUBWAY
         SET NUM = #{num}
           , LINE = #{line}
@@ -52,6 +56,7 @@
     </update>
 
     <delete id="deleteLwjSubway" parameterType="lwjSubwayVO">
+        /*LwjSubwayMapper.deleteLwjSubway*/
         DELETE FROM TB_LWJ_SUBWAY
         WHERE NUM = #{num}
     </delete>

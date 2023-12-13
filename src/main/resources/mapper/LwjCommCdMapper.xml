@@ -5,6 +5,7 @@
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjCommCdMapper">
     <!--id = 우리가 볼 이름-->
     <select id="selectLwjCommCdOne" resultType="lwjCommDtVO" parameterType="lwjCommDtVO">
+        /*LwjCommCdMapper.selectLwjCommCdOne*/
         SELECT COMM_CD
              , COMM_NM
              , COMM_DESC
@@ -13,6 +14,7 @@
     </select>
 
     <select id="selectLwjCommCdList" resultType="lwjCommDtVO" parameterType="lwjCommDtVO">
+        /*LwjCommCdMapper.selectLwjCommCdList*/
         SELECT COMM_CD
         , COMM_NM
         , COMM_DESC
@@ -45,6 +47,7 @@
     </insert>
 
     <update id="updateLwjCommCd" parameterType="lwjCommDtVO">
+        /* LwjCommCdMapper.updateLwjCommCd */
         UPDATE TB_COMM_CD
         SET COMM_CD = #{commCd}
           , COMM_NM = #{commNm}
@@ -53,12 +56,14 @@
     </update>
 
     <delete id="deleteLwjCommCd" parameterType="lwjCommDtVO">
+        /* LwjCommCdMapper.deleteLwjCommCd */
         DELETE FROM TB_COMM_CD
         WHERE COMM_CD = #{commCd}
     </delete>
 
 
     <select id="selectLwjCommDtOne" resultType="lwjCommDtVO" parameterType="lwjCommDtVO">
+        /* LwjCommCdMapper.selectLwjCommDtOne */
         SELECT COMM_CD
              , COMM_DT_CD
              , COMM_DT_NM
@@ -71,6 +76,7 @@
     </select>
 
     <select id="selectLwjCommDtList" resultType="lwjCommDtVO" parameterType="lwjCommDtVO">
+        /* LwjCommCdMapper.selectLwjCommDtList */
         SELECT COMM_CD
              , COMM_DT_CD
              , COMM_DT_NM
@@ -121,6 +127,7 @@
     </insert>
 
     <update id="updateLwjCommDt" parameterType="lwjCommDtVO">
+        /* LwjCommCdMapper.updateLwjCommDt */
         UPDATE TB_COMM_DT
         SET COMM_CD = #{commCd}
           , COMM_DT_CD = #{commDtCd}
@@ -133,6 +140,7 @@
     </update>
 
     <delete id="deleteLwjCommDt" parameterType="lwjCommDtVO">
+        /* LwjCommCdMapper.deleteLwjCommDt */
         DELETE FROM TB_COMM_DT
         WHERE COMM_CD = #{commCd}
           AND COMM_DT_CD = #{commDtCd}
