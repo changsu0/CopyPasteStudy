@@ -84,6 +84,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="lwj">
                         <a class="dropdown-item" href="/lwjCountryList">Lwj Country List</a>
+                        <a class="dropdown-item" href="/lwjCountryForm">Lwj Country 등록</a>
                         <a class="dropdown-item" href="/lwjSubwayList">Lwj Subway List</a>
                         <a class="dropdown-item" href="/lwjSubwayForm">Lwj Subway 등록</a>
                         <a class="dropdown-item" href="/lwjCategoryHeaderList">Lwj CategoryHeader List</a>
@@ -95,6 +96,7 @@
                         <a class="dropdown-item" href="/lwjMemberList">회원가입 리스트</a>
                         <a class="dropdown-item" href="/lwjMemberForm">회원가입 신청</a>
                         <a class="dropdown-item" href="/lwjJQDataForm">JQ Multi Rows</a>
+                        <a class="dropdown-item" href="/lwjAjaxList">공통코드 조회</a>
                     </div>
                 </li>
             </ul>

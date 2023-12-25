@@ -3,19 +3,53 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.changsoo.copypastestudy.lwj.mapper.LwjCountryMapper">
+    <select id="selectLwjCountryOne" resultType="lwjCountryVO" parameterType="lwjCountryVO">
+        /*LwjCountryMapper.selectLwjCountryOne*/
+        SELECT CODE
+             , NAME
+        FROM TB_LWJ_COUNTRY
+        WHERE CODE = #{code}
+    </select>
+
     <select id="selectLwjCountryList" resultType="lwjCountryVO" parameterType="lwjCountryVO">
         /*LwjCountryMapper.selectLwjCountryList*/
-        SELECT
-            name, code
+        SELECT NAME
+             , CODE
         FROM TB_LWJ_COUNTRY
         <where>
-            <if test="name != null and !name.equals('')">
-                AND name LIKE '%' || #{name} || '%'
-            </if>
             <if test="code != null and !code.equals('')">
-                AND code LIKE '%' || #{code} || '%'
+                AND CODE LIKE '%' || #{code} || '%'
+            </if>
+            <if test="name != null and !name.equals('')">
+                AND NAME LIKE '%' || #{name} || '%'
             </if>
         </where>
-        ORDER BY name
+        ORDER BY CODE ASC
     </select>
+
+    <insert id="insertLwjCountry" parameterType="lwjCountryVO">
+        /*LwjCountryMapper.insertLwjCountry*/
+        INSERT INTO TB_LWJ_COUNTRY
+        ( CODE
+        , NAME
+        )
+        VALUES
+        ( #{code}
+        , #{name}
+        )
+    </insert>
+
+    <update id="updateLwjCountry" parameterType="lwjCountryVO">
+        /*LwjCountryMapper.updateLwjCountry*/
+        UPDATE TB_LWJ_COUNTRY
+        SET CODE = #{code}
+          , NAME = #{name}
+        WHERE CODE = #{code}
+    </update>
+
+    <delete id="deleteLwjCountry" parameterType="lwjCountryVO">
+        /*LwjCountryMapper.deleteLwjCountry*/
+        DELETE TB_LWJ_COUNTRY
+        WHERE CODE = #{code}
+    </delete>
 </mapper>

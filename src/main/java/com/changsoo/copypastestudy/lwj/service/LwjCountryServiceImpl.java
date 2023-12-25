@@ -15,8 +15,28 @@ public class LwjCountryServiceImpl implements LwjCountryService {
     }
 
     @Override
+    public LwjCountryVO selectLwjCountryOne(LwjCountryVO lwjCountryVO) {
+        return lwjCountryMapper.selectLwjCountryOne(lwjCountryVO);
+    }
+
+    @Override
     public List<LwjCountryVO> selectLwjCountryList(LwjCountryVO lwjCountryVO) {
         return lwjCountryMapper.selectLwjCountryList(lwjCountryVO);
+    }
+
+    @Override
+    public int insertLwjCountry(LwjCountryVO lwjCountryVO) {
+        return lwjCountryMapper.insertLwjCountry(lwjCountryVO);
+    }
+
+    @Override
+    public int updateLwjCountry(LwjCountryVO lwjCountryVO) {
+        return lwjCountryMapper.updateLwjCountry(lwjCountryVO);
+    }
+
+    @Override
+    public int deleteLwjCountry(LwjCountryVO lwjCountryVO) {
+        return lwjCountryMapper.deleteLwjCountry(lwjCountryVO);
     }
 
 }
