@@ -6,22 +6,22 @@
 
     <select id="yjsCommCdList" resultType="yjsCommDtVO" parameterType="yjsCommDtVO">
         /* YjsCommCdMapper.yjsCommCdList */
-        SELECT COMM_CD
-             , COMM_NM
-             , COMM_DESC
-        FROM TB_COMM_CD
+        SELECT A.COMM_CD
+             , A.COMM_NM
+             , A.COMM_DESC
+        FROM TB_COMM_CD A
         <where>
             <if test="commCd != null and !commCd.equals('')">
-                AND COMM_CD LIKE '%' || #{commCd} || '%'
+                AND A.COMM_CD LIKE '%' || #{commCd} || '%'
             </if>
             <if test="commNm != null and !commNm.equals('')">
-                AND COMM_NM LIKE '%' || #{commNm} || '%'
+                AND A.COMM_NM LIKE '%' || #{commNm} || '%'
             </if>
             <if test="commDesc != null and !commDesc.equals('')">
-                AND COMM_DESC LIKE '%' || #{commDesc} || '%'
+                AND A.COMM_DESC LIKE '%' || #{commDesc} || '%'
             </if>
         </where>
-        ORDER BY COMM_CD
+        ORDER BY A.COMM_CD
     </select>
 
     <select id="yjsCommCdForm" resultType="yjsCommDtVO" parameterType="yjsCommDtVO">

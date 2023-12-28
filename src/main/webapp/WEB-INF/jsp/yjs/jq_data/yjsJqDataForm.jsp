@@ -75,11 +75,12 @@
                 <button name="action" value="listService" class="btn btn-info" type="submit">저장_1</button>
             </div>
             <div class="col-auto">
-                <button name="action" value="listMybatis" class="btn btn-info" type="submit" disabled="disabled">저장_2</button>
+                <button name="action" value="listMybatis" class="btn btn-info" type="submit">저장_2</button>
             </div>
         </div>
         <br/>
     </form:form>
+    <form:form action="/insertYjsMultiSelList" method="post">
         <div class="form-row align-items-center">
             <div class="col-auto">
                 <label class="sr-only">select_left</label>
@@ -96,10 +97,10 @@
                 </div>
             </div>
             <div class="col-auto">
-                <button id="goLeft" class="btn btn-info" type="submit">&lt;</button>
+                <button id="goLeft" class="btn-info" type="button">&lt;</button>
             </div>
             <div class="col-auto">
-                <button id="goRight" class="btn btn-info" type="submit">&gt;</button>
+                <button id="goRight" class="btn-info" type="button">&gt;</button>
             </div>
             <div class="col-auto">
                 <label class="sr-only">select_right</label>
@@ -109,14 +110,22 @@
                     </select>
                 </div>
             </div>
+            <div class="col-auto">
+                <button name="action" class="btn btn-info" type="submit">저장</button>
+            </div>
         </div>
+    </form:form>
+
         <script>
             window.onload = function() {
+                moveFunc();
+            }
+            const moveFunc = function () {
                 $('#goRight').on('click', function() {
-                   var options = "";
-                   $.each($('#selLeft option:selected'), function (index, item) {
-                       options += "<option value=\"" + $(item).val() + "\">" + $(item).text() + "</option>";
-                   })
+                    var options = "";
+                    $.each($('#selLeft option:selected'), function (index, item) {
+                        options += "<option value=\"" + $(item).val() + "\">" + $(item).text() + "</option>";
+                    })
                     $('#selRight').append(options);
                     $('#selLeft option:selected').remove();
                 });

@@ -41,18 +41,32 @@ public class YjsJqDataServiceImpl implements YjsJqDataService {
 
     @Override
     public int insertYjsJqMultiRowsForeach(YjsJqDataVO yjsJqDataVO) {
-        String chk = yjsJqDataVO.getChkVal();
-        if (!chk.isEmpty()){
-            List<String> chkList = Arrays.asList(chk.split(","));
-            int listCount = chkList.size();
-            List<YjsJqDataVO> foreachList = new ArrayList<YjsJqDataVO>();
-            for (int i = 0; i < listCount; i++) {
-                String chkVal = chkList.get(i);
-                yjsJqDataVO.setChkVal(chkVal);
-                foreachList.add(yjsJqDataVO);
-            }
+//        String chk = yjsJqDataVO.getChkVal();
+//        if (!chk.isEmpty()){
+//            List<String> chkList = Arrays.asList(chk.split(","));
+//            int listCount = chkList.size();
+//            List<YjsJqDataVO> foreachList = new ArrayList<YjsJqDataVO>();
+//            for (int i = 0; i < listCount; i++) {
+//                String chkVal = chkList.get(i);
+//                yjsJqDataVO.setChkVal(chkVal);
+//                foreachList.add(yjsJqDataVO);
+//            }
+//        }
+        if (yjsJqDataVO.getChkVal() == null) {
+            yjsJqDataVO.setChkVal("");
         }
-        return yjsJqDataMapper.insertYjsJqMultiRows(yjsJqDataVO);
+        if (yjsJqDataVO.getRdoVal() == null) {
+            yjsJqDataVO.setRdoVal("");
+        }
+//        String chk = yjsJqDataVO.getChkVal();
+//        List<String> chkList = Arrays.asList(chk.split(","));
+        return yjsJqDataMapper.insertYjsJqMultiRowsForeach(yjsJqDataVO);
+    }
+
+    @Override
+    public int insertYjsMultiSelList(YjsJqDataVO yjsJqDataVO) {
+        String sel  = yjsJqDataVO.getSelVal();
+        return yjsJqDataMapper.insertYjsMultiSelList(yjsJqDataVO);
     }
 
 }

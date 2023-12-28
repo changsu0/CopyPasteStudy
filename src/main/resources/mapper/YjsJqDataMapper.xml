@@ -28,12 +28,20 @@
                                      , RDO_VAL
                                      , CHK_VAL
         )
-        <foreach collection="checkArr" item="item" index="index" open="values (" close=")" separator=",">
-            sys_guid()
+        <foreach collection="chkVal.split(',')" item="item" index="index" open="" close="" separator=" UNION ALL ">
+            select sys_guid()
             , #{inpVal}
             , #{selVal}
             , #{rdoVal}
-            , #{chkVal}
+            , #{item} from DUAL
+        </foreach>
+    </insert>
+
+    <insert id="insertYjsMultiSelList" parameterType="yjsJqDataVO">
+        /* YjsJqDataMapper.insertYjsMultiSelList*/
+        <foreach item="item" index="index" collection="multiSelList" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+            into insert into TB_JQ_MOVE_DATA (NICK, SEL_VAL)
+            values ('YJS', #{item})
         </foreach>
     </insert>
 

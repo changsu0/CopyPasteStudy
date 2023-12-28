@@ -34,4 +34,12 @@ public class YjsJqDataController {
         return "redirect:/yjsJqDataForm";
     }
 
+    @PostMapping("/insertYjsMultiSelList")
+    public String insertYjsMultiSelList(Model model, YjsJqDataVO yjsJqDataVO){
+
+        yjsJqDataService.insertYjsMultiSelList(yjsJqDataVO);
+
+        return "redirect:/yjsJqDataForm";
+    }
+
 }

@@ -10,4 +10,6 @@ public interface YjsJqDataMapper {
     int insertYjsJqMultiRows(YjsJqDataVO yjsJqDataVO);
 
     int insertYjsJqMultiRowsForeach(YjsJqDataVO yjsJqDataVO);
+
+    int insertYjsMultiSelList(YjsJqDataVO yjsJqDataVO);
 }

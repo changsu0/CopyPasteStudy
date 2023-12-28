@@ -77,6 +77,7 @@
                         <a class="dropdown-item" href="/yjsMemberForm">회원 등록</a>
                         <a class="dropdown-item" href="/yjsMemberList">회원 등록 승인 List</a>
                         <a class="dropdown-item" href="/yjsJqDataForm">JQ Multi Rows</a>
+                        <a class="dropdown-item" href="/yjsAjax">ajax Common CD</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
