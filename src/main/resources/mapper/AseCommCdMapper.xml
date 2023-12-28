@@ -19,7 +19,7 @@
         FROM TB_COMM_CD
         <where>
             <if test="commCd != null and !commCd.equals('')">
-                AND COMM_CD = #{commCd}
+                AND COMM_CD LIKE '%' || #{commCd} || '%'
             </if>
             <if test="commNm != null and !commNm.equals('')">
                 AND COMM_NM LIKE '%' || #{commNm} || '%'
