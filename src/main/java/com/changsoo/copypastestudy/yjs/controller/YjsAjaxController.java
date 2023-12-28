@@ -31,13 +31,19 @@ public class YjsAjaxController {
     }
 
     @GetMapping("/yjsAjax")
-    public String yjsAjaxList(Model model, YjsCommDtVO yjsCommDtVO, YjsMemberVO yjsMemberVO, AseCommDtVO aseCommDtVO, LwjCommDtVO lwjCommDtVO){
+    public String yjsAjaxList(Model model, YjsCommDtVO yjsCommDtVO, YjsMemberVO yjsMemberVO){
         List<YjsCommDtVO> yjsCommCdList = yjsCommDtService.yjsCommCdList(yjsCommDtVO);
         model.addAttribute("yjsCommCdList", yjsCommCdList);
         List<YjsMemberVO> yjsMemberList = yjsMemberService.selectYjsMemberList(yjsMemberVO);
         model.addAttribute("yjsMemberList", yjsMemberList);
 
         return "yjs/ajax/yjsAjax";
+    }
+    @GetMapping("/yjsAjaxPopUp")
+    public String yjsAjaxPopUp(Model model, YjsCommDtVO yjsCommDtVO){
+        model.addAttribute("yjsCommDtVO", yjsCommDtVO);
+
+        return "yjs/ajax/yjsAjaxPopUp";
     }
 
     @GetMapping("/selectYjsAsyncAjax")

@@ -132,7 +132,12 @@
     const setInputValue = function(inputID, inputVal) {
         $('#'+inputID).val(inputVal);
     }
+    let win;
     const setInputSelect = function(code,name,desc) {
+
+        win = window.open("/yjsAjaxPopUp?commCd="+code+"&commNm="+name+"&commDesc="+desc, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+
+        return;
         console.log(code,name,desc);
         $('#delete').show();
         setInputValue('commCdForm', code);
@@ -195,6 +200,13 @@
     let selectMemList = function () {
         let strURL = '/selectYjsAsyncMem';
         JS_COMMON.fn_callAjaxForm(strURL, $('#frmSearch').serialize(), 'get', cb_snow, true);
+    }
+
+    function parentAlert(code, name, desc) {
+        setInputValue('commCd', code);
+        setInputValue('commNm', name);
+        setInputValue('commDesc', desc);
+        win.close();
     }
 </script>
 </html>
