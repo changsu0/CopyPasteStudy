@@ -82,4 +82,11 @@ public class LwjAjaxController {
         }
         return rstJson;
     }
+
+    @GetMapping("/lwjAjaxPopUp")
+    public String lwjAjaxPopUp(Model model, LwjCommDtVO lwjCommDtVO) {
+        model.addAttribute("lwjCommDtVO", lwjCommDtVO);
+
+        return "lwj/ajax/lwjAjaxPopUp";
+    }
 }

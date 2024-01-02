@@ -14,5 +14,4 @@ public interface LwjCountryService {
     public int updateLwjCountry(LwjCountryVO lwjCountryVO);
 
     public int deleteLwjCountry(LwjCountryVO lwjCountryVO);
-
 }

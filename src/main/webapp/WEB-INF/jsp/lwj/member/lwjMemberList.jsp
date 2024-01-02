@@ -336,7 +336,6 @@
         return $('#' + selectID).val();
     }
 
-
     const setRadioValueJQ = function (radioName, radioVal) {
         //단일선택, 선택지 여러개, Name으로 그룹핑
         $('input[name=' + radioName + ']').each(function () {
@@ -347,11 +346,9 @@
         });
     }
 
-
     const getRadioValueJQ = function (radioName) {
         return $("input[name='rdoHo_JQ']:checked").prop('checked', true).val();
     }
-
 
     const setCheckValuesJQ = function(chkName, chkValList) {
         $('input[name=' + chkName + ']').prop('checked', false);
@@ -366,7 +363,6 @@
         });
     }
 
-
     const getCheckValuesJQ = function (chkName) {
         var chk_arr = [];
         $("input[name='chkTech_JQ']:checked").each(function() {
@@ -374,7 +370,6 @@
         });
         return chk_arr;
     }
-
 
     const JJan = function () {
         //동작 완성하기
@@ -386,7 +381,6 @@
         setRadioValueJQ('rdoHo_HW', getRadioValueJQ('rdoHo_JQ')); //라디오버튼 값 받기
         setCheckValuesJQ('chkTech_HW', getCheckValuesJQ('chkTech_JQ')); //체크박스 값 받기
     }
-
 
     //화면 그리기 전!
     // alert('onload 밖')
@@ -417,7 +411,6 @@
            JJan();
         });
     }
-
 </script>
 </body>
 </html>

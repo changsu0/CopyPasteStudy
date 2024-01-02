@@ -49,8 +49,47 @@
         </div>
     </div>
     <div class="col-auto">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">선택</div>
+            </div>
+            <select id="lwjselect" name="selVal">
+                <option value="">-선택-</option>
+                <option value="sel1">Sel1</option>
+                <option value="sel2">Sel2</option>
+                <option value="sel3">Sel3</option>
+                <option value="sel4">Sel4</option>
+                <option value="sel5">Sel5</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">라디오</div>
+            </div>
+            <div class="form-control">
+                <input type="radio" name="rdoVal" value="rdo1"> 라디오1
+                <input type="radio" name="rdoVal" value="rdo2"> 라디오2
+            </div>
+        </div>
+    </div>
+    <div class="col-auto">
+        <label class="sr-only">취미</label>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">체크</div>
+            </div>
+            <div class="form-control">
+                <input type="checkbox" name="chkVal" value="chk1">체크1
+                <input type="checkbox" name="chkVal" value="chk2">체크2
+                <input type="checkbox" name="chkVal" value="chk3">체크3
+            </div>
+        </div>
+    </div>
+    <div class="col-auto">
         <button id="ajaxListSave" name="action" class="btn btn-info">저장</button>
-        <button id="ajaxListDelete" name="action" class="btn btn-info">삭제</button>
+        <button id="ajaxListDelete" name="action" class="btn btn-danger">삭제</button>
     </div>
 </div>
 </form>
@@ -108,6 +147,8 @@
 
 <script>
     $(document).ready(function() {
+        selectCommList();
+
         //버튼 클릭 이벤트 > 함수X
         $('#ajaxListSearch').click(function () {
             selectCommList();  //함수 호출
@@ -128,12 +169,17 @@
         $('#' + inputID).val(inputVal);
     }
 
+    let win;
     const setInputSelect = function (cd, nm, desc) {
-        console.log(cd,nm,desc)
+
+        win = window.open("/lwjAjaxPopUp?commCd=" + cd + "&commNm=" + nm + "&commDesc=" + desc, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+
+        return;
 
         setInputValueJQ('commCdUp', cd);
         setInputValueJQ('commNmUp', nm);
         setInputValueJQ('commDescUp', desc);
+        $('#commCdUp').attr("readonly", true);
 
         $("#ajaxListDelete").show();
     }
@@ -182,8 +228,20 @@
 
     let cb_deletelwjAsyncAjax = function (result) {
         console.log(result);
+        setInputValueJQ('commCdUp', "");
+        setInputValueJQ('commNmUp', "");
+        setInputValueJQ('commDescUp', "");
         selectCommList();
         $("#ajaxListDelete").hide();
     }
+
+    function parentAlert(cd, nm, desc) {
+        setInputValueJQ('commCdUp', cd);
+        setInputValueJQ('commNmUp', nm);
+        setInputValueJQ('commDescUp', desc);
+        win.close();
+
+    }
+
 </script>
 </html>
