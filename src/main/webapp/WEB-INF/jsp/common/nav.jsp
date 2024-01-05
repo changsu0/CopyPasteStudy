@@ -48,6 +48,7 @@
                         <a class="dropdown-item" href="/aseMemberList">회원 목록</a>
                         <a class="dropdown-item" href="/aseJqDataForm">JqData</a>
                         <a class="dropdown-item" href="/aseAjaxList">Ajax</a>
+                        <a class="dropdown-item" href="/aseAjaxLayer">aseAjaxLayer</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
