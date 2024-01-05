@@ -14,5 +14,5 @@ public class AseJqDataVO {
     private String rdoVal;
     private String chkVal;
 
-
+    private List<String> multiSelList;
 }

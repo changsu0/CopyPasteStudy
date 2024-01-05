@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface AseJqDataMapper {
-
     int insertAseMultiRow(AseJqDataVO aseJqDataVO);
+    int insertAseMoveData(AseJqDataVO aseJqDataVO);
 }

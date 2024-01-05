@@ -27,6 +27,13 @@ import java.util.List;
          return "ase/ajax/aseAjax";
      }
 
+
+     @GetMapping("/aseAjaxLayer")
+     public String aseAjaxLayer(Model model, AseCommDtVO aseCommDtVO){
+
+         return "ase/ajax/aseAjaxLayer";
+     }
+
      @GetMapping("/selectAseAsyncList")
      @ResponseBody //Annotation : 찾아보렴
      public String aseAjaxList(@ModelAttribute AseCommDtVO aseCommDtVO){
@@ -74,6 +81,14 @@ import java.util.List;
              e.printStackTrace();
          }
          return rstJson;
+     }
+
+     @GetMapping("/aseAjaxPopupList")
+     public String aseAjaxPopupList(Model model, AseCommDtVO aseCommDtVO){
+
+         model.addAttribute("aseCommDtVO", aseCommDtVO);
+
+         return "ase/ajax/aseAjaxPopup";
      }
 
  }

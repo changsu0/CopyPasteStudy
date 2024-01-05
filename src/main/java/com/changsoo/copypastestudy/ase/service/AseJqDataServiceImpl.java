@@ -51,5 +51,11 @@ public class AseJqDataServiceImpl implements AseJqDataService {
 //        return aseJqDataMapper.insertAseMultiRow(aseJqDataVO);
 //    }
 
+    @Override
+    public int insertAseMoveData(AseJqDataVO aseJqDataVO) {
+        System.out.println(aseJqDataVO);
+        return aseJqDataMapper.insertAseMoveData(aseJqDataVO);
+    }
+
 
 }

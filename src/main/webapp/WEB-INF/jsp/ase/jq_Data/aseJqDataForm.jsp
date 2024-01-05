@@ -45,6 +45,7 @@
         </div>
     </form:form>
 
+    <form:form id="frm" name="frm" action="/insertAseMoveData" method="post">
         <div class="col-auto">
             <table>
                 <tr>
@@ -56,28 +57,37 @@
                         </select>
                     </td>
                     <td>
-                        <button href="#" onclick="multiMove('leftList','rightList'); return false;" class="btn-outline-primary"> → </button>
+                        <button href="#" onclick="multiMove('leftList','rightList'); return false;" class="btn btn-info"> > </button>
                         <br><br>
-                        <button href="#" onclick="multiMove('rightList','leftList'); return false;" class="btn-outline-primary"> ← </button>
+                        <button href="#" onclick="multiMove('rightList','leftList'); return false;" class="btn btn-info"> < </button>
                     </td>
                     <td>
-                        <select multiple="multiple" id="rightList" style="width: 70px; min-height: 100px;" aria-sort="ascending">
+                        <select multiple="multiple" id="rightList" name="multiSelList" style="width: 70px; min-height: 100px;" aria-sort="ascending">
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
                     </td>
                 </tr>
             </table>
+
+            <button name="action" value="save" type="submit" class="btn btn-success" >저장</button>
         </div>
+    </form:form>
 
     <script>
-        const multiMove = function(moveListNm, listNm){
-            let val = $('#'+moveListNm+' option:selected').val();
-            let text = $('#'+moveListNm+' option:selected').text();
+        const multiMove = function(moveListID, listID){
 
-            $('#'+listNm+'').append('<option value ='+val+'>'+text+'</option>');
-            $('#'+moveListNm+'').find('option[value ="'+val+'"]').remove();
-            console.log(val);
+            let val = $('#'+ moveListID +' option:selected').val();
+            let text = $('#'+ moveListID +' option:selected').text();
+
+            $('#'+listID).append('<option value ='+val+'>'+text+'</option>');
+            $('#'+moveListID).find('option[value ="'+val+'"]').remove();
+
+            //버튼 클릭 시 input.setValue(우측 list),
+            //담은 값을 저장 버튼을 눌렀을 때 이벤트로 해당 값을 controller 로 전송
+
+
+
         }
     </script>
 

@@ -4,7 +4,8 @@
 
 <mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseJqDataMapper">
 
-<!--    <update id="insertAseMultiRow" parameterType="aseJqDataVO">
+<!--    <insert id="insertAseMultiRow" parameterType="aseJqDataVO">
+        /* AseJqDataMapper.insertAseMultiRow */
         <foreach item="item" index="index" collection="chkVal.split(',')" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
             into TB_JQ_MULTI_ROWS (
                           SEQ
@@ -20,9 +21,10 @@
                      , #{item}
             )
         </foreach>
-    </update>-->
+    </insert>-->
 
-    <update id="insertAseMultiRow" parameterType="aseJqDataVO">
+    <insert id="insertAseMultiRow" parameterType="aseJqDataVO">
+        /* AseJqDataMapper.insertAseMultiRow */
         insert into TB_JQ_MULTI_ROWS (
             SEQ
             , INP_VAL
@@ -36,6 +38,19 @@
             , #{rdoVal}
             , #{chkVal}
             )
-    </update>
+    </insert>
+
+    <insert id="insertAseMoveData" parameterType="aseJqDataVO">
+        /* AseJqDataMapper.insertAseMoveData */
+        <foreach item="selList" collection="multiSelList" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+        into TB_JQ_MOVE_DATA (
+                NICK
+                , SEL_VAL
+        ) values (
+            'ASE'
+        , #{selList}
+        )
+        </foreach>
+    </insert>
 
 </mapper>

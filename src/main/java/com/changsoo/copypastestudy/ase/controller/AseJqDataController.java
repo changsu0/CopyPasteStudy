@@ -34,4 +34,14 @@ public class AseJqDataController {
         return "redirect:/aseJqDataForm";
     }
 
+    @PostMapping("/insertAseMoveData")
+    public String insertAseMoveData(AseJqDataVO aseJqDataVO, @RequestParam(value="action", required=true) String action){
+        int cnt = 0;
+        if ("save".equals(action)) {
+            cnt = aseJqDataService.insertAseMoveData(aseJqDataVO);
+        }
+
+        return "redirect:/aseJqDataForm";
+    }
+
 }

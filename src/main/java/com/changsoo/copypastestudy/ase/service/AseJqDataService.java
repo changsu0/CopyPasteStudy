@@ -5,5 +5,6 @@ import com.changsoo.copypastestudy.ase.vo.AseJqDataVO;
 public interface AseJqDataService {
 
     int insertAseMultiRow(AseJqDataVO aseJqDataVO);
+    int insertAseMoveData(AseJqDataVO aseJqDataVO);
 
 }

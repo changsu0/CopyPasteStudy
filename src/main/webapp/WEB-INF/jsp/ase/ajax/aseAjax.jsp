@@ -48,6 +48,7 @@
                 <input type="text" class="form-control" id="commDescI" placeholder="공통코드설명" name="commDesc">
             </div>
         </div>
+
         <div class="col-auto">
             <button class="btn btn-info" id="btnSave">저장</button>
             <button class="btn btn-info" id="btnDelete" style="visibility: hidden">삭제</button>
@@ -104,6 +105,8 @@
 
         </tbody>
     </table>
+
+
 </body>
 
 <script>
@@ -135,7 +138,9 @@
     }
 
     const setInputSelect = function(commCd, commNm, commDesc){
+        var win = window.open("/aseAjaxPopupList?commCd="+commCd+"&commNm="+commNm+"&commDesc="+commDesc+"", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=1200,height=400");
 
+        return;
         setInputValueJQ('commCdI',commCd);
         setInputValueJQ('commNmI',commNm);
         setInputValueJQ('commDescI',commDesc);
@@ -144,6 +149,7 @@
         $('#commCdI').focus();
     }
 
+
     function cb_commList( result ) {
 
         let innerHtml = '';
@@ -151,8 +157,8 @@
         for (let i = 0; i < result.length; i++) {
             innerHtml += '<tr>';
             innerHtml += '<td>'+ (i+1) +'</td>';
-            innerHtml += '<td><a href="javascript:setInputSelect(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commCd +'</a></td>';
-            innerHtml += '<td>'+ result[i].commNm +'</td>';
+            innerHtml += '<td>'+ result[i].commCd +'</td>';
+            innerHtml += '<td><a href="javascript:setInputSelect(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commNm +'</a></td>';
             innerHtml += '<td>'+ result[i].commDesc +'</td>';
             innerHtml += '</tr>';
         }
@@ -185,6 +191,12 @@
 
     let changeVal = function (){
         $("#btnDelete").css("visibility","hidden");
+    }
+
+    function parentAlert(cdVal, nmVal, descVal){
+        $('#commCdI').val(cdVal);
+        $('#commNmI').val(nmVal);
+        $('#commDescI').val(descVal);
     }
 
 </script>
