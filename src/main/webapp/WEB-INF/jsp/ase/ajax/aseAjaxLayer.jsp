@@ -78,12 +78,31 @@
                             <label class="sr-only" for="commCd">공통코드</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text">공통코드</div>
+                                    <div class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;공통코드 &nbsp;&nbsp;&nbsp;</div>
                                 </div>
-                                <select class="form-control" id="commCdI">
-
-                                </select>
-<%--                                <input type="text" class="form-control" id="commCdI" placeholder="공통코드" name="commCd" value="${aseCommDtVO.commCd}">--%>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" style="width: 204px">
+                                        <div id="codeRadio" style="text-align: left">
+                                        </div>
+                                    </div>
+                                </div>
+<%--                                <select class="form-control" id="commCdPop">--%>
+<%--                                </select>--%>
+<%--                                <input type="text" class="form-control" id="commCdPop" placeholder="공통코드" name="commCd" value="${aseCommDtVO.commCd}">--%>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="commNm">공통코드명</label>
+                            <div class="input-group mb-2" id>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">&nbsp;&nbsp;공통코드명&nbsp;&nbsp;</div>
+                                </div>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" style="width: 206px">
+                                        <div id="nameChk" style="text-align: left">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -92,7 +111,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">공통코드설명</div>
                                 </div>
-                                <input type="text" class="form-control" id="commDescI" placeholder="공통코드설명" name="commDesc" value="${aseCommDtVO.commDesc}">
+                                <input type="text" class="form-control" id="commDescPop" placeholder="공통코드설명" name="commDesc" value="${aseCommDtVO.commDesc}">
                             </div>
                         </div>
                     </div>
@@ -125,7 +144,7 @@
             delCommAjax();
         });
 
-        $('#commCdI').on("propertychange change keyup paste input", function (){
+        $('#commCdPop').on("propertychange change keyup paste input", function (){
             changeVal();
         });
 
@@ -135,22 +154,36 @@
         $('#'+ inputID).val(inputVal);
     }
 
+    const setRadioValueJQ = function (radioName, radioVal){
+        $('input[name=' + radioName + ']').prop('checked', false);
+
+        $('input[name=' + radioName + ']').each(function (){
+            if( $(this).val() === radioVal ){
+                $(this).prop('checked', true);
+                return false;
+            }
+        });
+    }
+
     const setInputSelect = function(commCd, commNm, commDesc){
         var win = window.open("/aseAjaxPopupList?commCd="+commCd+"&commNm="+commNm+"&commDesc="+commDesc+"", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=1200,height=400");
 
     }
 
     const setInputModal = function(commCd, commNm, commDesc){
-        setInputValueJQ('commCdI','');
-        setInputValueJQ('commDescI','');
+        setInputValueJQ('commNmPop','');
+        setInputValueJQ('commDescPop','');
 
         $('#modal').modal('show');
 
-        setInputValueJQ('commCdI',commCd);
-        setInputValueJQ('commDescI',commDesc);
+        setRadioValueJQ('commCdPop', commCd);
+        setRadioValueJQ('commNmPop', commCd);
+        //setInputValueJQ('commCdPop',commCd);
+        setInputValueJQ('commDescPop',commDesc);
+
 
         $("#btnDelete").css("visibility","visible");
-        $('#commCdI').focus();
+        $('#commCdPop').focus();
     }
 
 
@@ -159,6 +192,10 @@
         let innerHtml = '';
 
         let innerHtmlOption = '';
+
+        let innerHtmlRadio = '';
+
+        let innerHtmlCheck = '';
 
         for (let i = 0; i < result.length; i++) {
             innerHtml += '<tr>';
@@ -169,10 +206,20 @@
             innerHtml += '</tr>';
 
             innerHtmlOption += '<option value="' + result[i].commCd + '">'+ result[i].commNm + '</option>';
+
+            innerHtmlRadio += '<input type="radio" value="' + result[i].commCd + '" name="commCdPop">&nbsp;' + result[i].commCd + '<br />';
+
+            innerHtmlCheck += '<input type="checkbox" value="' + result[i].commCd + '" name="commNmPop">&nbsp;' + result[i].commNm + '<br />';
         }
 
+        /* 공통 코드 라디오 구현 */
+        $('#codeRadio').html(innerHtmlRadio);
 
-        $('#commCdI').html(innerHtmlOption);
+        /* 공통 코드명 체크박스 구현*/
+        $('#nameChk').html(innerHtmlCheck);
+
+        /* 공통 코드 selectBox 구현*/
+        //$('#commCdPop').html(innerHtmlOption);
 
         $('#tbodyCommList').html(innerHtml);
     }
@@ -205,9 +252,9 @@
     }
 
     function parentAlert(cdVal, nmVal, descVal){
-        $('#commCdI').val(cdVal);
-        $('#commNmI').val(nmVal);
-        $('#commDescI').val(descVal);
+        $('#commCdPop').val(cdVal);
+        $('#commNmPop').val(nmVal);
+        $('#commDescPop').val(descVal);
     }
 
 </script>
