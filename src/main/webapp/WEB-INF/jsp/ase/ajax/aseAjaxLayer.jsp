@@ -148,6 +148,8 @@
             changeVal();
         });
 
+        selectCommList();
+
     });
 
     const setInputValueJQ = function(inputID, inputVal){
