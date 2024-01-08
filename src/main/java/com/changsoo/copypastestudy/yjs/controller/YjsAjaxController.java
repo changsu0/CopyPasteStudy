@@ -39,6 +39,14 @@ public class YjsAjaxController {
 
         return "yjs/ajax/yjsAjax";
     }
+    @GetMapping("/yjsAjaxLayerPop")
+    public String yjsAjaxLayerPop(Model model, YjsCommDtVO yjsCommDtVO, YjsMemberVO yjsMemberVO){
+        List<YjsCommDtVO> yjsCommCdList = yjsCommDtService.yjsCommCdList(yjsCommDtVO);
+        model.addAttribute("yjsCommCdList", yjsCommCdList);
+
+        return "yjs/ajax/yjsAjaxLayerPop";
+    }
+
     @GetMapping("/yjsAjaxPopUp")
     public String yjsAjaxPopUp(Model model, YjsCommDtVO yjsCommDtVO){
         model.addAttribute("yjsCommDtVO", yjsCommDtVO);
