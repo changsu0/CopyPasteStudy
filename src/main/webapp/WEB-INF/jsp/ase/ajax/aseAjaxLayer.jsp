@@ -50,6 +50,7 @@
         </div>
         <div class="col-auto">
             <button class="btn btn-info" id="btnSearch">조회</button>
+            <button class="btn btn-info" id="btnGetDate">가져오기</button>
         </div>
     </div>
 </form>
@@ -58,7 +59,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col"><input type="checkbox" id="checkAll"/></th>
+                <th scope="col"><input type="checkbox" id="checkToAll"/></th>
                 <th scope="col">공통코드</th>
                 <th scope="col">공통코드명</th>
                 <th scope="col">공통코드설명</th>
@@ -86,9 +88,9 @@
                                         </div>
                                     </div>
                                 </div>
-<%--                                <select class="form-control" id="commCdPop">--%>
-<%--                                </select>--%>
-<%--                                <input type="text" class="form-control" id="commCdPop" placeholder="공통코드" name="commCd" value="${aseCommDtVO.commCd}">--%>
+                                <select class="form-control" id="commCdPop">
+                                </select>
+                                <input type="text" class="form-control" id="commCdSelPop" placeholder="공통코드" name="commCd" value="${aseCommDtVO.commCd}">
                             </div>
                         </div>
                         <div class="col-auto">
@@ -127,13 +129,36 @@
 </body>
 
 <script>
+
+    $(document).on('click', 'input[name=chk]', function (){
+        bodyChk('checkAll','chk');
+    }) ;
+    $(document).on('click', 'input[name=chk1]', function (){
+        bodyChk('checkToAll','chk1');
+    });
+
     $(document).ready(function (){
+        selectCommList();
+
         /* callback function : (좀 더 찾아보렴.) 어떤 이벤트가 발생한 후 수행될 함수
         *  JS에서 함수는 인자 전달 시 함수를 전달할 수 있기 때문에 콜백 함수가 가능.
         * */
         //이벤트
         $('#btnSearch').click(function (){
             selectCommList();
+        });
+
+        $('#checkAll').change(function (){
+
+            // 클릭 이벤트 : 클릭되면 무조건 실행 (라디오 태그에서 이미 선택 되어있는 값을 선택 해도 실행됨)
+            // 체인지 이벤트 : 클릭되어도 현재값에 변함이 없으면 실행하지 않음
+
+            //체크 박스는 무조건 true와 false
+            checkAll($(this), 'chk');
+        });
+
+        $('#checkToAll').change(function (){
+            checkAll($(this), 'chk1');
         });
 
         $('#btnSave').click(function (){
@@ -148,9 +173,53 @@
             changeVal();
         });
 
-        selectCommList();
+        $('#btnGetDate').click(function (){
+            changeVal();
+        });
 
     });
+
+    let selectCommList = function (){
+        JS_COMMON.fn_callAjaxForm('/selectAseAsyncList', $('#frmSearch').serialize(), 'GET', cb_commList, true);
+    }
+
+    function cb_commList( result ) {
+
+        let innerHtml = '';
+        let innerOption = '';
+        let innerHtmlRadio = '';
+        let innerHtmlCheck = '';
+
+        for (let i = 0; i < result.length; i++) {
+            innerHtml += '<tr>';
+            innerHtml += '<td><input type="checkbox" class="subChk" name="chk" id="chk'+ (i+1) +'" value="' + (i+1) + '"/></td>';
+            innerHtml += '<td><input type="checkbox" class="subChk1" name="chk1" id="chk1'+ (i+1) +'" value="' + (i+1) + '"/></td>';
+            //innerHtml += '<td><a href="javascript:setInputModal(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commCd +'</a></td>';
+            innerHtml += '<td>'+setSelect(result, result[i].commCd, 'select', i)+'</td>';
+            //innerHtml += '<td><a href="javascript:setInputSelect(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commNm +'</a></td>';
+            innerHtml += '<td>'+setSelect(result, result[i].commCd, 'radio','commCd'+i) +'</td>';
+
+            innerHtml += '<td>'+ result[i].commDesc +'</td>';
+            innerHtml += '</tr>';
+
+            innerOption += '<option value="' + result[i].commCd + '">'+ result[i].commNm + '</option>';
+
+            innerHtmlRadio += '<input type="radio" value="' + result[i].commCd + '" name="commCdPop">&nbsp;' + result[i].commCd + '<br />';
+
+            innerHtmlCheck += '<input type="checkbox" value="' + result[i].commCd + '" name="commNmPop">&nbsp;' + result[i].commNm + '<br />';
+        }
+
+        /* 공통 코드 라디오 구현 */
+        $('#codeRadio').html(innerHtmlRadio);
+
+        /* 공통 코드명 체크 박스 구현*/
+        $('#nameChk').html(innerHtmlCheck);
+
+        /* 공통 코드 selectBox 구현*/
+        //$('#commCdPop').html(innerOption);
+
+        $('#tbodyCommList').html(innerHtml);
+    }
 
     const setInputValueJQ = function(inputID, inputVal){
         $('#'+ inputID).val(inputVal);
@@ -169,7 +238,6 @@
 
     const setInputSelect = function(commCd, commNm, commDesc){
         var win = window.open("/aseAjaxPopupList?commCd="+commCd+"&commNm="+commNm+"&commDesc="+commDesc+"", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=1200,height=400");
-
     }
 
     const setInputModal = function(commCd, commNm, commDesc){
@@ -180,7 +248,8 @@
 
         setRadioValueJQ('commCdPop', commCd);
         setRadioValueJQ('commNmPop', commCd);
-        //setInputValueJQ('commCdPop',commCd);
+        setInputValueJQ('commCdSelPop',commCd);
+
         setInputValueJQ('commDescPop',commDesc);
 
 
@@ -188,46 +257,33 @@
         $('#commCdPop').focus();
     }
 
-
-    function cb_commList( result ) {
+    const setSelect = function ( result, commCd, type, name ){
 
         let innerHtml = '';
-
-        let innerHtmlOption = '';
-
-        let innerHtmlRadio = '';
-
-        let innerHtmlCheck = '';
-
-        for (let i = 0; i < result.length; i++) {
-            innerHtml += '<tr>';
-            innerHtml += '<td>'+ (i+1) +'</td>';
-            innerHtml += '<td><a href="javascript:setInputModal(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commCd +'</a></td>';
-            innerHtml += '<td><a href="javascript:setInputSelect(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commNm +'</a></td>';
-            innerHtml += '<td>'+ result[i].commDesc +'</td>';
-            innerHtml += '</tr>';
-
-            innerHtmlOption += '<option value="' + result[i].commCd + '">'+ result[i].commNm + '</option>';
-
-            innerHtmlRadio += '<input type="radio" value="' + result[i].commCd + '" name="commCdPop">&nbsp;' + result[i].commCd + '<br />';
-
-            innerHtmlCheck += '<input type="checkbox" value="' + result[i].commCd + '" name="commNmPop">&nbsp;' + result[i].commNm + '<br />';
+        if( type === 'select'){
+            innerHtml = '<select>';
         }
 
-        /* 공통 코드 라디오 구현 */
-        $('#codeRadio').html(innerHtmlRadio);
+        for (let i = 0; i < result.length; i++) {
+            if( result[i].commCd === commCd) {
+                if( type === 'select') {
+                    innerHtml += '<option value="' + result[i].commCd + '" selected>' + result[i].commNm + '</option>';
+                }else if( type === 'radio'){
+                    innerHtml += '<input type="radio" value="' + result[i].commCd + '" name="'+ name +'" checked />&nbsp;' + result[i].commNm;
+                }
+            }else{
+                if( type === 'select') {
+                    innerHtml += '<option value="' + result[i].commCd + '">' + result[i].commNm + '</option>';
+                }else if( type === 'radio'){
+                    innerHtml += '<input type="radio" value="' + result[i].commCd + '" name="'+ name +'" />&nbsp;' + result[i].commNm;
+                }
+            }
+        }
+        if( type === 'select') {
+            innerHtml += '</select>';
+        }
+        return innerHtml; //결과 리턴
 
-        /* 공통 코드명 체크박스 구현*/
-        $('#nameChk').html(innerHtmlCheck);
-
-        /* 공통 코드 selectBox 구현*/
-        //$('#commCdPop').html(innerHtmlOption);
-
-        $('#tbodyCommList').html(innerHtml);
-    }
-
-    let selectCommList = function (){
-        JS_COMMON.fn_callAjaxForm('/selectAseAsyncList', $('#frmSearch').serialize(), 'GET', cb_commList, true);
     }
 
     let saveCommAjax = function (){
@@ -257,6 +313,26 @@
         $('#commCdPop').val(cdVal);
         $('#commNmPop').val(nmVal);
         $('#commDescPop').val(descVal);
+    }
+
+    const bodyChk = function(id, name) {
+        let chkCnt = $('input[name=' + name + ']').length;
+        let checkCnt = $('input[name=' + name + ']:checked').length;
+
+        if(chkCnt === checkCnt){
+            $('#'+id).prop('checked', true);
+        }else{
+            $('#'+id).prop('checked', false);
+        }
+
+    }
+
+    const checkAll = function (thisChk, name){
+        if(thisChk.is(':checked')){
+            $('input[name="'+ name +'"]').prop('checked', true);
+        }else {
+            $('input[name="'+ name +'"]').prop('checked', false);
+        }
     }
 
 </script>
