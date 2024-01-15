@@ -101,6 +101,7 @@
                         <a class="dropdown-item" href="/lwjMemberForm">회원가입 신청</a>
                         <a class="dropdown-item" href="/lwjJQDataForm">JQ Multi Rows</a>
                         <a class="dropdown-item" href="/lwjAjaxList">Ajax Common CD</a>
+                        <a class="dropdown-item" href="/lwjAjaxLayerPopUp">Ajax Layer PopUp</a>
                     </div>
                 </li>
             </ul>

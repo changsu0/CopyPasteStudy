@@ -240,7 +240,6 @@
         setInputValueJQ('commNmUp', nm);
         setInputValueJQ('commDescUp', desc);
         win.close();
-
     }
 
 </script>

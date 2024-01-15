@@ -46,7 +46,6 @@ public class LwjAjaxController {
     public String savelwjAsyncAjax(@ModelAttribute LwjCommDtVO lwjCommDtVO) {
         String rstJson = null;
         try {
-
             LwjCommDtVO resVO = lwjCommDtService.selectLwjCommCdOne(lwjCommDtVO);
             int cnt = 0;
 
@@ -72,7 +71,6 @@ public class LwjAjaxController {
         String rstJson = null;
         try {
             int cnt = 0;
-
             cnt = lwjCommDtService.deleteLwjCommCd(lwjCommDtVO);
 
             Gson gson = new Gson();
@@ -88,5 +86,10 @@ public class LwjAjaxController {
         model.addAttribute("lwjCommDtVO", lwjCommDtVO);
 
         return "lwj/ajax/lwjAjaxPopUp";
+    }
+
+    @GetMapping("/lwjAjaxLayerPopUp")
+    public String lwjAjaxLayerPopUp(Model model, LwjCommDtVO lwjCommDtVO) {
+        return "lwj/ajax/lwjAjaxLayerPopUp";
     }
 }
