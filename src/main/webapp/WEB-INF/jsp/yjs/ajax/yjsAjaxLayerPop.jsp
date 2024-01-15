@@ -56,7 +56,8 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">#</th>
+        <th scope="col"><input type="checkbox" id="chkAll"></th>
+        <th scope="col"><input type="checkbox" id="chkAll2"></th>
         <th scope="col">공통코드</th>
         <th scope="col">공통코드명</th>
         <th scope="col">공통코드설명</th>
@@ -120,7 +121,6 @@
 <script>
     $(document).ready(function(){
         $('#search').click(function(){
-            $("#modal").modal("show");
             selectCommList();
         });
         $('#save').click(function(){
@@ -135,7 +135,41 @@
         $('#searchMem').click(function(){
             selectMemList();
         });
+
+        $('#chkAll').click(function(){
+            headChk('chkAll', 'chkOne');
+        });
+        $('#chkAll2').click(function(){
+            headChk('chkAll2', 'chkTwo');
+        });
+
     });
+
+    $(document).on('click', '[name=chkOne]', function(){
+        bodyChk('chkAll', 'chkOne');
+    });
+
+    $(document).on('click', '[name=chkTwo]', function(){
+        bodyChk('chkAll2', 'chkTwo');
+    });
+
+    const bodyChk = function(chkId, chkNm){
+        let chkCnt = $("input[name="+chkNm+"]").length;
+        let chkedCnt = $("input[name="+chkNm+"]:checked").length;
+        if(chkCnt === chkedCnt){
+            $('#'+chkId).prop('checked', true);
+        } else {
+            $('#'+chkId).prop('checked', false);
+        }
+    }
+
+    const headChk = function(chkId, chkNm){
+        if($('#'+chkId).is(':checked') == true){
+            $("input[name="+chkNm+"]").prop('checked', true);
+        }else{
+            $("input[name="+chkNm+"]").prop("checked", false);
+        }
+    }
 
     const setInputValue = function(inputID, inputVal) {
         $('#'+inputID).val(inputVal);
@@ -174,18 +208,43 @@
         $("#modal").modal("show");
     }
 
+    const innerSelRdoFc = function(type, rstData, commCd, RdoCnt) {
+        let innerSelRdo = '';
+        for (let i = 0; i < rstData.length; i++) {
+            if (rstData[i].commCd === commCd) {
+                if (type === 'select') {
+                    innerSelRdo += '<option value="' + rstData[i].commCd + '" selected>' + rstData[i].commCd + '</option>'
+                } else if (type === 'radio') {
+                    innerSelRdo += '<input type="radio" name ="commRdo' + RdoCnt + '" value="' + rstData[i].commCd + '" checked />' + rstData[i].commNm + ' ';
+                }
+            } else {
+                if (type === 'select') {
+                    innerSelRdo += '<option value="' + rstData[i].commCd + '">' + rstData[i].commCd + '</option>'
+                } else if (type === 'radio') {
+                    innerSelRdo += '<input type="radio" name ="commRdo' + RdoCnt + '" value="' + rstData[i].commCd + '" />' + rstData[i].commNm + ' ';
+                }
+            }
+        }
+        return innerSelRdo;
+    }
+
+    const chkedRowVal = function() {
+
+    }
+
     function cb_snow(result) {
         console.log(result);
         let innerHtml = '';
         let commCdSelect = '';
         let commCdRdo = '';
         let commCdChk = '';
-
         for (let i = 0; i < result.length; i++) {
             innerHtml += '<tr>';
-            innerHtml += '<td>' + (i+1) + '</td>';
-            innerHtml += '<td><a href="javascript:openLayerPop(\'' + result[i].commCd + '\',\'' + result[i].commNm + '\',\'' + result[i].commDesc + '\')">' + result[i].commCd + '</a></td>';
-            innerHtml += '<td><a href="javascript:setInputSelect(\'' + result[i].commCd + '\',\'' + result[i].commNm + '\',\'' + result[i].commDesc + '\')">' + result[i].commNm + '</a></td>';
+
+            innerHtml += '<td><input type="checkbox" name="chkOne"></td>';
+            innerHtml += '<td><input type="checkbox" name="chkTwo"></td>';
+            innerHtml += '<td><select>' + innerSelRdoFc('select', result, result[i].commCd, i) + '</select></td>';
+            innerHtml += '<td>' + innerSelRdoFc('radio', result, result[i].commCd, i) + '</td>';
             innerHtml += '<td>' + result[i].commDesc + '</td>';
             innerHtml += '</tr>';
 
@@ -194,11 +253,9 @@
             commCdChk += '<input type="checkbox" name="commCdChk" value="' + result[i].commCd + '"> ' + result[i].commNm + '  ';
         }
         $('#tbodySampleList').html(innerHtml);
-        console.log(commCdSelect);
+        console.log(innerHtml);
         $('#commCdSelect').html(commCdSelect);
-        console.log(commCdRdo);
         $('#commCdRdo').html(commCdRdo);
-        console.log(commCdChk);
         $('#commCdChk').html(commCdChk);
 
         // 함수() => 함수를 호출
