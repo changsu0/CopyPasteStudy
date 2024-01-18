@@ -4,8 +4,10 @@ import com.changsoo.copypastestudy.yjs.mapper.YjsCategoryMapper;
 import com.changsoo.copypastestudy.yjs.mapper.YjsCommCdMapper;
 import com.changsoo.copypastestudy.yjs.vo.YjsCategoryVO;
 import com.changsoo.copypastestudy.yjs.vo.YjsCommDtVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -39,6 +41,21 @@ public class YjsCommDtServiceImpl implements YjsCommDtService {
     @Override
     public int deleteCommCd(YjsCommDtVO yjsCommDtVO) {
         return yjsCommCdMapper.deleteCommCd(yjsCommDtVO);
+    }
+    @Override
+    public int deleteCommCdMulti(YjsCommDtVO yjsCommDtVO) {
+        String commCd = yjsCommDtVO.getCommCd();
+        if (StringUtils.isNotEmpty(commCd)){
+            List<String> commCdList = Arrays.asList(commCd.split(","));
+            for (int i = 0; i < commCdList.size(); i++) {
+                String paramCommCd = commCdList.get(i);
+                YjsCommDtVO paramVO = new YjsCommDtVO();
+                paramVO.setCommCd(paramCommCd);
+
+                yjsCommCdMapper.deleteCommCd(paramVO);
+            }
+        }
+        return 0;
     }
 
     @Override

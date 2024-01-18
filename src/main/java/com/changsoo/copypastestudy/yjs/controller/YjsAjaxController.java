@@ -116,4 +116,13 @@ public class YjsAjaxController {
 
         return rstJson;
     }
+
+    @PostMapping("/delCommCd")
+    @ResponseBody
+    public String deleteYjsJsonComm(@RequestBody YjsCommDtVO yjsCommDtVO){
+        String rstJson = null;
+        int cnt = yjsCommDtService.deleteCommCdMulti(yjsCommDtVO);
+
+        return rstJson;
+    }
 }

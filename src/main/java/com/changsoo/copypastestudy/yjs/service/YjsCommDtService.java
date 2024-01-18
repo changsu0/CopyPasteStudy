@@ -16,6 +16,7 @@ public interface YjsCommDtService {
     public int updateCommCd(YjsCommDtVO yjsCommDtVO);
 
     public int deleteCommCd(YjsCommDtVO yjsCommDtVO);
+    public int deleteCommCdMulti(YjsCommDtVO yjsCommDtVO);
 
     public List<YjsCommDtVO> yjsCommDtList(YjsCommDtVO yjsCommDtVO);
 

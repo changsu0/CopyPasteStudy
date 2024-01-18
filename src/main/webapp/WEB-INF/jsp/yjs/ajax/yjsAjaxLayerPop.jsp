@@ -50,6 +50,7 @@
         <div class="col-auto">
             <button id="search" name="action" class="btn btn-info" type="submit">조회</button>
             <button id="getValues" class="btn btn-info">가져오기</button>
+            <button id="btnDel" class="btn btn-danger">삭제</button>
         </div>
     </div>
 </form:form>
@@ -146,6 +147,9 @@
         $('#chkAll2').click(function(){
             headChk('chkAll2', 'chkTwo');
         });
+        $('#btnDel').click(function(){
+            chkRowDel();
+        });
 
     });
 
@@ -156,6 +160,25 @@
     $(document).on('click', '[name=chkTwo]', function(){
         bodyChk('chkAll2', 'chkTwo');
     });
+
+    const chkRowDel = function(){
+        let delRow = [];
+        $('input[name=chkOne]:checked').each(function () {
+            let ChkIndex = $(this).attr('id');
+            let cdVal = $('#commCd' + ChkIndex).text();
+            delRow.push(cdVal);
+        });
+        console.log(delRow.toString());
+        let delRowParam = {};
+        delRowParam.commCd = delRow.toString();
+        delRowParam['commNm'] = '이름';
+
+        JS_COMMON.fn_callAjaxJson('/delCommCd', {commCd:delRow.toString(), commNm : '이름'}, 'post', cb_chkRowDel, true);
+    }
+
+    function cb_chkRowDel(result) {
+
+    }
 
     const getChkedRow = function(){
         $('input[name=chkOne]:checked').each(function () {
@@ -254,7 +277,7 @@
 
             innerHtml += '<td><input type="checkbox" name="chkOne" id="' + i +'"></td>';
             innerHtml += '<td><input type="checkbox" name="chkTwo"></td>';
-            innerHtml += '<td><select id="commCd' + i + '">' + innerSelRdoFc('select', result, result[i].commCd, i) + '</select></td>';
+            innerHtml += '<td id="commCd' + i + '">' + result[i].commCd + '</td>';
             innerHtml += '<td>' + innerSelRdoFc('radio', result, result[i].commCd, i) + '</td>';
             innerHtml += '<td><input type="text" id="commDesc' + i + '" value="' + result[i].commDesc + '"></td>';
             innerHtml += '</tr>';
