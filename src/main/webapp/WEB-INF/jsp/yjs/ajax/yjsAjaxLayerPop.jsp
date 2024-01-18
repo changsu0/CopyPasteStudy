@@ -49,6 +49,7 @@
         </div>
         <div class="col-auto">
             <button id="search" name="action" class="btn btn-info" type="submit">조회</button>
+            <button id="getValues" class="btn btn-info">가져오기</button>
         </div>
     </div>
 </form:form>
@@ -131,6 +132,9 @@
         });
         selectCommList();
 
+        $('#getValues').click(function (){
+            getChkedRow();
+        });
 
         $('#searchMem').click(function(){
             selectMemList();
@@ -152,6 +156,17 @@
     $(document).on('click', '[name=chkTwo]', function(){
         bodyChk('chkAll2', 'chkTwo');
     });
+
+    const getChkedRow = function(){
+        $('input[name=chkOne]:checked').each(function () {
+            let ChkIndex = $(this).attr('id');
+            console.log(ChkIndex);
+            let cdVal = $('#commCd' + ChkIndex).val();
+            let nmVal = $('input[name=commNm' + ChkIndex + ']:checked').val();
+            let descVal = $('#commDesc' + ChkIndex).val();
+            console.log('코드=',cdVal,', 코드명=',nmVal,', 코드설명=',descVal);
+        });
+    }
 
     const bodyChk = function(chkId, chkNm){
         let chkCnt = $("input[name="+chkNm+"]").length;
@@ -215,21 +230,17 @@
                 if (type === 'select') {
                     innerSelRdo += '<option value="' + rstData[i].commCd + '" selected>' + rstData[i].commCd + '</option>'
                 } else if (type === 'radio') {
-                    innerSelRdo += '<input type="radio" name ="commRdo' + RdoCnt + '" value="' + rstData[i].commCd + '" checked />' + rstData[i].commNm + ' ';
+                    innerSelRdo += '<input type="radio" name ="commNm' + RdoCnt + '" value="' + rstData[i].commCd + '" checked />' + rstData[i].commNm + ' ';
                 }
             } else {
                 if (type === 'select') {
                     innerSelRdo += '<option value="' + rstData[i].commCd + '">' + rstData[i].commCd + '</option>'
                 } else if (type === 'radio') {
-                    innerSelRdo += '<input type="radio" name ="commRdo' + RdoCnt + '" value="' + rstData[i].commCd + '" />' + rstData[i].commNm + ' ';
+                    innerSelRdo += '<input type="radio" name ="commNm' + RdoCnt + '" value="' + rstData[i].commCd + '" />' + rstData[i].commNm + ' ';
                 }
             }
         }
         return innerSelRdo;
-    }
-
-    const chkedRowVal = function() {
-
     }
 
     function cb_snow(result) {
@@ -241,11 +252,11 @@
         for (let i = 0; i < result.length; i++) {
             innerHtml += '<tr>';
 
-            innerHtml += '<td><input type="checkbox" name="chkOne"></td>';
+            innerHtml += '<td><input type="checkbox" name="chkOne" id="' + i +'"></td>';
             innerHtml += '<td><input type="checkbox" name="chkTwo"></td>';
-            innerHtml += '<td><select>' + innerSelRdoFc('select', result, result[i].commCd, i) + '</select></td>';
+            innerHtml += '<td><select id="commCd' + i + '">' + innerSelRdoFc('select', result, result[i].commCd, i) + '</select></td>';
             innerHtml += '<td>' + innerSelRdoFc('radio', result, result[i].commCd, i) + '</td>';
-            innerHtml += '<td>' + result[i].commDesc + '</td>';
+            innerHtml += '<td><input type="text" id="commDesc' + i + '" value="' + result[i].commDesc + '"></td>';
             innerHtml += '</tr>';
 
             commCdSelect += '<option value="' + result[i].commCd + '">' + result[i].commNm +'</option>';
