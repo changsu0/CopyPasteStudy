@@ -22,7 +22,7 @@ let JS_COMMON = {
         $.ajax({
             url: paramUrl,
             type: paramMethodType,
-            data: paramData,
+            data: JSON.stringify( paramData ),
             dataType: "json",
             async: asyncFlag,
             contentType:"application/json", //Json으로 데이터를 보내줄땐 써줘야함
