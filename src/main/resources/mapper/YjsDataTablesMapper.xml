@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsDataTablesMapper">
+    <select id="selectYjsDataTablesList" resultType="yjsDataTablesVO" parameterType="yjsDataTablesVO">
+        select
+            idx,name,position,office, age, salary
+        from DATATABLES
+    </select>
+
+</mapper>
