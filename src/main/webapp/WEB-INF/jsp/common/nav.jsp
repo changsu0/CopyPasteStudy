@@ -60,6 +60,7 @@
                         <a class="dropdown-item" href="/kcsCommDtForm">공통상세코드 등록</a>
                         <a class="dropdown-item" href="/kcsMemForm">회원가입 등록</a>
                         <a class="dropdown-item" href="/selectKcsMemList">맴바리스트</a>
+                        <a class="dropdown-item" href="/kcsDatatables01">Datatables01</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

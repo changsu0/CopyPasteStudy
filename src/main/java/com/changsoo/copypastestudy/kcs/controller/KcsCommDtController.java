@@ -2,18 +2,25 @@ package com.changsoo.copypastestudy.kcs.controller;
 
 import com.changsoo.copypastestudy.kcs.service.KcsCommDtServiceImpl;
 import com.changsoo.copypastestudy.kcs.vo.KcsCommDtVO;
+import com.changsoo.copypastestudy.yjs.service.YjsCommDtServiceImpl;
+import com.changsoo.copypastestudy.yjs.vo.YjsCommDtVO;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class KcsCommDtController {
     final
     KcsCommDtServiceImpl kcsCommDtService;
+    final
+    YjsCommDtServiceImpl yjsCommDtService;
 
-    public KcsCommDtController(KcsCommDtServiceImpl kcsCommDtService) {
+    public KcsCommDtController(KcsCommDtServiceImpl kcsCommDtService, YjsCommDtServiceImpl yjsCommDtService) {
         this.kcsCommDtService = kcsCommDtService;
+        this.yjsCommDtService = yjsCommDtService;
     }
 
     @GetMapping("/kcsCommDtForm")
@@ -27,4 +34,6 @@ public class KcsCommDtController {
         int insertCnt = kcsCommDtService.insertCommDt(kcsCommDtVO);
         return "yjs/musical/yjsMusicalList";
     }
+
+
 }
