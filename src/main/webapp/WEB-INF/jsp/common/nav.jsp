@@ -81,6 +81,7 @@
                         <a class="dropdown-item" href="/yjsJqDataForm">JQ Multi Rows</a>
                         <a class="dropdown-item" href="/yjsAjax">ajax Common CD</a>
                         <a class="dropdown-item" href="/yjsAjaxLayerPop">layer popup</a>
+                        <a class="dropdown-item" href="/yjsDataTables01">dataTables01</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
