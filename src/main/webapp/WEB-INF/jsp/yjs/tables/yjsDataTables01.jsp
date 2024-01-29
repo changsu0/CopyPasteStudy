@@ -20,6 +20,53 @@
 
 <h3>Yjs DataTables 01</h3>
 <br />
+<form:form id="frmSearch" onsubmit="return false">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Name</div>
+                </div>
+                <input type="text" class="form-control" id="Name" placeholder="Name" name="Name">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">position</div>
+                </div>
+                <input type="text" class="form-control" id="position" placeholder="position" name="position">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">office</div>
+                </div>
+                <input type="text" class="form-control" id="office" placeholder="office" name="office">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">age</div>
+                </div>
+                <input type="text" class="form-control" id="age" placeholder="age" name="age">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">salary</div>
+                </div>
+                <input type="text" class="form-control" id="salary" placeholder="salary" name="salary">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button id="search" name="action" class="btn btn-info" type="submit">조회</button>
+        </div>
+    </div>
+</form:form>
 <div id="demo_info" class="box"></div>
 <table id="example" class="display" style="width:100%">
     <thead>
@@ -31,15 +78,6 @@
         <th>Salary</th>
     </tr>
     </thead>
-    <tfoot>
-    <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Salary</th>
-    </tr>
-    </tfoot>
 </table>
 
 </body>
@@ -83,8 +121,7 @@
     //     ]
     // });
 
-    new DataTable('#example', {
-        ajax: '/YjsDataTables01List',
+    let table = new DataTable('#example', {
         columns: [
             { data: 'name' },
             { data: 'position' },
@@ -93,6 +130,22 @@
             { data: 'salary' }
         ]
     });
+
+    $(document).ready(function() {
+        $('#search').click(function () {
+            selectGrid();
+        });
+    });
+
+    const selectGrid = function() {
+        JS_COMMON.fn_callAjaxForm('/YjsDataTables01List', $('#frmSearch').serialize(), 'get', cb_selectGrid, true);
+    }
+
+    function cb_selectGrid(result) {
+        console.log(result);
+        table.clear().draw();
+        table.rows.add( result.data ).draw();
+    }
 
 </script>
 </html>

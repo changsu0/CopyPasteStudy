@@ -27,9 +27,9 @@ public class YjsDataTablesController {
 
     @GetMapping("/YjsDataTables01List")
     @ResponseBody
-    public String YjsDataTables01List(){
+    public String YjsDataTables01List(@ModelAttribute YjsDataTablesVO yjsDataTablesVO){
         String rstJson = null;
-        List<YjsDataTablesVO> selectYjsMemberList = yjsDataTablesService.selectYjsDataTablesList(null);
+        List<YjsDataTablesVO> selectYjsMemberList = yjsDataTablesService.selectYjsDataTablesList(yjsDataTablesVO);
 
         HashMap map = new HashMap();
         map.put("data", selectYjsMemberList);

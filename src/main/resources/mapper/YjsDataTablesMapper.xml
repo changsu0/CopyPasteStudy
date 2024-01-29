@@ -7,6 +7,23 @@
         select
             idx,name,position,office, age, salary
         from DATATABLES
+        <where>
+            <if test="name != null and !name.equals('')">
+                AND name LIKE '%' || #{name} || '%'
+            </if>
+            <if test="position != null and !position.equals('')">
+                AND position LIKE '%' || #{position} || '%'
+            </if>
+            <if test="office != null and !office.equals('')">
+                AND office LIKE '%' || #{office} || '%'
+            </if>
+            <if test="age != null and !age.equals('')">
+                AND age LIKE '%' || #{age} || '%'
+            </if>
+            <if test="salary != null and !salary.equals('')">
+                AND salary LIKE '%' || #{salary} || '%'
+            </if>
+        </where>
     </select>
 
 </mapper>
