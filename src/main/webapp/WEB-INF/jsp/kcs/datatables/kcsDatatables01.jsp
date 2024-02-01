@@ -16,13 +16,72 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" >
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
 
 <h3>KCS Datatables</h3>
+
 <br />
+
+<form id="frmSearch" onsubmit="return false" method="get">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label class="sr-only" for="name">Name</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Name</div>
+                </div>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="position">Position</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Position</div>
+                </div>
+                <input type="text" class="form-control" id="position" name="position">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="office">Office</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Office</div>
+                </div>
+                <input type="text" class="form-control" id="office" name="office">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="age">Age</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Age</div>
+                </div>
+                <input type="text" class="form-control" id="age" name="age">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="salary">Salary</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Salary</div>
+                </div>
+                <input type="text" class="form-control" id="salary" name="salary">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button id="btnSearch" name="" class="btn btn-info">조회</button>
+            <button id="btnReg" name="" class="btn btn-info">등록</button>
+        </div>
+    </div>
+</form>
+
+<br />
+
 <table id="example" class="display" style="width:100%">
     <thead>
     <tr>
@@ -35,66 +94,106 @@
     </thead>
 </table>
 
+
+
+<div class="modal" id="modal" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <div class="modal-body">
+                <div id="popTitle">등록</div>
+                <div class="form-row align-items-center">
+                    <form id="frmPop">
+                        <div class="col-auto">
+                            <label class="sr-only" for="name">Name</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Name</div>
+                                </div>
+                                <input type="text" class="form-control" id="popName" name="name">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="position">Position</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Position</div>
+                                </div>
+                                <input type="text" class="form-control" id="popPosition" name="position">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="office">Office</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Office</div>
+                                </div>
+                                <input type="text" class="form-control" id="popOffice" name="office">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="age">Age</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Age</div>
+                                </div>
+                                <input type="text" class="form-control" id="popAge" name="age">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="salary">Salary</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Salary</div>
+                                </div>
+                                <input type="text" class="form-control" id="popSalary" name="salary">
+                            </div>
+                        </div>
+                        <input type="hidden" id="popIdx" name="idx">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" id="btnInsert">등록</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 <script>
-    // new DataTable('#example');
 
-    /**************************************************/
 
-    // let table = new DataTable('#example');
-    //
-    // // row Click Event 등록하는거다.
-    // table.on('click', 'tbody tr', function () {
-    //
-    //     let data = table.row(this).data();
-    //
-    //     console.log( data );
-    //
-    //     // alert('You clicked on ' + data[0] + "'s row");
-    // });
+    $(document).ready(function() {
+        $('#btnSearch').click(function () {
+            selectGridList();
+        });
+        $('#btnReg').click(function () {
+            setPopup();
+            return;
+            $('#modal').modal('show');
+        });
+        $('#btnInsert').click(function () {
+            insertGrid();
+        });
+        $('#btnUpdate').click(function () {
+            updateGrid();
+        });
+        selectGridList();
+    });
 
-    /**************************************************/
+    let selectGridList = function () {
+        JS_COMMON.fn_callAjaxForm('/kcsDatatables01List', $('#frmSearch').serialize(), 'GET', cb_selectGridList, true);
+    }
 
-    // function eventFired(type) {
-    //     let n = document.querySelector('#demo_info');
-    //
-    //     if ( type === 'Order' ){
-    //         alert('정렬 되었습니다.');
-    //     }
-    //     // n.innerHTML +=
-    //     //     '<div>' + type + ' event - ' + new Date().getTime() + '</div>';
-    //     // n.scrollTop = n.scrollHeight;
-    // }
-    //
-    // new DataTable('#example')
-    //     .on('order.dt', () => eventFired('Order'))
-    //     .on('search.dt', () => eventFired('Search'))
-    //     .on('page.dt', () => eventFired('Page'));
-
-    /**************************************************/
-
-    // new DataTable('#example', {
-    //     columnDefs: [
-    //         {
-    //             // The `data` parameter refers to the data for the cell (defined by the
-    //             // `data` option, which defaults to the column being worked with, in
-    //             // this case `data: 0`.
-    //             // render: (data, type, row) => data + ' (' + row[3] + ')',
-    //
-    //             render: function (data, type, row){
-    //                 return data + ' (' + row[5] + ')';
-    //             },
-    //             targets: 0
-    //         },
-    //         { visible: false, targets: [5] }
-    //     ]
-    // });
-
-    /**************************************************/
+    let cb_selectGridList = function ( result ) {
+        table.clear().draw();
+        table.rows.add( result ).draw();
+    }
 
     let table = new DataTable('#example', {
-        ajax: '/kcsDatatables01List',
         columns: [
             { data: 'name' },
             { data: 'position' },
@@ -102,16 +201,48 @@
             { data: 'age' },
             { data: 'salary' }
         ]
+        , select: {
+            style: 'multi'
+        }
     });
 
-    table.on('click', 'tbody tr', function () {
+    // table.on('click', 'tbody tr', function () {
+    //     let data = table.row(this).data();
+    //     console.log( data );
+    //     setPopup( data );
+    // });
 
-        let data = table.row(this).data();
+    let insertGrid = function () {
+        JS_COMMON.fn_callAjaxForm('/kcsInsertDatatables', $('#frmPop').serialize(), 'GET', cb_insertGrid, true);
+    }
 
-        console.log( data );
+    let cb_insertGrid = function ( result ) {
+        selectGridList();
+        $('#modal').modal('hide');
+    }
 
-        // alert('You clicked on ' + data[0] + "'s row");
-    });
+    let updateGrid = function () {
+        JS_COMMON.fn_callAjaxForm('/kcsUpdateDatatables', $('#frmPop').serialize(), 'GET', cb_updateGrid, true);
+    }
+
+    let cb_updateGrid = function ( result ) {
+        selectGridList();
+        $('#modal').modal('hide');
+    }
+
+    let setPopup = function ( rowData ) {
+        console.log( table.rows({ selected: true }).data() );
+        // console.log( table.rows( '.important' ).select() );
+        return;
+        $('#modal').modal('show');
+        JS_COMMON.fn_formReset('frmPop');
+        $('#popIdx').val( rowData.idx );
+        $('#popName').val( rowData.name );
+        $('#popPosition').val( rowData.position );
+        $('#popOffice').val( rowData.office );
+        $('#popAge').val( rowData.age );
+        $('#popSalary').val( rowData.salary );
+    }
 </script>
 
 </html>

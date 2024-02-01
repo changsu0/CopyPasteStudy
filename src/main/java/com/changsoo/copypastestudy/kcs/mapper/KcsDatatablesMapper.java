@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface KcsDatatablesMapper {
     List<KcsDtVO> selectDatatablesList(KcsDtVO kcsDtVO);
+    int insertDatatables(KcsDtVO kcsDtVO);
+    int updateDatatables(KcsDtVO kcsDtVO);
 }

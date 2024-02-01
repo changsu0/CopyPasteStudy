@@ -5,9 +5,48 @@
 <mapper namespace="com.changsoo.copypastestudy.kcs.mapper.KcsDatatablesMapper">
 
     <select id="selectDatatablesList" resultType="kcsDtVO" parameterType="kcsDtVO">
-        select IDX, NAME, "POSITION", OFFICE, AGE, SALARY
+        select IDX, NAME, POSITION, OFFICE, AGE, SALARY
         from DATATABLES
+
+        <where>
+            <if test="name neq '' and name neq null">
+                AND NAME LIKE '%' || #{name} || '%'
+            </if>
+            <if test="position neq '' and position neq null">
+                AND POSITION LIKE '%' || #{position} || '%'
+            </if>
+            <if test="office neq '' and office neq null">
+                AND OFFICE LIKE '%' || #{office} || '%'
+            </if>
+            <if test="age neq '' and age neq null">
+                AND AGE LIKE '%' || #{age} || '%'
+            </if>
+            <if test="salary neq '' and salary neq null">
+                AND SALARY LIKE '%' || #{salary} || '%'
+            </if>
+        </where>
     </select>
 
+    <insert id="insertDatatables" parameterType="kcsDtVO">
+        insert into DATATABLES (IDX, NAME, POSITION, OFFICE, AGE, SALARY
+        ) values (
+            (SELECT MAX(IDX) + 1 FROM DATATABLES)
+            , #{name}
+            , #{position}
+            , #{office}
+            , #{age}
+            , #{salary}
+        )
+    </insert>
+
+    <update id="updateDatatables" parameterType="kcsDtVO">
+        UPDATE DATATABLES SET
+              NAME = #{name}
+            , POSITION = #{position}
+            , OFFICE = #{office}
+            , AGE = #{age}
+            , SALARY = #{salary}
+        WHERE IDX = #{idx}
+    </update>
 
 </mapper>

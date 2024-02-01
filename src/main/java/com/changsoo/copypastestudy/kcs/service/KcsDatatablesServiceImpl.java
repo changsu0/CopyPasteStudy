@@ -18,4 +18,14 @@ public class KcsDatatablesServiceImpl implements KcsDatatablesService {
     public List<KcsDtVO> selectDatatablesList(KcsDtVO kcsDtVO) {
         return kcsDatatablesMapper.selectDatatablesList(kcsDtVO);
     }
+
+    @Override
+    public int insertDatatables(KcsDtVO kcsDtVO) {
+        return kcsDatatablesMapper.insertDatatables(kcsDtVO);
+    }
+
+    @Override
+    public int updateDatatables(KcsDtVO kcsDtVO) {
+        return kcsDatatablesMapper.updateDatatables(kcsDtVO);
+    }
 }

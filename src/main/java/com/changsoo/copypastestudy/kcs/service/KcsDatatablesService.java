@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface KcsDatatablesService {
     List<KcsDtVO> selectDatatablesList(KcsDtVO kcsDtVO);
+    int insertDatatables(KcsDtVO kcsDtVO);
+    int updateDatatables(KcsDtVO kcsDtVO);
 }

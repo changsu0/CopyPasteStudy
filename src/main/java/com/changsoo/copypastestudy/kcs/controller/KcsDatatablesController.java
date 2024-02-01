@@ -33,16 +33,37 @@ public class KcsDatatablesController {
 
     @GetMapping("/kcsDatatables01List")
     @ResponseBody
-    public String kcsDatatables01List(){
+    public String kcsDatatables01List(@ModelAttribute KcsDtVO kcsDtVO){
         String rstJson = null;
 
-        List<KcsDtVO> kcsDtVOList = kcsDatatablesService.selectDatatablesList(null );
-
-        HashMap map = new HashMap();
-        map.put("data", kcsDtVOList);
+        List<KcsDtVO> kcsDtVOList = kcsDatatablesService.selectDatatablesList( kcsDtVO );
 
         Gson gson = new Gson();
-        rstJson = gson.toJson( map );
+        rstJson = gson.toJson( kcsDtVOList );
+
+        return rstJson;
+    }
+    @GetMapping("/kcsInsertDatatables")
+    @ResponseBody
+    public String kcsInsertDatatables(@ModelAttribute KcsDtVO kcsDtVO){
+        String rstJson = null;
+
+        int rstCnt = kcsDatatablesService.insertDatatables( kcsDtVO );
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( rstCnt );
+
+        return rstJson;
+    }
+    @GetMapping("/kcsUpdateDatatables")
+    @ResponseBody
+    public String kcsUpdateDatatables(@ModelAttribute KcsDtVO kcsDtVO){
+        String rstJson = null;
+
+        int rstCnt = kcsDatatablesService.updateDatatables( kcsDtVO );
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( rstCnt );
 
         return rstJson;
     }
