@@ -41,12 +41,24 @@
          return rstJson;
      }
 
-     @GetMapping("/selectCommCdListAse")
-     public String selectCommCdListAse(Model model, CommCdVO commCdVO){
-
-         List<CommCdVO> selectCommCdListAse = commCdService.selectCommCdListAse(commCdVO);
-         model.addAttribute("selectCommCdListAse", selectCommCdListAse);
+     @GetMapping("/commCdListAse")
+     public String commCdListAse(Model model){
 
          return "ase/dataTable/aseDataTable01";
+     }
+
+     @GetMapping("/selectCommCdListAse")
+     public String selectCommCdListAse(@ModelAttribute CommCdVO commCdVO){
+
+         String rstJson = null;
+         List<CommCdVO> selectCommCdListAse = commCdService.selectCommCdListAse(commCdVO);
+
+         HashMap map = new HashMap();
+         map.put("data", selectCommCdListAse);
+
+         Gson gson = new Gson();
+         rstJson = gson.toJson( map );
+
+         return rstJson;
      }
  }
