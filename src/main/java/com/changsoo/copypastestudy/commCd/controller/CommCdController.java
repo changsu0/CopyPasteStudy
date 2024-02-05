@@ -48,6 +48,7 @@
      }
 
      @GetMapping("/selectCommCdListAse")
+     @ResponseBody
      public String selectCommCdListAse(@ModelAttribute CommCdVO commCdVO){
 
          String rstJson = null;
