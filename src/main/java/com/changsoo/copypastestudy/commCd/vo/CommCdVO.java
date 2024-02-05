@@ -10,5 +10,4 @@ public class CommCdVO extends CommonVO {
     private String commCd;
     private String commNm;
     private String commDesc;
-
 }

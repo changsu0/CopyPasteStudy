@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("commonVO")
+@Alias("commonSampleVO")
 public class CommonVO {
     /*
     mst_cd          :   마스터 코드 아이디
