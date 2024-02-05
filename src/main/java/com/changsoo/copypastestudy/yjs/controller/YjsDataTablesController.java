@@ -2,6 +2,7 @@ package com.changsoo.copypastestudy.yjs.controller;
 
 import com.changsoo.copypastestudy.yjs.service.YjsDataTablesServiceImpl;
 import com.changsoo.copypastestudy.yjs.vo.YjsDataTablesVO;
+import com.changsoo.copypastestudy.yjs.vo.YjsJqDataVO;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +26,15 @@ public class YjsDataTablesController {
         return "yjs/tables/yjsDataTables01";
     }
 
-    @GetMapping("/YjsDataTables01List")
+    @GetMapping("/yjsDataTables02")
+    public String yjsDataTables02(Model model){
+
+        return "yjs/tables/yjsDataTables02";
+    }
+
+    @GetMapping("/yjsDataTables01List")
     @ResponseBody
-    public String YjsDataTables01List(@ModelAttribute YjsDataTablesVO yjsDataTablesVO){
+    public String yjsDataTables01List(@ModelAttribute YjsDataTablesVO yjsDataTablesVO){
         String rstJson = null;
         List<YjsDataTablesVO> selectYjsMemberList = yjsDataTablesService.selectYjsDataTablesList(yjsDataTablesVO);
 
@@ -39,4 +46,41 @@ public class YjsDataTablesController {
 
         return rstJson;
     }
+
+    @GetMapping("/insertYjsDataTablesList")
+    @ResponseBody
+    public String insertYjsDataTablesList(@ModelAttribute YjsDataTablesVO yjsDataTablesVO){
+        String rstJson = null;
+        int rstCnt = yjsDataTablesService.insertYjsDataTablesList(yjsDataTablesVO);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson(rstCnt);
+
+        return rstJson;
+    }
+
+    @GetMapping("/updateYjsDataTablesList")
+    @ResponseBody
+    public String updateYjsDataTablesList(@ModelAttribute YjsDataTablesVO yjsDataTablesVO){
+        String rstJson = null;
+        int rstCnt = yjsDataTablesService.updateYjsDataTablesList(yjsDataTablesVO);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson(rstCnt);
+
+        return rstJson;
+    }
+
+    @PostMapping("/deleteYjsDataTablesList")
+    @ResponseBody
+    public String deleteYjsDataTablesList(@RequestBody List<YjsDataTablesVO> yjsDataTablesVO){
+        String rstJson = null;
+        int rstCnt = yjsDataTablesService.deleteYjsDataTablesList(yjsDataTablesVO);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson(rstCnt);
+
+        return rstJson;
+    }
+
 }

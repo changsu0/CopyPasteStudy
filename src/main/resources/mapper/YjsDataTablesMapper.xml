@@ -26,4 +26,44 @@
         </where>
     </select>
 
+    <insert id="insertYjsDataTablesList" parameterType="yjsDataTablesVO">
+        insert into DATATABLES (
+             IDX
+            ,NAME
+            ,POSITION
+            ,OFFICE
+            ,AGE
+            ,SALARY
+        )
+        values (
+                   (select max(idx)+1 from DATATABLES)
+               , #{name}
+               , #{position}
+               , #{office}
+               , #{age}
+               , #{salary}
+               )
+    </insert>
+
+    <update id="updateYjsDataTablesList" parameterType="yjsDataTablesVO">
+        /* YjsDataTablesMapper.updateYjsDataTablesList */
+        UPDATE DATATABLES
+        SET NAME  = #{name}
+          , POSITION  = #{position}
+          , OFFICE  = #{office}
+          , AGE  = #{age}
+          , SALARY  = #{salary}
+        WHERE idx = #{idx}
+    </update>
+
+    <delete id="deleteYjsDataTablesList" parameterType="java.util.List">
+        DELETE
+        FROM DATATABLES
+        <where>
+            <foreach collection="list" item="item" open="" close="" separator="OR">
+                (idx = #{item.idx})
+            </foreach>
+        </where>
+    </delete>
+
 </mapper>
