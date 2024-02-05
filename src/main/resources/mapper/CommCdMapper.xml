@@ -85,4 +85,132 @@
           and comm_cd = #{commCd}
     </delete>
 
+    <select id="selectCommCdOneAse" parameterType="commCdVO">
+        SELECT COMM_CD
+             , COMM_NM
+             , COMM_DESC
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+          FROM TB_COMM_CD
+         WHERE COMM_CD = #{commCd}
+    </select>
+
+    <select id="selectCommCdListAse" parameterType="commCdVO" resultType="commCdVO">
+        SELECT COMM_CD
+             , COMM_NM
+             , COMM_DESC
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+          FROM TB_COMM_CD
+         WHERE COMM_CD = #{commCd}
+           AND COMM_NM = #{commNm}
+    </select>
+
+    <insert id="insertCommCdAse" parameterType="commCdVO">
+        INSERT INTO TB_COMM_CD (
+                 COMM_CD
+               , COMM_NM
+               , COMM_DESC
+               , CREATE_USER_ID
+               , CREATE_DT
+        ) VALUES (
+                 #{commCd}
+               , #{commNm}
+               , #{commDesc}
+               , #{createUserId}
+               , #{createDt}
+        )
+    </insert>
+
+    <update id="updateCommCdAse" parameterType="commCdVO">
+        UPDATE TB_COMM_CD
+           SET COMM_NM = #{commNm}
+             , COMM_DESC = #{commDesc}
+             , UPDATE_USER_ID = #{updateUserId}
+             , UPDATE_DT = #{updateDt}
+         WHERE COMM_CD = #{commCd}
+    </update>
+
+    <delete id="deleteCommCdAse" parameterType="commCdVO">
+        DELETE FROM TB_COMM_CD
+         WHERE COMM_CD = #{commCd}
+    </delete>
+
+
+    <select id="selectCommDtlCdOneAse" parameterType="commonVO">
+        SELECT COMM_DTL_CD
+             , COMM_CD
+             , COMM_DTL_NM
+             , COMM_DTL_DESC
+             , USE_YN
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+          FROM TB_COMM_DTL_CD
+         WHERE COMM_CD = #{commCd}
+           AND COMM_DTL_CD = #{commDtlCd}
+    </select>
+
+    <select id="selectCommDtlCdListAse" parameterType="commonVO">
+        SELECT COMM_DTL_CD
+             , COMM_CD
+             , COMM_DTL_NM
+             , COMM_DTL_DESC
+             , USE_YN
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+        FROM TB_COMM_DTL_CD
+        <where>
+            <if test="commCd != null and !salary.equals('')">
+              AND COMM_CD = #{commCd}
+            </if>
+            <if test="commCd != null and !salary.equals('')">
+              AND COMM_DTL_CD = #{commDtlCd}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertCommDtlCdAse" parameterType="commonVO">
+        INSERT INTO TB_COMM_DTL_CD (
+                     COMM_DTL_CD
+                   , COMM_CD
+                   , COMM_DTL_NM
+                   , COMM_DTL_DESC
+                   , USE_YN
+                   , CREATE_USER_ID
+                   , CREATE_DT
+        ) VALUES (
+                   #{commDtlCd}
+                 , #{commCd}
+                 , #{commDtlNm}
+                 , #{commDtlDesc}
+                 , #{useYn}
+                 , #{createUserId}
+                 , #{createDt}
+        )
+    </insert>
+
+    <update id="updateCommDtlCdAse" parameterType="commonVO">
+        UPDATE TB_COMM_DTL_CD
+           SET COMM_DTL_CD = #{commDtlCd}
+              , COMM_DTL_NM = #{commDtlNm}
+              , COMM_DTL_DESC = #{commDtlDesc}
+              , USE_YN = #{useYn}
+              , UPDATE_USER_ID = #{updateUserId}
+              , UPDATE_DT = #{updateDt}
+        WHERE COMM_CD = #{commCd}
+    </update>
+
+    <select id="deleteCommDtlCdAse" parameterType="commonVO">
+        DELETE FROM TB_COMM_DTL_CD
+        WHERE COMM_CD = #{commCd}
+    </select>
+
 </mapper>

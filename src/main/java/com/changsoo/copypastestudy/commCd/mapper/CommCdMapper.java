@@ -1,10 +1,7 @@
 package com.changsoo.copypastestudy.commCd.mapper;
 
-import com.changsoo.copypastestudy.ase.vo.AseJqDataVO;
-import com.changsoo.copypastestudy.ase.vo.AseMemberVO;
 import com.changsoo.copypastestudy.commCd.vo.CommCdVO;
 import com.changsoo.copypastestudy.commCd.vo.CommDtlCdVO;
-import com.changsoo.copypastestudy.yjs.vo.YjsCommDtVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,4 +18,5 @@ public interface CommCdMapper {
     public int insertCommDtYjs(CommDtlCdVO commDtlCdVO);
     public int updateCommDtYjs(CommDtlCdVO commDtlCdVO);
     public int deleteCommDtYjs(CommDtlCdVO commDtlCdVO);
+    public List<CommCdVO> selectCommCdListAse(CommCdVO commCdVO);
 }

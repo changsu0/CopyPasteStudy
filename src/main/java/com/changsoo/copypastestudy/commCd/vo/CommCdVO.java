@@ -1,6 +1,5 @@
 package com.changsoo.copypastestudy.commCd.vo;
 
-import com.changsoo.copypastestudy.yjs.vo.YjsCommDtVO;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 

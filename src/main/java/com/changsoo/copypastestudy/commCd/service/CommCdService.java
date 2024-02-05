@@ -1,15 +1,8 @@
 package com.changsoo.copypastestudy.commCd.service;
 
-import com.changsoo.copypastestudy.ase.mapper.AseCatgMapper;
-import com.changsoo.copypastestudy.ase.service.AseCatgService;
-import com.changsoo.copypastestudy.ase.vo.AseCatgVO;
 import com.changsoo.copypastestudy.commCd.mapper.CommCdMapper;
 import com.changsoo.copypastestudy.commCd.vo.CommCdVO;
 import com.changsoo.copypastestudy.commCd.vo.CommDtlCdVO;
-import com.changsoo.copypastestudy.yjs.mapper.YjsDataTablesMapper;
-import com.changsoo.copypastestudy.yjs.vo.YjsDataTablesVO;
-import com.changsoo.copypastestudy.yjs.vo.YjsMemberVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +13,10 @@ public class CommCdService {
 
     public CommCdService(CommCdMapper commCdMapper) {
         this.commCdMapper = commCdMapper;
+    }
+
+    public List<CommCdVO> selectCommCdListAse(CommCdVO commCdVO) {
+        return commCdMapper.selectCommCdListAse(commCdVO);
     }
 
     public List<CommCdVO> selectCommCdListYjs(CommCdVO commCdVO){

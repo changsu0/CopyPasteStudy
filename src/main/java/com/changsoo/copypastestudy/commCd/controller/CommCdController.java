@@ -2,9 +2,7 @@
 
  import com.changsoo.copypastestudy.commCd.service.CommCdService;
  import com.changsoo.copypastestudy.commCd.vo.CommCdVO;
- import com.changsoo.copypastestudy.yjs.vo.YjsDataTablesVO;
  import com.google.gson.Gson;
- import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Controller;
  import org.springframework.ui.Model;
  import org.springframework.web.bind.annotation.GetMapping;
@@ -41,5 +39,14 @@
          rstJson = gson.toJson(map);
 
          return rstJson;
+     }
+
+     @GetMapping("/selectCommCdListAse")
+     public String selectCommCdListAse(Model model, CommCdVO commCdVO){
+
+         List<CommCdVO> selectCommCdListAse = commCdService.selectCommCdListAse(commCdVO);
+         model.addAttribute("selectCommCdListAse", selectCommCdListAse);
+
+         return "ase/dataTable/aseDataTable01";
      }
  }

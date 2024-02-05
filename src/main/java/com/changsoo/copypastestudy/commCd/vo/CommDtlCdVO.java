@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("commCdVO")
+@Alias("commDtlCdVO")
 public class CommDtlCdVO extends CommCdVO {
     private String commDtlCd;
     private String commDtlNm;
