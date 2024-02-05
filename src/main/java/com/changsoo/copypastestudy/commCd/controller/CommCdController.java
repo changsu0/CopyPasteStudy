@@ -20,8 +20,8 @@
          this.commCdService = commCdService;
      }
 
-     @GetMapping("/yjsDataTables02")
-     public String yjsDataTables02(Model model){
+     @GetMapping("/commCdListYjs")
+     public String commCdListYjs(Model model){
 
          return "yjs/tables/yjsDataTables02";
      }

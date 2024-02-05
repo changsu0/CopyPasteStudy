@@ -26,11 +26,6 @@ public class YjsDataTablesController {
         return "yjs/tables/yjsDataTables01";
     }
 
-    @GetMapping("/yjsDataTables02")
-    public String yjsDataTables02(Model model){
-
-        return "yjs/tables/yjsDataTables02";
-    }
 
     @GetMapping("/yjsDataTables01List")
     @ResponseBody
