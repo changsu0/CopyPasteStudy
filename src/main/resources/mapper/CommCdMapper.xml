@@ -106,8 +106,14 @@
              , UPDATE_USER_ID
              , UPDATE_DT
           FROM TB_COMM_CD
-         WHERE COMM_CD = #{commCd}
-           AND COMM_NM = #{commNm}
+        <where>
+            <if test="commCd != null and !commCd.equals('')">
+                AND COMM_CD = #{commCd}
+            </if>
+            <if test="commNm != null and !commNm.equals('')">
+                AND COMM_NM = #{commNm}
+            </if>
+        </where>
     </select>
 
     <insert id="insertCommCdAse" parameterType="commCdVO">
@@ -140,7 +146,6 @@
          WHERE COMM_CD = #{commCd}
     </delete>
 
-
     <select id="selectCommDtlCdOneAse" parameterType="commonVO">
         SELECT COMM_DTL_CD
              , COMM_CD
@@ -171,7 +176,7 @@
             <if test="commCd != null and !salary.equals('')">
               AND COMM_CD = #{commCd}
             </if>
-            <if test="commCd != null and !salary.equals('')">
+            <if test="commDtlCd != null and !commDtlCd.equals('')">
               AND COMM_DTL_CD = #{commDtlCd}
             </if>
         </where>

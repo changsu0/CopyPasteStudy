@@ -29,7 +29,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">공통코드명</div>
                 </div>
-                <input type="text" class="form-control" id="commNm" placeholder="공통코드명" name="commNm" value="">
+                <input type="text" class="form-control" id="commNm" placeholder="공통코드명" name="commNm">
             </div>
         </div>
 
@@ -42,7 +42,7 @@
 <div class="form-row align-items-center">
     <div class="col-auto col-6">
         <div id="demo_info" class="box"></div>
-        <table id="main" class="display" style="width:100%">
+        <table id="main" class="display">
             <thead>
             <tr>
                 <th>공통코드</th>
@@ -57,7 +57,7 @@
 
     <div class="col-auto col-6">
         <div id="demo_subInfo" class="box"></div>
-        <table id="sub" class="display" style="width:100%">
+        <table id="sub" class="display">
             <thead>
             <tr>
                 <th>공통코드</th>
@@ -71,20 +71,17 @@
             </thead>
         </table>
     </div>
+
 </div>
+
 </body>
 <script>
 
     $(document).ready(function() {
         selectGridList();
-        selectSubGridList();
-
     })
 
     let mainTable = new DataTable('#main', {
-        select: {
-            style: 'multi'
-        },
         columns: [
             { data: 'commCd' },
             { data: 'commNm' },
@@ -94,10 +91,17 @@
         ]
     });
 
+    const selectGridList = function() {
+        JS_COMMON.fn_callAjaxForm('/selectCommCdListAse', $('#frmSearch').serialize(), 'GET', cb_selectGridList, true);
+    }
+    const cb_selectGridList = function( result ){
+        console.log(result);
+        mainTable.clear();
+        mainTable.rows.add(result.data).draw();
+    }
+
+
     let subTable = new DataTable('#sub', {
-        select: {
-            style: 'multi'
-        },
         columns: [
             { data: 'commDtlCd' },
             { data: 'commCd' },
@@ -111,15 +115,6 @@
         ]
     });
 
-    const selectGridList = function() {
-        JS_COMMON.fn_callAjaxForm('/selectCommCdListAse', $('#frmSearch').serialize(), 'GET', cb_selectGridList, true);
-    }
-
-    const cb_selectGridList = function( result ){
-        table.clear();
-        table.rows.add(result.data).draw();
-    }
-
     const selectSubGridList = function() {
         JS_COMMON.fn_callAjaxForm('/selectAseDataTBList', $('#frmSearch').serialize(), 'GET', cb_selectSubGridList, true);
     }
@@ -128,9 +123,6 @@
         subTable.clear();
         subTable.rows.add(result.data).draw();
     }
-
-
-
 
 </script>
 
