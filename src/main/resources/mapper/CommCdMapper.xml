@@ -3,12 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.changsoo.copypastestudy.commCd.mapper.CommCdMapper">
-    <select id="selectCommCdListYjs" parameterType="commCdVO">
+    <select id="selectCommCdListYjs" parameterType="commCdVO" resultType="commCdVO">
         select comm_cd, comm_nm, comm_desc, create_user_id, create_dt
         from TB_COMM_CD
     </select>
 
-    <select id="selectCommCdOneYjs" parameterType="commCdVO">
+    <select id="selectCommCdOneYjs" parameterType="commCdVO" resultType="commCdVO">
         select comm_cd, comm_nm, comm_desc, create_user_id, create_dt, UPDATE_USER_ID, UPDATE_DT
         from TB_COMM_CD
         where COMM_CD = #{commCd}
@@ -41,12 +41,12 @@
         WHERE comm_cd = #{commCd}
     </delete>
 
-    <select id="selectCommDtListYjs" parameterType="commDtlCdVO">
+    <select id="selectCommDtListYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
         select comm_dtl_cd, comm_cd, comm_dtl_nm, comm_dtl_desc, use_yn, create_user_id, create_dt, update_user_id, update_dt
         from TB_COMM_DTL_CD
     </select>
 
-    <select id="selectCommDtOneYjs" parameterType="commDtlCdVO">
+    <select id="selectCommDtOneYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
         select comm_dtl_cd, comm_cd, comm_dtl_nm, comm_dtl_desc, use_yn, create_user_id, create_dt, update_user_id, update_dt
         from TB_COMM_DTL_CD
         where comm_dtl_cd = #{commDtlCd}

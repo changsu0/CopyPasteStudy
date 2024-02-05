@@ -22,43 +22,42 @@ public class CommCdService {
         this.commCdMapper = commCdMapper;
     }
 
-    @Override
     public List<CommCdVO> selectCommCdListYjs(CommCdVO commCdVO){
         return commCdMapper.selectCommCdListYjs(commCdVO);
     }
 
-    @Override
     public CommCdVO selectCommCdOneYjs(CommCdVO commCdVO){
         return commCdMapper.selectCommCdOneYjs(commCdVO);
     }
 
-    @Override
     public int insertCommCdYjs(CommCdVO commCdVO) {
         return commCdMapper.insertCommCdYjs(commCdVO);
-    }@Override
+    }
+
     public int updateCommCdYjs(CommCdVO commCdVO) {
         return commCdMapper.updateCommCdYjs(commCdVO);
-    }@Override
+    }
+
     public int deleteCommCdYjs(CommCdVO commCdVO) {
         return commCdMapper.deleteCommCdYjs(commCdVO);
     }
-    @Override
+
     public List<CommDtlCdVO> selectCommDtListYjs(CommDtlCdVO commDtlCdVO){
         return commCdMapper.selectCommDtListYjs(commDtlCdVO);
     }
 
-    @Override
     public CommDtlCdVO selectCommDtOneYjs(CommDtlCdVO commDtlCdVO){
         return commCdMapper.selectCommDtOneYjs(commDtlCdVO);
     }
 
-    @Override
     public int insertCommDtYjs(CommDtlCdVO commDtlCdVO) {
         return commCdMapper.insertCommDtYjs(commDtlCdVO);
-    }@Override
+    }
+
     public int updateCommDtYjs(CommDtlCdVO commDtlCdVO) {
         return commCdMapper.updateCommDtYjs(commDtlCdVO);
-    }@Override
+    }
+
     public int deleteCommDtYjs(CommDtlCdVO commDtlCdVO) {
         return commCdMapper.deleteCommDtYjs(commDtlCdVO);
     }
