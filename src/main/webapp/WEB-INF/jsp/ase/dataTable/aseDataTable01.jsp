@@ -61,12 +61,23 @@
             <div class="form-row">
                 <div>
                     <div class="col-auto">
-                        <label class="sr-only" for="commDtlNm">상세코드명</label>
+                        <label class="sr-only" for="commCd">공통코드</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">상세코드명</div>
+                                <div class="input-group-text">공통코드</div>
                             </div>
-                            <input type="text" class="form-control" id="commDtlNm" placeholder="상세코드명" name="commDtlNm">
+                            <input type="text" class="form-control" id="subCommCd" placeholder="공통코드" name="commCd">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="commCd">상세코드</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">상세코드</div>
+                            </div>
+                            <input type="text" class="form-control" id="subCommDtlCd" placeholder="상세코드" name="commDtlCd">
                         </div>
                     </div>
                 </div>
