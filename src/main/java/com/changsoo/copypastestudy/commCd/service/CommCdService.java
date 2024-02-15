@@ -15,6 +15,7 @@ public class CommCdService {
         this.commCdMapper = commCdMapper;
     }
 
+    /* 공통코드 ASE ----------- START */
     public List<CommCdVO> selectCommCdListAse(CommCdVO commCdVO) {
         return commCdMapper.selectCommCdListAse(commCdVO);
     }
@@ -30,6 +31,19 @@ public class CommCdService {
     public CommDtlCdVO selectCommDtlCdOneAse(CommDtlCdVO commDtlCdVO) {
         return commCdMapper.selectCommDtlCdOneAse(commDtlCdVO);
     }
+
+    public int insertCommCdAse(List<CommCdVO> commCdVOList) {
+        return commCdMapper.insertCommCdAse(commCdVOList);
+    }
+
+    public int updateCommCdAse(List<CommCdVO> commCdVOList) {
+        return commCdMapper.updateCommCdAse(commCdVOList);
+    }
+    public int deleteCommCdAse(List<CommCdVO> commCdVOList) {
+        return commCdMapper.deleteCommCdAse(commCdVOList);
+    }
+    /* 공통코드 ASE ----------- END */
+
 
     public List<CommCdVO> selectCommCdListYjs(CommCdVO commCdVO){
         return commCdMapper.selectCommCdListYjs(commCdVO);

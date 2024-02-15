@@ -25,79 +25,44 @@
 <br />
 
 <div class="form-row">
-    <div class="col-5">
-        <form id="frmSearch" onsubmit="return false">
-            <div class="form-row">
-                <div>
-                    <div class="col-auto">
-                        <label class="sr-only" for="commCd">공통코드</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">공통코드</div>
-                            </div>
-                            <input type="text" class="form-control" id="commCd" placeholder="공통코드" name="commCd">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-auto">
-                        <label class="sr-only" for="commNm">공통코드명</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">공통코드명</div>
-                            </div>
-                            <input type="text" class="form-control" id="commNm" placeholder="공통코드명" name="commNm">
-                        </div>
-                    </div>
-                </div>
+    <form id="frmSearch" onsubmit="return false">
+        <div class="form-row">
+            <div>
                 <div class="col-auto">
-                    <button class="btn btn-info" id="btnSearch">조회</button>
+                    <label class="sr-only" for="commCd">공통코드</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">공통코드</div>
+                        </div>
+                        <input type="text" class="form-control" id="commCd" placeholder="공통코드" name="commCd">
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <div class="col-7">
-        <form id="frmDtSearch" onsubmit="return false">
-            <div class="form-row">
-                <div>
-                    <div class="col-auto">
-                        <label class="sr-only" for="commCd">공통코드</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">공통코드</div>
-                            </div>
-                            <input type="text" class="form-control" id="subCommCd" placeholder="공통코드" name="commCd">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-auto">
-                        <label class="sr-only" for="commCd">상세코드</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">상세코드</div>
-                            </div>
-                            <input type="text" class="form-control" id="subCommDtlCd" placeholder="상세코드" name="commDtlCd">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-auto">
-                        <label class="sr-only" for="commDtlNm">상세코드명</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">상세코드명</div>
-                            </div>
-                            <input type="text" class="form-control" id="subCommDtlNm" placeholder="상세코드명" name="commDtlNm">
-                        </div>
-                    </div>
-                </div>
+            <div>
                 <div class="col-auto">
-                    <button class="btn btn-info" id="btnDtlSearch">조회</button>
+                    <label class="sr-only" for="commNm">공통코드명</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">공통코드명</div>
+                        </div>
+                        <input type="text" class="form-control" id="commNm" placeholder="공통코드명" name="commNm">
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="col-auto">
+                <button class="btn btn-info" id="btnSearch">조회</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-success" id="btnInsert">INSERT</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-warning" id="btnUpdate">UPDATE</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-danger" id="btnDelete">DELETE</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <hr/>
@@ -106,7 +71,7 @@
     <div class="col-5">
         <div class="col-auto">
             <div id="demo_info" class="box"></div>
-            <table id="main" class="display" style="width:100%">
+            <table id="master" class="display" style="width:100%">
                 <thead>
                 <tr>
                     <th>공통코드</th>
@@ -122,8 +87,8 @@
 
     <div class="col-7">
         <div class="col-auto">
-            <div id="demo_subInfo" class="box"></div>
-            <table id="sub" class="display" style="width:100%">
+            <div id="demo_detailInfo" class="box"></div>
+            <table id="detail" class="display" style="width:100%">
                 <thead>
                 <tr>
                     <th>공통코드</th>
@@ -144,17 +109,32 @@
 <script>
 
     $(document).ready(function() {
+
+        selectGridList();
+
         $('#btnSearch').click(function (){
             selectGridList();
         });
+        
+        $('#btnInsert').click(function (){
+            insert();
+        });
 
-        $('#btnDtlSearch').click(function (){
-            selectSubGridList();
+        $('#btnUpdate').click(function (){
+            update();
+        });
+
+        $('#btnDelete').click(function (){
+            fn_delete();
         });
 
     })
 
-    let mainTable = new DataTable('#main', {
+    /**
+     * masterGrid 생성
+     * @type {DataTable}
+     */
+    let masterTable = new DataTable('#master', {
         select: {
             style: 'single'
         },
@@ -171,17 +151,19 @@
         JS_COMMON.fn_callAjaxForm('/selectCommCdListAse', $('#frmSearch').serialize(), 'GET', cb_selectGridList, true);
     }
 
+    /**
+     * 조회 callBack함수 : 조회된 데이터로 masterGrid 그리기
+     * @param result
+     */
     const cb_selectGridList = function( result ){
-        console.log(result);
-        mainTable.clear();
-        mainTable.rows.add(result.data).draw();
+        masterTable.clear();
+        masterTable.rows.add(result.data).draw();
     }
-
-    const cb_commCdOne = function (result){
-        console.log(result);
-    }
-
-    let subTable = new DataTable('#sub', {
+    /**
+     * detailGrid 생성
+     * @type {DataTable}
+     */
+    let detailTable = new DataTable('#detail', {
         select: {
             style: 'single'
         },
@@ -196,60 +178,81 @@
         ]
     });
 
-    const selectSubGridList = function() {
-        JS_COMMON.fn_callAjaxJson('/selectCommDtlCdListAse', $('#frmDtSearch').serialize(), 'GET', cb_selectSubGridList, true);
-    }
-
-    const cb_selectSubGridList = function( result ){
-        subTable.clear();
-        subTable.rows.add(result.data).draw();
-    }
-
-    let selectedData;
-    let selectedCd;
-    let selectedDtlCd;
-
-    mainTable.on( 'select', function ( e, dt, type, indexes ) {
+    /**
+     * selected된 row의 commCd 가져오기
+     */
+    masterTable.on( 'select', function ( e, dt, type, indexes ) {
         if ( type === 'row' ) {
-            selectedData = mainTable.rows( indexes ).data();
-            selectedCd = selectedData[0].commCd
+            let selectedData = masterTable.rows( indexes ).data();
+            let selectedCd = selectedData[0].commCd
             console.log(selectedCd);
 
-            selectMainGridOne()
+            selectDetailGridList( selectedCd )
         }
     } );
 
-    const selectMainGridOne = function() {
-        JS_COMMON.fn_callAjaxJson('/selectCommCdOneAse', {
-            commCd: selectedCd
-        }, 'POST', cb_selectMainGridOne);
+    /**
+     * 선택한 MasterGrid의 Detail 데이터 조회
+     * @param commCd selected된 commCd
+     */
+    const selectDetailGridList = function( commCd ) {
+        JS_COMMON.fn_callAjaxJson('/selectCommDtlCdListAse', {
+            commCd: commCd
+        }, 'POST', cb_selectDetailGridList);
     }
 
-    const cb_selectMainGridOne = function( result ){
-        console.log("masterOne");
-        console.log(result);
+    /**
+     * 조회 callBack함수 : 조회된 데이터로 detailGrid 그리기
+     * @param result
+     */
+    const cb_selectDetailGridList = function( result ){
+        detailTable.clear();
+        detailTable.rows.add(result.data).draw();
     }
 
-    subTable.on( 'select', function ( e, dt, type, indexes ) {
-        if ( type === 'row' ) {
-            selectedData = subTable.rows( indexes ).data();
-            selectedCd = selectedData[0].commCd
-            selectedDtlCd = selectedData[0].commDtlCd
+    //insertParam
+    let paramListI = [
+        {commCd: '4ASE', commNm: 4, commDesc: 4, createUserId: 'ASE'}
+        , {commCd: '5ASE', commNm: 5, commDesc: 5, createUserId: 'ASE'}
+        , {commCd: '6ASE', commNm: 6, commDesc: 6, createUserId: 'ASE'}
+    ];
 
-            selectSubGridOne()
-        }
-    } );
-
-    const selectSubGridOne = function() {
-        JS_COMMON.fn_callAjaxJson('/selectCommDtlCdOneAse', {
-            commCd: selectedCd,
-            commDtlCd: selectedDtlCd
-        }, 'POST', cb_selectSubGridOne);
+    const insert = function() {
+        JS_COMMON.fn_callAjaxJson('/insertCommCdAse', paramListI, 'POST', cb_insert);
     }
 
-    const cb_selectSubGridOne = function( result ){
-        console.log("detailOne");
-        console.log(result);
+    const cb_insert = function( result ){
+        selectGridList();
+    }
+
+    //updateParam
+    let paramListU = [
+        {commCd: '4ASE', commNm: 44, commDesc: 44, updateUserId: 'ASE'}
+        , {commCd: '5ASE', commNm: 55, commDesc: 55, updateUserId: 'ASE'}
+        , {commCd: '6ASE', commNm: 66, commDesc: 66, updateUserId: 'ASE'}
+    ];
+
+    const update = function() {
+        JS_COMMON.fn_callAjaxJson('/updateCommCdAse', paramListU, 'POST', cb_update);
+    }
+
+    const cb_update = function( result ){
+        selectGridList();
+    }
+
+    //deleteParam
+    let paramListD = [
+        {commCd: '4ASE'}
+        , {commCd: '5ASE'}
+        , {commCd: '6ASE'}
+    ];
+
+    const fn_delete = function() {
+        JS_COMMON.fn_callAjaxJson('/deleteCommCdAse', paramListD, 'POST', cb_delete);
+    }
+
+    const cb_delete = function( result ){
+        selectGridList();
     }
 
 </script>

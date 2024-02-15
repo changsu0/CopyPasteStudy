@@ -106,9 +106,9 @@ public class CommCdController {
         return rstJson;
     }
 
-    @GetMapping("/selectCommDtlCdListAse")
+    @PostMapping("/selectCommDtlCdListAse")
     @ResponseBody
-    public String selectCommDtlCdListAse(@ModelAttribute CommDtlCdVO commDtlCdVO){
+    public String selectCommDtlCdListAse(@RequestBody CommDtlCdVO commDtlCdVO){
         String rstJson = null;
         List<CommDtlCdVO> selectCommDtlCdListAse = commCdService.selectCommDtlCdListAse(commDtlCdVO);
 
@@ -143,6 +143,43 @@ public class CommCdController {
 
         Gson gson = new Gson();
         rstJson = gson.toJson( map );
+
+        return rstJson;
+    }
+
+    @PostMapping("/insertCommCdAse")
+    @ResponseBody
+    public String insertCommCdAse(@RequestBody List<CommCdVO> commCdVOList){
+        String rstJson = null;
+        int cnt = commCdService.insertCommCdAse(commCdVOList);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( cnt );
+
+        return rstJson;
+    }
+
+
+    @PostMapping("/updateCommCdAse")
+    @ResponseBody
+    public String updateCommCdAse(@RequestBody List<CommCdVO> commCdVOList){
+        String rstJson = null;
+        int cnt = commCdService.updateCommCdAse(commCdVOList);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( cnt );
+
+        return rstJson;
+    }
+
+    @PostMapping("/deleteCommCdAse")
+    @ResponseBody
+    public String deleteCommCdAse(@RequestBody List<CommCdVO> commCdVOList){
+        String rstJson = null;
+        int cnt = commCdService.deleteCommCdAse(commCdVOList);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( cnt );
 
         return rstJson;
     }

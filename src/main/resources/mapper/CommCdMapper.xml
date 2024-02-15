@@ -125,7 +125,9 @@
           and comm_cd = #{commCd}
     </delete>
 
+    <!-- 공통코드 ASE XML START -->
     <select id="selectCommCdOneAse" parameterType="commCdVO" resultType="commCdVO">
+        /* CommCdMapper.selectCommCdOneAse */
         SELECT COMM_CD
              , COMM_NM
              , COMM_DESC
@@ -138,6 +140,7 @@
     </select>
 
     <select id="selectCommCdListAse" parameterType="commCdVO" resultType="commCdVO">
+        /* CommCdMapper.selectCommCdListAse */
         SELECT COMM_CD
         , COMM_NM
         , COMM_DESC
@@ -157,36 +160,48 @@
     </select>
 
     <insert id="insertCommCdAse" parameterType="commCdVO">
-        INSERT INTO TB_COMM_CD (
-                                 COMM_CD
-                               , COMM_NM
-                               , COMM_DESC
-                               , CREATE_USER_ID
-                               , CREATE_DT
+        /* CommCdMapper.insertCommCdAse */
+        <foreach item="item" index="index" collection="list" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+        INTO TB_COMM_CD (
+                     COMM_CD
+                   , COMM_NM
+                   , COMM_DESC
+                   , CREATE_USER_ID
+                   , CREATE_DT
         ) VALUES (
-                     #{commCd}
-                 , #{commNm}
-                 , #{commDesc}
-                 , #{createUserId}
-                 , #{createDt}
-                 )
+                     #{item.commCd}
+                   , #{item.commNm}
+                   , #{item.commDesc}
+                   , #{item.createUserId}
+                   , SYSDATE
+        )
+        </foreach>
     </insert>
 
     <update id="updateCommCdAse" parameterType="commCdVO">
+        /* CommCdMapper.updateCommCdAse */
+        <foreach item="item" index="index" collection="list" separator=";" open="DECLARE BEGIN" close="; END;">
         UPDATE TB_COMM_CD
-        SET COMM_NM = #{commNm}
-          , COMM_DESC = #{commDesc}
-          , UPDATE_USER_ID = #{updateUserId}
-          , UPDATE_DT = #{updateDt}
-        WHERE COMM_CD = #{commCd}
+        SET COMM_NM = #{item.commNm}
+          , COMM_DESC = #{item.commDesc}
+          , UPDATE_USER_ID = #{item.updateUserId}
+          , UPDATE_DT = SYSDATE
+        WHERE COMM_CD = #{item.commCd}
+        </foreach>
     </update>
 
     <delete id="deleteCommCdAse" parameterType="commCdVO">
+        /* CommCdMapper.deleteCommCdAse */
         DELETE FROM TB_COMM_CD
-        WHERE COMM_CD = #{commCd}
+        <where>
+            <foreach collection="list" item="item" open="" close="" separator="OR">
+                COMM_CD = #{item.commCd}
+            </foreach>
+        </where>
     </delete>
 
     <select id="selectCommDtlCdOneAse" parameterType="CommDtlCdVO" resultType="CommDtlCdVO">
+        /* CommCdMapper.selectCommDtlCdOneAse */
         SELECT COMM_DTL_CD
              , COMM_CD
              , COMM_DTL_NM
@@ -202,6 +217,7 @@
     </select>
 
     <select id="selectCommDtlCdListAse" parameterType="CommDtlCdVO" resultType="CommDtlCdVO">
+        /* CommCdMapper.selectCommDtlCdListAse */
         SELECT COMM_DTL_CD
         , COMM_CD
         , COMM_DTL_NM
@@ -223,6 +239,7 @@
     </select>
 
     <insert id="insertCommDtlCdAse" parameterType="CommDtlCdVO">
+        /* CommCdMapper.insertCommDtlCdAse */
         INSERT INTO TB_COMM_DTL_CD (
                      COMM_DTL_CD
                    , COMM_CD
@@ -238,28 +255,31 @@
                  , #{commDtlDesc}
                  , #{useYn}
                  , #{createUserId}
-                 , #{createDt}
+                 , SYSDATE
                  )
     </insert>
 
     <update id="updateCommDtlCdAse" parameterType="CommDtlCdVO">
+        /* CommCdMapper.updateCommDtlCdAse */
         UPDATE TB_COMM_DTL_CD
         SET COMM_DTL_NM = #{commDtlNm}
           , COMM_DTL_DESC = #{commDtlDesc}
           , USE_YN = #{useYn}
           , UPDATE_USER_ID = #{updateUserId}
-          , UPDATE_DT = #{updateDt}
+          , UPDATE_DT = SYSDATE
         WHERE COMM_CD = #{commCd}
           AND COMM_DTL_CD = #{commDtlCd}
     </update>
 
     <update id="updateUseYnDtlCdAse" parameterType="CommDtlCdVO">
+        /* CommCdMapper.updateUseYnDtlCdAse */
         UPDATE TB_COMM_DTL_CD
         SET USE_YN = #{useYn}
           , UPDATE_USER_ID = #{updateUserId}
-          , UPDATE_DT = #{updateDt}
+          , UPDATE_DT = SYSDATE
         WHERE COMM_CD = #{commCd}
           AND COMM_DTL_CD = #{commDtlCd}
     </update>
+    <!-- 공통코드 ASE XML END -->
 
 </mapper>
