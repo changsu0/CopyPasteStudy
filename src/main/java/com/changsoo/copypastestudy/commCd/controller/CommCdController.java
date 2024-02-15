@@ -39,6 +39,20 @@ public class CommCdController {
 
         return rstJson;
     }
+    @GetMapping("/selectCommDtlListYjs")
+    @ResponseBody
+    public String selectCommDtlListYjs(@ModelAttribute CommDtlCdVO commDtlCdVO){
+        String rstJson = null;
+        List<CommDtlCdVO> selectCommCdListYjs = commCdService.selectCommDtListYjs(commDtlCdVO);
+
+        HashMap map = new HashMap();
+        map.put("data", selectCommCdListYjs);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( map );
+
+        return rstJson;
+    }
 
     @GetMapping("/commCdListAse")
     public String commCdListAse(Model model){
