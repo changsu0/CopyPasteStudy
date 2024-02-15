@@ -50,7 +50,8 @@
         </div>
         <div class="col-auto">
             <button class="btn btn-info" id="btnSearch">조회</button>
-            <button class="btn btn-info" id="btnGetDate">가져오기</button>
+            <button class="btn btn-info" id="btnGetData">가져오기</button>
+            <button class="btn btn-info" id="btnDel">삭제</button>
         </div>
     </div>
 </form>
@@ -173,8 +174,12 @@
             changeVal();
         });
 
-        $('#btnGetDate').click(function (){
-            changeVal();
+        $('#btnGetData').click(function (){
+            fn_getData('chk');
+        });
+
+        $('#btnDel').click(function (){
+            fn_rowDel();
         });
 
     });
@@ -192,16 +197,18 @@
 
         for (let i = 0; i < result.length; i++) {
             innerHtml += '<tr>';
-            innerHtml += '<td><input type="checkbox" class="subChk" name="chk" id="chk'+ (i+1) +'" value="' + (i+1) + '"/></td>';
-            innerHtml += '<td><input type="checkbox" class="subChk1" name="chk1" id="chk1'+ (i+1) +'" value="' + (i+1) + '"/></td>';
-            //innerHtml += '<td><a href="javascript:setInputModal(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commCd +'</a></td>';
-            innerHtml += '<td>'+setSelect(result, result[i].commCd, 'select', i)+'</td>';
-            //innerHtml += '<td><a href="javascript:setInputSelect(\''+ result[i].commCd +'\',\''+ result[i].commNm +'\',\''+ result[i].commDesc +'\')">'+ result[i].commNm +'</a></td>';
-            innerHtml += '<td>'+setSelect(result, result[i].commCd, 'radio','commCd'+i) +'</td>';
 
-            innerHtml += '<td>'+ result[i].commDesc +'</td>';
+            innerHtml += '<td><input type="checkbox" name="chk" id="'+ i +'"/></td>';
+            innerHtml += '<td><input type="checkbox" name="subChk" id="subChk'+ i +'"/></td>';
+
+            innerHtml += '<td id="commCd'+ i +'">'+ result[i].commCd + '</td>';
+            //innerHtml += '<td><select id="commCd'+ i +'">'+setSelect(result, result[i].commCd, 'select', i)+'</select></td>';
+            innerHtml += '<td>'+setSelect(result, result[i].commCd, 'radio','commCdNm'+i) +'</td>';
+
+            innerHtml += '<td><input type="text" id="commDesc'+ i +'" value="' + result[i].commDesc + '"></td>';
             innerHtml += '</tr>';
 
+            //modal
             innerOption += '<option value="' + result[i].commCd + '">'+ result[i].commNm + '</option>';
 
             innerHtmlRadio += '<input type="radio" value="' + result[i].commCd + '" name="commCdPop">&nbsp;' + result[i].commCd + '<br />';
@@ -260,9 +267,6 @@
     const setSelect = function ( result, commCd, type, name ){
 
         let innerHtml = '';
-        if( type === 'select'){
-            innerHtml = '<select>';
-        }
 
         for (let i = 0; i < result.length; i++) {
             if( result[i].commCd === commCd) {
@@ -278,9 +282,6 @@
                     innerHtml += '<input type="radio" value="' + result[i].commCd + '" name="'+ name +'" />&nbsp;' + result[i].commNm;
                 }
             }
-        }
-        if( type === 'select') {
-            innerHtml += '</select>';
         }
         return innerHtml; //결과 리턴
 
@@ -327,6 +328,24 @@
 
     }
 
+    const fn_getData = function(name) {
+        // let checkObj = $('input[name=' + name + ']:checked');
+        $('input[name=' + name + ']:checked').each(function (){
+            let rowIndex = $(this).attr('id');
+            //get 함수를 사용하여 코드 완성 !!!!!되도록이면 지금까지 했던 함수를 사용하여 코드 완성!!!!!!!!
+            console.log(rowIndex);
+            let rowDescVal = $('#commDesc'+rowIndex).val();
+            let rowNmVal = $('input[name=commCdNm' + rowIndex + ']:checked').val();
+            let rowCdVal = $('#commCd'+rowIndex).val();
+
+            console.log('공통코드 : ' + rowCdVal);
+            console.log('공통코드명 : ' + rowNmVal);
+            console.log('공통코드설명 : ' + rowDescVal);
+        });
+
+
+    }
+
     const checkAll = function (thisChk, name){
         if(thisChk.is(':checked')){
             $('input[name="'+ name +'"]').prop('checked', true);
@@ -334,6 +353,31 @@
             $('input[name="'+ name +'"]').prop('checked', false);
         }
     }
+
+    const fn_rowDel = function (){
+        let delList = [];
+        let delMap = {};
+
+        $('input[name=chk]:checked').each(function () {
+            let rowIndex = $(this).attr('id');
+            let rowCdVal = $('#commCd' + rowIndex).text();
+            console.log(rowIndex, rowCdVal);
+
+            delList.push(rowCdVal);
+
+        });
+        delMap.commCd = delList.toString();
+        // or J/S에서 json 방식으로만 사용 가능한 문법 : delMap['commCd'] = delList.toString();
+        console.log(delMap);
+
+        JS_COMMON.fn_callAjaxJson('/delAseCommCd', delMap, 'post', cb_rowDel);
+    }
+
+    const cb_rowDel = function (){
+        selectCommList();
+    }
+
+
 
 </script>
 

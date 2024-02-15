@@ -2,9 +2,10 @@ package com.changsoo.copypastestudy.ase.service;
 
 import com.changsoo.copypastestudy.ase.mapper.AseCommCdMapper;
 import com.changsoo.copypastestudy.ase.vo.AseCommDtVO;
-import com.changsoo.copypastestudy.ase.vo.AseCommDtVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -38,6 +39,26 @@ public class AseCommDtServiceImpl implements AseCommDtService {
     @Override
     public int deleteAseCommCd(AseCommDtVO aseCommDtVO) {
         return aseCommCdMapper.deleteAseCommCd(aseCommDtVO);
+    }
+
+    @Override
+    public int deleteAseCommCdMulti(AseCommDtVO aseCommDtVO) {
+
+        int cnt = 0;
+        String commCd = aseCommDtVO.getCommCd();
+
+        if (StringUtils.isNotEmpty(commCd)){
+            List<String> commCdList = Arrays.asList(commCd.split(","));
+
+            for (String paramCommCd : commCdList) {
+                AseCommDtVO paramVO = new AseCommDtVO();
+                paramVO.setCommCd(paramCommCd);
+
+                cnt = aseCommCdMapper.deleteAseCommCd(paramVO);
+            }
+        }
+
+        return cnt;
     }
 
     @Override

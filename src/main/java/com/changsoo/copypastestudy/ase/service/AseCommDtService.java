@@ -17,6 +17,8 @@ public interface AseCommDtService {
 
     public int deleteAseCommCd(AseCommDtVO AseCommDtVO);
 
+    public int deleteAseCommCdMulti(AseCommDtVO AseCommDtVO);
+
     public AseCommDtVO selectAseCommDtOne(AseCommDtVO AseCommDtVO);
 
     public List<AseCommDtVO> selectAseCommDtList(AseCommDtVO AseCommDtVO);

@@ -19,4 +19,7 @@ public interface CommCdMapper {
     public int updateCommDtYjs(CommDtlCdVO commDtlCdVO);
     public int deleteCommDtYjs(CommDtlCdVO commDtlCdVO);
     public List<CommCdVO> selectCommCdListAse(CommCdVO commCdVO);
+    public List<CommDtlCdVO> selectCommDtlCdListAse(CommDtlCdVO commDtlCdVO);
+    public CommCdVO selectCommCdOneAse(CommCdVO commCdVO);
+    public CommDtlCdVO selectCommDtlCdOneAse(CommDtlCdVO commDtlCdVO);
 }

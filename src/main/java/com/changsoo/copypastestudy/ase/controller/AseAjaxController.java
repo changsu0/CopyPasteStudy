@@ -5,10 +5,7 @@ import com.changsoo.copypastestudy.ase.vo.AseCommDtVO;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -89,6 +86,16 @@ import java.util.List;
          model.addAttribute("aseCommDtVO", aseCommDtVO);
 
          return "ase/ajax/aseAjaxPopup";
+     }
+
+     @PostMapping("/delAseCommCd")
+     @ResponseBody
+     public String delAseCommCd(@RequestBody AseCommDtVO aseCommDtVO){
+         String rstJson = null;
+
+         int cnt = aseCommDtService.deleteAseCommCdMulti(aseCommDtVO);
+
+         return rstJson;
      }
 
  }

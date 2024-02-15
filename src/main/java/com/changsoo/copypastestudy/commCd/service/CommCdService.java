@@ -19,6 +19,18 @@ public class CommCdService {
         return commCdMapper.selectCommCdListAse(commCdVO);
     }
 
+    public List<CommDtlCdVO> selectCommDtlCdListAse(CommDtlCdVO commDtlCdVO) {
+        return commCdMapper.selectCommDtlCdListAse(commDtlCdVO);
+    }
+
+    public CommCdVO selectCommCdOneAse(CommCdVO commCdVO) {
+        return commCdMapper.selectCommCdOneAse(commCdVO);
+    }
+
+    public CommDtlCdVO selectCommDtlCdOneAse(CommDtlCdVO commDtlCdVO) {
+        return commCdMapper.selectCommDtlCdOneAse(commDtlCdVO);
+    }
+
     public List<CommCdVO> selectCommCdListYjs(CommCdVO commCdVO){
         return commCdMapper.selectCommCdListYjs(commCdVO);
     }

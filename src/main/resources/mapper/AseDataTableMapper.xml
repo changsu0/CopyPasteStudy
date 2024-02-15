@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.ase.mapper.AseDataTableMapper">
+
+    <select id="selectAseDataTBList" resultType="aseDataTableVO" parameterType="aseDataTableVO">
+        SELECT IDX
+             , NAME
+             , POSITION
+             , OFFICE
+             , AGE
+             , SALARY
+        FROM DATATABLES
+        <where>
+            <if test="name != null and !name.equals('')">
+                AND NAME LIKE '%' || #{name} || '%'
+            </if>
+            <if test="position != null and !position.equals('')">
+                AND POSITION LIKE '%' || #{position} || '%'
+            </if>
+            <if test="office != null and !office.equals('')">
+                AND OFFICE LIKE '%' || #{office} || '%'
+            </if>
+            <if test="age != null and !age.equals('')">
+                AND AGE LIKE '%' || #{age} || '%'
+            </if>
+            <if test="salary != null and !salary.equals('')">
+                AND SALARY LIKE '%' || #{salary} || '%'
+            </if>
+        </where>
+        ORDER BY IDX ASC
+    </select>
+    
+    <insert id="insertAseDataTBList" parameterType="aseDataTableVO">
+            INSERT INTO DATATABLES (
+                        IDX
+                        , NAME
+                        , POSITION
+                        , OFFICE
+                        , AGE
+                        , SALARY
+            ) VALUES (
+                      (SELECT MAX(IDX)+1
+                         FROM DATATABLES )
+                      , #{name}
+                      , #{position}
+                      , #{office}
+                      , #{age}
+                      , #{salary}
+            )
+    </insert>
+
+    <update id="updateAseDataTBList" parameterType="aseDataTableVO">
+        UPDATE DATATABLES
+        SET NAME = #{name}
+          , POSITION = #{position}
+          , OFFICE = #{office}
+          , AGE = #{age}
+          , SALARY = #{salary}
+        WHERE IDX = #{idx}
+    </update>
+
+    <delete id="deleteAseDataTBList" parameterType="aseDataTableVO">
+        DELETE
+          FROM DATATABLES
+        <where>
+            <foreach collection="list" item="item" open="" close="" separator="OR">
+                (IDX = #{item} )
+            </foreach>
+        </where>
+    </delete>
+
+
+</mapper>
