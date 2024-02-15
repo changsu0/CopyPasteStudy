@@ -81,6 +81,17 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="commDtlNm">상세코드명</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">상세코드명</div>
+                            </div>
+                            <input type="text" class="form-control" id="subCommDtlNm" placeholder="상세코드명" name="commDtlNm">
+                        </div>
+                    </div>
+                </div>
                 <div class="col-auto">
                     <button class="btn btn-info" id="btnDtlSearch">조회</button>
                 </div>
