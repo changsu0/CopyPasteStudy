@@ -236,7 +236,7 @@
     }
 
     const selectDetailOne = function() {
-        JS_COMMON.fn_callAjaxForm('/selectCommDtOneYjs', $('#selectDtl').serialize(), 'get', cb_selectDetailOne, true);
+        JS_COMMON.fn_callAjaxForm('/selectCommDtlOneYjs', $('#selectDtl').serialize(), 'get', cb_selectDetailOne, true);
     }
     function cb_selectDetailOne(result) {
         console.log('Detail One조회결과');

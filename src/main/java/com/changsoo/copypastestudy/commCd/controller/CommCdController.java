@@ -39,6 +39,22 @@ public class CommCdController {
 
         return rstJson;
     }
+
+    @GetMapping("/selectCommCdOneYjs")
+    @ResponseBody
+    public String selectCommCdOneYjs(@ModelAttribute CommCdVO commCdVO){
+        String rstJson = null;
+        CommCdVO selectCommCdOneYjs = commCdService.selectCommCdOneYjs(commCdVO);
+
+        HashMap map = new HashMap();
+        map.put("data", selectCommCdOneYjs);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson(map);
+
+        return rstJson;
+    }
+
     @GetMapping("/selectCommDtlListYjs")
     @ResponseBody
     public String selectCommDtlListYjs(@ModelAttribute CommDtlCdVO commDtlCdVO){
@@ -50,6 +66,21 @@ public class CommCdController {
 
         Gson gson = new Gson();
         rstJson = gson.toJson( map );
+
+        return rstJson;
+    }
+
+    @GetMapping("/selectCommDtlOneYjs")
+    @ResponseBody
+    public String selectCommDtlOneYjs(@ModelAttribute CommDtlCdVO commDtlCdVO){
+        String rstJson = null;
+        CommDtlCdVO selectCommDtOneYjs = commCdService.selectCommDtOneYjs(commDtlCdVO);
+
+        HashMap map = new HashMap();
+        map.put("data", selectCommDtOneYjs);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson(map);
 
         return rstJson;
     }
