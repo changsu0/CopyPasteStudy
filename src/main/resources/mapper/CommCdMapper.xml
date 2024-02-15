@@ -4,31 +4,8 @@
 
 <mapper namespace="com.changsoo.copypastestudy.commCd.mapper.CommCdMapper">
     <select id="selectCommCdListYjs" parameterType="commCdVO" resultType="commCdVO">
-        select comm_cd, comm_nm, comm_desc, create_user_id, create_dt, update_user_id, update_dt
+        select comm_cd, comm_nm, comm_desc, create_user_id, create_dt
         from TB_COMM_CD
-        <where>
-            <if test="commCd != null and !commCd.equals('')">
-                AND comm_cd LIKE '%' || #{commCd} || '%'
-            </if>
-            <if test="commNm != null and !commNm.equals('')">
-                AND comm_nm LIKE '%' || #{commNm} || '%'
-            </if>
-            <if test="commDesc != null and !commDesc.equals('')">
-                AND comm_desc LIKE '%' || #{commDesc} || '%'
-            </if>
-            <if test="createUserId != null and !createUserId.equals('')">
-                AND create_user_id LIKE '%' || #{createUserId} || '%'
-            </if>
-            <if test="createDt != null and !createDt.equals('')">
-                AND create_dt LIKE '%' || #{createDt} || '%'
-            </if>
-            <if test="updateUserId != null and !updateUserId.equals('')">
-                AND update_user_id LIKE '%' || #{updateUserId} || '%'
-            </if>
-            <if test="updateDt != null and !updateDt.equals('')">
-                AND update_dt LIKE '%' || #{updateDt} || '%'
-            </if>
-        </where>
     </select>
 
     <select id="selectCommCdOneYjs" parameterType="commCdVO" resultType="commCdVO">
@@ -41,12 +18,12 @@
         INSERT INTO TB_COMM_CD (
             comm_cd, comm_nm, comm_desc, create_user_id, create_dt
         ) values (
-                    #{commCd}
+                     #{commCd}
                  , #{commNm}
                  , #{commDesc}
                  , #{createUserId}
                  , #{createDt}
-        )
+                 )
     </insert>
 
     <update id="updateCommCdYjs" parameterType="commCdVO">
@@ -67,35 +44,6 @@
     <select id="selectCommDtListYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
         select comm_dtl_cd, comm_cd, comm_dtl_nm, comm_dtl_desc, use_yn, create_user_id, create_dt, update_user_id, update_dt
         from TB_COMM_DTL_CD
-        <where>
-            <if test="commDtlCd != null and !commDtlCd.equals('')">
-                AND comm_dtl_cd LIKE '%' || #{commDtlCd} || '%'
-            </if>
-            <if test="commCd != null and !commCd.equals('')">
-                AND comm_cd LIKE '%' || #{commCd} || '%'
-            </if>
-            <if test="commDtlNm != null and !commDtlNm.equals('')">
-                AND comm_dtl_nm LIKE '%' || #{commDtlNm} || '%'
-            </if>
-            <if test="commDtlDesc != null and !commDtlDesc.equals('')">
-                AND comm_dtl_desc LIKE '%' || #{commDtlDesc} || '%'
-            </if>
-            <if test="useYn != null and !useYn.equals('')">
-                AND use_yn LIKE '%' || #{useYn} || '%'
-            </if>
-            <if test="createUserId != null and !createUserId.equals('')">
-                AND create_user_id LIKE '%' || #{createUserId} || '%'
-            </if>
-            <if test="createDt != null and !createDt.equals('')">
-                AND create_dt LIKE '%' || #{createDt} || '%'
-            </if>
-            <if test="updateUserId != null and !updateUserId.equals('')">
-                AND update_user_id LIKE '%' || #{updateUserId} || '%'
-            </if>
-            <if test="updateDt != null and !updateDt.equals('')">
-                AND update_dt LIKE '%' || #{updateDt} || '%'
-            </if>
-        </where>
     </select>
 
     <select id="selectCommDtOneYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
@@ -145,19 +93,19 @@
              , CREATE_DT
              , UPDATE_USER_ID
              , UPDATE_DT
-          FROM TB_COMM_CD
-         WHERE COMM_CD = #{commCd}
+        FROM TB_COMM_CD
+        WHERE COMM_CD = #{commCd}
     </select>
 
     <select id="selectCommCdListAse" parameterType="commCdVO" resultType="commCdVO">
         SELECT COMM_CD
-             , COMM_NM
-             , COMM_DESC
-             , CREATE_USER_ID
-             , CREATE_DT
-             , UPDATE_USER_ID
-             , UPDATE_DT
-          FROM TB_COMM_CD
+        , COMM_NM
+        , COMM_DESC
+        , CREATE_USER_ID
+        , CREATE_DT
+        , UPDATE_USER_ID
+        , UPDATE_DT
+        FROM TB_COMM_CD
         <where>
             <if test="commCd != null and !commCd.equals('')">
                 AND COMM_CD = #{commCd}
@@ -170,32 +118,32 @@
 
     <insert id="insertCommCdAse" parameterType="commCdVO">
         INSERT INTO TB_COMM_CD (
-                 COMM_CD
-               , COMM_NM
-               , COMM_DESC
-               , CREATE_USER_ID
-               , CREATE_DT
+                                 COMM_CD
+                               , COMM_NM
+                               , COMM_DESC
+                               , CREATE_USER_ID
+                               , CREATE_DT
         ) VALUES (
-                 #{commCd}
-               , #{commNm}
-               , #{commDesc}
-               , #{createUserId}
-               , #{createDt}
-        )
+                     #{commCd}
+                 , #{commNm}
+                 , #{commDesc}
+                 , #{createUserId}
+                 , #{createDt}
+                 )
     </insert>
 
     <update id="updateCommCdAse" parameterType="commCdVO">
         UPDATE TB_COMM_CD
-           SET COMM_NM = #{commNm}
-             , COMM_DESC = #{commDesc}
-             , UPDATE_USER_ID = #{updateUserId}
-             , UPDATE_DT = #{updateDt}
-         WHERE COMM_CD = #{commCd}
+        SET COMM_NM = #{commNm}
+          , COMM_DESC = #{commDesc}
+          , UPDATE_USER_ID = #{updateUserId}
+          , UPDATE_DT = #{updateDt}
+        WHERE COMM_CD = #{commCd}
     </update>
 
     <delete id="deleteCommCdAse" parameterType="commCdVO">
         DELETE FROM TB_COMM_CD
-         WHERE COMM_CD = #{commCd}
+        WHERE COMM_CD = #{commCd}
     </delete>
 
     <select id="selectCommDtlCdOneAse" parameterType="CommDtlCdVO" resultType="CommDtlCdVO">
@@ -208,22 +156,22 @@
              , CREATE_DT
              , UPDATE_USER_ID
              , UPDATE_DT
-          FROM TB_COMM_DTL_CD
-         WHERE COMM_CD = #{commCd}
-           AND COMM_DTL_CD = #{commDtlCd}
+        FROM TB_COMM_DTL_CD
+        WHERE COMM_CD = #{commCd}
+          AND COMM_DTL_CD = #{commDtlCd}
     </select>
 
     <select id="selectCommDtlCdListAse" parameterType="CommDtlCdVO" resultType="CommDtlCdVO">
         SELECT COMM_DTL_CD
-             , COMM_CD
-             , COMM_DTL_NM
-             , COMM_DTL_DESC
-             , USE_YN
-             , CREATE_USER_ID
-             , CREATE_DT
-             , UPDATE_USER_ID
-             , UPDATE_DT
-          FROM TB_COMM_DTL_CD
+        , COMM_CD
+        , COMM_DTL_NM
+        , COMM_DTL_DESC
+        , USE_YN
+        , CREATE_USER_ID
+        , CREATE_DT
+        , UPDATE_USER_ID
+        , UPDATE_DT
+        FROM TB_COMM_DTL_CD
         <where>
             <if test="commCd != null and !commCd.equals('')">
                 AND COMM_CD = #{commCd}
@@ -244,32 +192,32 @@
                    , CREATE_USER_ID
                    , CREATE_DT
         ) VALUES (
-                   #{commDtlCd}
+                     #{commDtlCd}
                  , #{commCd}
                  , #{commDtlNm}
                  , #{commDtlDesc}
                  , #{useYn}
                  , #{createUserId}
                  , #{createDt}
-        )
+                 )
     </insert>
 
     <update id="updateCommDtlCdAse" parameterType="CommDtlCdVO">
         UPDATE TB_COMM_DTL_CD
-           SET COMM_DTL_NM = #{commDtlNm}
-              , COMM_DTL_DESC = #{commDtlDesc}
-              , USE_YN = #{useYn}
-              , UPDATE_USER_ID = #{updateUserId}
-              , UPDATE_DT = #{updateDt}
+        SET COMM_DTL_NM = #{commDtlNm}
+          , COMM_DTL_DESC = #{commDtlDesc}
+          , USE_YN = #{useYn}
+          , UPDATE_USER_ID = #{updateUserId}
+          , UPDATE_DT = #{updateDt}
         WHERE COMM_CD = #{commCd}
           AND COMM_DTL_CD = #{commDtlCd}
     </update>
 
     <update id="updateUseYnDtlCdAse" parameterType="CommDtlCdVO">
         UPDATE TB_COMM_DTL_CD
-           SET USE_YN = #{useYn}
-             , UPDATE_USER_ID = #{updateUserId}
-             , UPDATE_DT = #{updateDt}
+        SET USE_YN = #{useYn}
+          , UPDATE_USER_ID = #{updateUserId}
+          , UPDATE_DT = #{updateDt}
         WHERE COMM_CD = #{commCd}
           AND COMM_DTL_CD = #{commDtlCd}
     </update>
