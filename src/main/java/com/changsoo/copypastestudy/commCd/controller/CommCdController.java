@@ -2,11 +2,12 @@
 
  import com.changsoo.copypastestudy.commCd.service.CommCdService;
  import com.changsoo.copypastestudy.commCd.vo.CommCdVO;
- import com.changsoo.copypastestudy.commCd.vo.CommDtlCdVO;
  import com.google.gson.Gson;
  import org.springframework.stereotype.Controller;
  import org.springframework.ui.Model;
- import org.springframework.web.bind.annotation.*;
+ import org.springframework.web.bind.annotation.GetMapping;
+ import org.springframework.web.bind.annotation.ModelAttribute;
+ import org.springframework.web.bind.annotation.ResponseBody;
 
  import java.util.HashMap;
  import java.util.List;
@@ -49,6 +50,7 @@
      @GetMapping("/selectCommCdListAse")
      @ResponseBody
      public String selectCommCdListAse(@ModelAttribute CommCdVO commCdVO){
+
          String rstJson = null;
          List<CommCdVO> selectCommCdListAse = commCdService.selectCommCdListAse(commCdVO);
 
@@ -60,42 +62,4 @@
 
          return rstJson;
      }
-
-     @GetMapping("/selectCommDtlCdListAse")
-     @ResponseBody
-     public String selectCommDtlCdListAse(@ModelAttribute CommDtlCdVO commDtlCdVO){
-         String rstJson = null;
-         List<CommDtlCdVO> selectCommDtlCdListAse = commCdService.selectCommDtlCdListAse(commDtlCdVO);
-
-         HashMap map = new HashMap();
-         map.put("data", selectCommDtlCdListAse);
-
-         Gson gson = new Gson();
-         rstJson = gson.toJson( map );
-
-         return rstJson;
-     }
-
-     @PostMapping("/selectCommCdOneAse")
-     @ResponseBody
-     public String selectCommCdOneAse(@RequestBody CommCdVO commCdVO){
-         String rstJson = null;
-
-         Gson gson = new Gson();
-         rstJson = gson.toJson(commCdService.selectCommCdOneAse(commCdVO) );
-
-         return rstJson;
-     }
-
-     @PostMapping("/selectCommDtlCdOneAse")
-     @ResponseBody
-     public String selectCommDtlCdOneAse(@RequestBody CommDtlCdVO commDtlCdVO){
-         String rstJson = null;
-
-         Gson gson = new Gson();
-         rstJson = gson.toJson( commCdService.selectCommDtlCdOneAse(commDtlCdVO) );
-
-         return rstJson;
-     }
-
  }

@@ -211,7 +211,8 @@
 
     $(document).ready(function() {
         $('#search').click(function () {
-            selectGrid();
+            // selectGrid();
+            JS_COMMON.fn_callAjaxForm('/selectCommCdListYjs', $('#modalForm').serialize(), 'get', cb_selectGrid2, true);
         });
         $('#insertModal').click(function () {
             openLayerPop();
@@ -226,6 +227,10 @@
             deleteGrid();
         });
     });
+
+    function cb_selectGrid2(result) {
+        console.log(result)
+    }
 
     const deleteGrid = function() {
         let selRows = table.rows( { selected: true } ).data();

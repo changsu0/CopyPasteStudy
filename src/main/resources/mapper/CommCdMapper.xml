@@ -4,8 +4,31 @@
 
 <mapper namespace="com.changsoo.copypastestudy.commCd.mapper.CommCdMapper">
     <select id="selectCommCdListYjs" parameterType="commCdVO" resultType="commCdVO">
-        select comm_cd, comm_nm, comm_desc, create_user_id, create_dt
+        select comm_cd, comm_nm, comm_desc, create_user_id, create_dt, update_user_id, update_dt
         from TB_COMM_CD
+        <where>
+            <if test="commCd != null and !commCd.equals('')">
+                AND comm_cd LIKE '%' || #{commCd} || '%'
+            </if>
+            <if test="commNm != null and !commNm.equals('')">
+                AND comm_nm LIKE '%' || #{commNm} || '%'
+            </if>
+            <if test="commDesc != null and !commDesc.equals('')">
+                AND comm_desc LIKE '%' || #{commDesc} || '%'
+            </if>
+            <if test="createUserId != null and !createUserId.equals('')">
+                AND create_user_id LIKE '%' || #{createUserId} || '%'
+            </if>
+            <if test="createDt != null and !createDt.equals('')">
+                AND create_dt LIKE '%' || #{createDt} || '%'
+            </if>
+            <if test="updateUserId != null and !updateUserId.equals('')">
+                AND update_user_id LIKE '%' || #{updateUserId} || '%'
+            </if>
+            <if test="updateDt != null and !updateDt.equals('')">
+                AND update_dt LIKE '%' || #{updateDt} || '%'
+            </if>
+        </where>
     </select>
 
     <select id="selectCommCdOneYjs" parameterType="commCdVO" resultType="commCdVO">
@@ -44,6 +67,35 @@
     <select id="selectCommDtListYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
         select comm_dtl_cd, comm_cd, comm_dtl_nm, comm_dtl_desc, use_yn, create_user_id, create_dt, update_user_id, update_dt
         from TB_COMM_DTL_CD
+        <where>
+            <if test="commDtlCd != null and !commDtlCd.equals('')">
+                AND comm_dtl_cd LIKE '%' || #{commDtlCd} || '%'
+            </if>
+            <if test="commCd != null and !commCd.equals('')">
+                AND comm_cd LIKE '%' || #{commCd} || '%'
+            </if>
+            <if test="commDtlNm != null and !commDtlNm.equals('')">
+                AND comm_dtl_nm LIKE '%' || #{commDtlNm} || '%'
+            </if>
+            <if test="commDtlDesc != null and !commDtlDesc.equals('')">
+                AND comm_dtl_desc LIKE '%' || #{commDtlDesc} || '%'
+            </if>
+            <if test="useYn != null and !useYn.equals('')">
+                AND use_yn LIKE '%' || #{useYn} || '%'
+            </if>
+            <if test="createUserId != null and !createUserId.equals('')">
+                AND create_user_id LIKE '%' || #{createUserId} || '%'
+            </if>
+            <if test="createDt != null and !createDt.equals('')">
+                AND create_dt LIKE '%' || #{createDt} || '%'
+            </if>
+            <if test="updateUserId != null and !updateUserId.equals('')">
+                AND update_user_id LIKE '%' || #{updateUserId} || '%'
+            </if>
+            <if test="updateDt != null and !updateDt.equals('')">
+                AND update_dt LIKE '%' || #{updateDt} || '%'
+            </if>
+        </where>
     </select>
 
     <select id="selectCommDtOneYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
