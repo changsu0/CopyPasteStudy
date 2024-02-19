@@ -5,7 +5,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("commCdVO")
+@Alias("menuVO")
 public class MenuVO extends CommonVO {
     private String menuId;
     private String menuNm;
