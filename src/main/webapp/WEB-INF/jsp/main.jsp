@@ -13,7 +13,7 @@
 
 </head>
 <body>
-    <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
+    <jsp:include page="/WEB-INF/jsp/common/navKCS.jsp" />
     qwefqwefqwef
 
 <%--    <img src="/image/okdom01.jpg" width="600" height="600">--%>
