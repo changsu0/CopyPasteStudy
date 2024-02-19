@@ -14,9 +14,10 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
+    qwefqwefqwef
 
 <%--    <img src="/image/okdom01.jpg" width="600" height="600">--%>
 
-    <jsp:include page="/WEB-INF/jsp/slider.jsp" />
+    <%--<jsp:include page="/WEB-INF/jsp/slider.jsp" />--%>
 </body>
 </html>
