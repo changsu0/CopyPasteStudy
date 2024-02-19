@@ -32,30 +32,38 @@
     </select>
 
     <insert id="insertCommCdYjs" parameterType="commCdVO">
-        INSERT INTO TB_COMM_CD (
-            comm_cd, comm_nm, comm_desc, create_user_id, create_dt
-        ) values (
-                     #{commCd}
-                 , #{commNm}
-                 , #{commDesc}
-                 , #{createUserId}
-                 , #{createDt}
-                 )
+        <foreach item="item" collection="list" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+            INTO TB_COMM_CD (
+                comm_cd, comm_nm, comm_desc, create_user_id, create_dt
+            ) values (
+                         #{item.commCd}
+                     , #{item.commNm}
+                     , #{item.commDesc}
+                     , #{item.createUserId}
+                     , sysdate
+                     )
+        </foreach>
     </insert>
 
     <update id="updateCommCdYjs" parameterType="commCdVO">
-        UPDATE TB_COMM_CD
-        SET comm_nm  = #{commNm}
-          , comm_desc  = #{commDesc}
-          , UPDATE_USER_ID  = #{updateUserId}
-          , UPDATE_DT  = #{updateDt}
-        WHERE comm_cd = #{commCd}
+        <foreach item="item" collection="list" open="DECLARE BEGIN" separator=";" close="; END;">
+            UPDATE TB_COMM_CD
+            SET comm_nm  = #{item.commNm}
+            , comm_desc  = #{item.commDesc}
+            , UPDATE_USER_ID  = #{item.updateUserId}
+            , UPDATE_DT  = sysdate
+            WHERE comm_cd = #{item.commCd}
+        </foreach>
     </update>
 
     <delete id="deleteCommCdYjs" parameterType="commCdVO">
         DELETE
         FROM TB_COMM_CD
-        WHERE comm_cd = #{commCd}
+        <where>
+            <foreach collection="list" item="item" open="" close="" separator="OR">
+                comm_cd = #{item.commCd}
+            </foreach>
+        </where>
     </delete>
 
     <select id="selectCommDtListYjs" parameterType="commDtlCdVO" resultType="commDtlCdVO">
@@ -103,7 +111,7 @@
                  , #{commDtlDesc}
                  , #{useYn}
                  , #{createUserId}
-                 , #{createDt}
+                 , sysdate
                  )
     </insert>
 
@@ -113,7 +121,7 @@
           , comm_dtl_desc  = #{commDtlDesc}
           , use_yn  = #{useYn}
           , UPDATE_USER_ID  = #{updateUserId}
-          , UPDATE_DT  = #{updateDt}
+          , UPDATE_DT  = sysdate
         WHERE comm_dtl_cd = #{commDtlCd}
           and comm_cd = #{commCd}
     </update>

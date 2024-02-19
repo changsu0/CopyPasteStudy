@@ -10,9 +10,9 @@ import java.util.List;
 public interface CommCdMapper {
     public List<CommCdVO> selectCommCdListYjs(CommCdVO commCdVO);
     public CommCdVO selectCommCdOneYjs(CommCdVO commCdVO);
-    public int insertCommCdYjs(CommCdVO commCdVO);
-    public int updateCommCdYjs(CommCdVO commCdVO);
-    public int deleteCommCdYjs(CommCdVO commCdVO);
+    public int insertCommCdYjs(List<CommCdVO> commCdVOList);
+    public int updateCommCdYjs(List<CommCdVO> commCdVOList);
+    public int deleteCommCdYjs(List<CommCdVO> commCdVOList);
     public List<CommDtlCdVO> selectCommDtListYjs(CommDtlCdVO commDtlCdVO);
     public CommDtlCdVO selectCommDtOneYjs(CommDtlCdVO commDtlCdVO);
     public int insertCommDtYjs(CommDtlCdVO commDtlCdVO);

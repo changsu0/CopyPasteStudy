@@ -53,16 +53,16 @@ public class CommCdService {
         return commCdMapper.selectCommCdOneYjs(commCdVO);
     }
 
-    public int insertCommCdYjs(CommCdVO commCdVO) {
-        return commCdMapper.insertCommCdYjs(commCdVO);
+    public int insertCommCdYjs(List<CommCdVO> commCdVOList) {
+        return commCdMapper.insertCommCdYjs(commCdVOList);
     }
 
-    public int updateCommCdYjs(CommCdVO commCdVO) {
-        return commCdMapper.updateCommCdYjs(commCdVO);
+    public int updateCommCdYjs(List<CommCdVO> commCdVOList) {
+        return commCdMapper.updateCommCdYjs(commCdVOList);
     }
 
-    public int deleteCommCdYjs(CommCdVO commCdVO) {
-        return commCdMapper.deleteCommCdYjs(commCdVO);
+    public int deleteCommCdYjs(List<CommCdVO> commCdVOList) {
+        return commCdMapper.deleteCommCdYjs(commCdVOList);
     }
 
     public List<CommDtlCdVO> selectCommDtListYjs(CommDtlCdVO commDtlCdVO){

@@ -22,58 +22,61 @@
 
 <h3>Yjs DataTables_공통코드</h3>
 <br />
+<form id="selectComm" onsubmit="return false">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">공통코드</div>
+                </div>
+                <input type="text" class="form-control" id="commCd" name="commCd">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">공통코드명</div>
+                </div>
+                <input type="text" class="form-control" id="commNm" name="commNm">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">공통코드설명</div>
+                </div>
+                <input type="text" class="form-control" id="commDesc" name="commDesc">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">생성자</div>
+                </div>
+                <input type="text" class="form-control" id="createUserId" name="createUserId">
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">생성일시</div>
+                </div>
+                <input type="text" class="form-control" id="createDt" name="createDt">
+            </div>
+        </div>
+    </div>
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <button id="selectCom" name="" class="btn btn-info" type="submit">조회</button>
+            <button id="oneSelectComm" name="" class="btn btn-info" type="submit">One조회</button>
+            <button id="commInsert" name="" class="btn btn-success" type="submit">insert</button>
+            <button id="commUpdate" name="" class="btn btn-success" type="submit">update</button>
+            <button id="commDelete" name="" class="btn btn-danger" type="submit">delete</button>
+        </div>
+    </div>
+</form>
 <div id="tableDiv" style="display: flex; width: 100%;">
     <div  style="flex: 90">
-        <form:form id="selectComm" onsubmit="return false">
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">공통코드</div>
-                        </div>
-                        <input type="text" class="form-control" id="commCd" name="commCd">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">공통코드명</div>
-                        </div>
-                        <input type="text" class="form-control" id="commNm" name="commNm">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">공통코드설명</div>
-                        </div>
-                        <input type="text" class="form-control" id="commDesc" name="commDesc">
-                    </div>
-                </div>
-            </div>
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">생성자</div>
-                        </div>
-                        <input type="text" class="form-control" id="createUserId" name="createUserId">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">생성일시</div>
-                        </div>
-                        <input type="text" class="form-control" id="createDt" name="createDt">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button id="selectComm" name="" class="btn btn-info" type="submit">조회</button>
-                    <button id="oneSelectComm" name="" class="btn btn-info" type="submit">One조회</button>
-                </div>
-            </div>
-        </form:form>
         <table id="masterGrid" class="display">
             <thead>
             <tr>
@@ -88,72 +91,6 @@
     </div>
     <div style="flex: 1"></div>
     <div style="flex: 110">
-        <form:form id="selectDtl" onsubmit="return false">
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">공통코드</div>
-                        </div>
-                        <input type="text" class="form-control" id="commCd2" name="commCd">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">상세코드</div>
-                        </div>
-                        <input type="text" class="form-control" id="commDtlCd" name="commDtlCd">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">상세코드명</div>
-                        </div>
-                        <input type="text" class="form-control" id="commDtlNm" name="commDtlNm">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">상세코드설명</div>
-                        </div>
-                        <input type="text" class="form-control" id="commDtlDesc" name="commDtlDesc">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">사용여부</div>
-                        </div>
-                        <input type="text" class="form-control" id="useYn" name="useYn">
-                    </div>
-                </div>
-            </div>
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">생성자</div>
-                        </div>
-                        <input type="text" class="form-control" id="createUserDt" name="createUserId">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">생성일시</div>
-                        </div>
-                        <input type="text" class="form-control" id="createDtDt" name="createDt">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button id="selectDtl" name="action" class="btn btn-info" type="submit">조회</button>
-                    <button id="oneSelectDtl" name="action" class="btn btn-info" type="submit">One조회</button>
-                </div>
-            </div>
-        </form:form>
         <table id="DetailGrid" class="display">
             <thead>
             <tr>
@@ -173,6 +110,9 @@
 
 <script>
     let table = new DataTable('#masterGrid',{
+        select: {
+            style: 'single'
+        },
         columns: [
             { data: 'commCd' },
             { data: 'commNm' },
@@ -195,20 +135,66 @@
 
     $(document).ready(function() {
         selectMasterlist();
-        selectDetaillist();
 
-        $('#selectComm').click(function () {
+        $('#selectCom').click(function () {
             selectMasterlist();
         });
         $('#oneSelectComm').click(function () {
             selectMasterOne();
         });
-        $('#selectDtl').click(function(){
-            selectDetaillist();
+        $('#commInsert').click(function(){
+            insertYjs();
         });
-        $('#oneSelectDtl').click(function(){
-            selectDetailOne();
+        $('#commUpdate').click(function(){
+            updateYjs();
         });
+        $('#commDelete').click(function(){
+            delYjs();
+        });
+    });
+
+    // insert
+    // let paramMap = {commCd:commCd};
+    let paramListI = [
+        {commCd:'4yjs', commNm:4, commDesc:4, createUserId: 'yjs'},
+        {commCd:'5yjs', commNm:5, commDesc:5, createUserId: 'yjs'},
+        {commCd:'6yjs', commNm:6, commDesc:6, createUserId: 'yjs'}
+    ];
+    let paramListU = [
+        {commCd:'4yjs', commNm:44, commDesc:44, updateUserId: 'yjs'},
+        {commCd:'5yjs', commNm:55, commDesc:55, updateUserId: 'yjs'},
+        {commCd:'6yjs', commNm:66, commDesc:66, updateUserId: 'yjs'}
+    ];
+    let paramListD = [
+        {commCd:'4yjs'},
+        {commCd:'5yjs'},
+        {commCd:'6yjs'}
+    ];
+    // paramList.push(paramMap);
+
+    const insertYjs = function() {
+        JS_COMMON.fn_callAjaxJson('/insertCommCdYjs', paramListI, 'post', insertYjsCB, true);
+    }
+    const insertYjsCB = function() {
+        selectMasterlist();
+    }
+    const updateYjs = function() {
+        JS_COMMON.fn_callAjaxJson('/updateCommCdYjs', paramListU, 'post', updateYjsCB, true);
+    }
+    const updateYjsCB = function() {
+        selectMasterlist();
+    }
+    const delYjs = function() {
+        JS_COMMON.fn_callAjaxJson('/deleteCommCdYjs', paramListD, 'post', delYjsCB, true);
+    }
+    const delYjsCB = function() {
+        selectMasterlist();
+    }
+
+    table.on('click', 'tbody tr', function () {
+        let rowData = table.row(this).data();
+        console.log(rowData);
+        selectDetaillist(rowData.commCd);
     });
 
     const selectMasterlist = function() {
@@ -227,8 +213,8 @@
         console.log(result);
     }
 
-    const selectDetaillist = function() {
-        JS_COMMON.fn_callAjaxForm('/selectCommDtlListYjs', $('#selectDtl').serialize(), 'get', cb_selectDetail, true);
+    const selectDetaillist = function(commCd) {
+        JS_COMMON.fn_callAjaxJson('/selectCommDtlListYjs', {commCd:commCd}, 'post', cb_selectDetail, true);
     }
     function cb_selectDetail(result) {
         tableDtl.clear().draw();
