@@ -85,6 +85,7 @@
                         <a class="dropdown-item" href="/yjsAjaxLayerPop">layer popup</a>
                         <a class="dropdown-item" href="/yjsDataTables01">dataTables01</a>
                         <a class="dropdown-item" href="/commCdListYjs">dataTables common</a>
+                        <a class="dropdown-item" href="/menuListYjs">메뉴 리스트</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

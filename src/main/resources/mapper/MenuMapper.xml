@@ -3,4 +3,71 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.changsoo.copypastestudy.menu.mapper.MenuMapper">
+    <select id="yjsMenuList" resultType="menuVO" parameterType="menuVO">
+        /* MenuMapper.yjsMenuList */
+        SELECT
+               menu_id
+             , menu_nm
+             , menu_up_id
+             , sort_order
+             , menu_url
+             , use_yn
+             , create_user_id
+             , create_dt
+             , update_user_id
+             , update_dt
+        FROM TB_MENU
+        <where>
+            <if test="menuId != null and !menuId.equals('')">
+                AND menu_id LIKE '%' || #{menuId} || '%'
+            </if>
+            <if test="menuNm != null and !menuNm.equals('')">
+                AND menu_nm LIKE '%' || #{menuNm} || '%'
+            </if>
+        </where>
+        ORDER BY menu_id, sort_order
+    </select>
+
+    <insert id="yjsMenuInsert" parameterType="menuVO">
+        /* MenuMapper.yjsMenuInsert */
+        INSERT INTO TB_MENU(
+                             menu_id
+                           , menu_nm
+                           , menu_up_id
+                           , sort_order
+                           , menu_url
+                           , use_yn
+                           , create_user_id
+                           , create_dt
+        ) VALUES (
+                     #{menuId}
+                 , #{menuNm}
+                 , #{menuUpId}
+                 , #{sortOrder}
+                 , #{menuUrl}
+                 , #{useYn}
+                 , 'YJS'
+                 , sysdate
+                 )
+    </insert>
+
+    <update id="yjsMenuUpdate" parameterType="menuVO">
+        /* MenuMapper.yjsMenuUpdate */
+        UPDATE TB_MENU
+        SET menu_nm  = #{menuNm}
+          , menu_up_id  = #{menuUpId}
+          , sort_order  = #{sortOrder}
+          , menu_url  = #{menuUrl}
+          , use_yn  = #{useYn}
+          , update_user_id  = 'YJS'
+          , update_dt  = sysdate
+        WHERE menu_id = #{menuId}
+    </update>
+
+    <delete id="yjsMenuDelete" parameterType="menuVO">
+        /* MenuMapper.yjsMenuDelete */
+        DELETE
+        FROM TB_MENU
+        WHERE menu_id = #{menuId}
+    </delete>
 </mapper>
