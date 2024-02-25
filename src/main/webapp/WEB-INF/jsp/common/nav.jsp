@@ -51,6 +51,7 @@
                         <a class="dropdown-item" href="/aseAjaxLayer">aseAjaxLayer</a>
                         <a class="dropdown-item" href="/aseJavaScript">aseJavaScript</a>
                         <a class="dropdown-item" href="/commCdListAse">dataTable</a>
+                        <a class="dropdown-item" href="/menuListAse">ASE 메뉴</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

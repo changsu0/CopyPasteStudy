@@ -3,6 +3,123 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.changsoo.copypastestudy.menu.mapper.MenuMapper">
+
+    <!-- 공통코드 ASE XML START -->
+    <select id="selectMenuOneAse" parameterType="menuVO" resultType="menuVO">
+        /* MenuMapper.selectMenuOneAse */
+        SELECT MENU_ID
+             , MENU_NM
+             , MENU_UP_ID
+             , SORT_ORDER
+             , MENU_URL
+             , USE_YN
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+        FROM TB_MENU
+        WHERE MENU_ID = #{menuId}
+    </select>
+
+    <select id="selectMenuListAse" parameterType="menuVO" resultType="menuVO">
+        /* MenuMapper.selectMenuListAse */
+        SELECT MENU_ID
+             , MENU_NM
+             , MENU_UP_ID
+             , SORT_ORDER
+             , MENU_URL
+             , USE_YN
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+         FROM TB_MENU
+        <where>
+            <if test="menuId != null and !menuId.equals('')">
+                AND MENU_ID = #{menuId}
+            </if>
+            <if test="menuNm != null and !menuNm.equals('')">
+                AND MENU_NM = #{menuNm}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertMenuAse" parameterType="menuVO">
+        /* MenuMapper.insertMenuAse */
+            INSERT INTO TB_MENU (
+                  MENU_ID
+                , MENU_NM
+                , MENU_UP_ID
+                , SORT_ORDER
+                , MENU_URL
+                , USE_YN
+                , CREATE_USER_ID
+                , CREATE_DT
+            ) VALUES (
+                  #{menuId}
+                , #{menuNm}
+                , #{menuUpId}
+                , #{sortOrder}
+                , #{menuUrl}
+                , #{useYn}
+                , 'ASE'
+                , SYSDATE
+            )
+    </insert>
+
+    <update id="updateMenuAse" parameterType="menuVO">
+        /* MenuMapper.updateMenuAse */
+            UPDATE TB_MENU
+            SET MENU_NM = #{menuNm}
+              , MENU_UP_ID = #{menuUpId}
+              , SORT_ORDER = #{sortOrder}
+              , MENU_URL = #{menuUrl}
+              , USE_YN = #{useYn}
+              , UPDATE_USER_ID = 'ASE'
+              , UPDATE_DT = SYSDATE
+            WHERE MENU_ID = #{menuId}
+    </update>
+
+    <update id="updateUseYnAse" parameterType="menuVO">
+        /* MenuMapper.updateUseYnCdAse */
+        UPDATE TB_MENU
+        SET USE_YN = 'N'
+          , UPDATE_USER_ID = 'ASE'
+          , UPDATE_DT = SYSDATE
+        WHERE MENU_ID = #{menuId}
+        <if test="menuUpId != null and !menuUpId.equals('')">
+          AND MENU_UP_ID = #{menuUpId}
+        </if>
+    </update>
+
+    <select id="select1DethMenuAse" parameterType="menuVO" resultType="menuVO">
+        /* MenuMapper.select1DethMenuAse */
+        SELECT MENU_ID
+        , MENU_NM
+        , MENU_UP_ID
+        , SORT_ORDER
+        , MENU_URL
+        , USE_YN
+        FROM TB_MENU
+        WHERE MENU_UP_ID IS NULL
+        ORDER BY SORT_ORDER ASC
+    </select>
+
+
+    <select id="select2DethMenuAse" parameterType="menuVO" resultType="menuVO">
+        /* MenuMapper.select2DethMenuAse */
+        SELECT MENU_ID
+             , MENU_NM
+             , MENU_UP_ID
+             , SORT_ORDER
+             , MENU_URL
+             , USE_YN
+        FROM TB_MENU
+        WHERE MENU_UP_ID IS NOT NULL
+    </select>
+
+    <!-- 공통코드 ASE XML END -->
+
     <select id="yjsMenuList" resultType="menuVO" parameterType="menuVO">
         /* MenuMapper.yjsMenuList */
         SELECT

@@ -1,6 +1,5 @@
 package com.changsoo.copypastestudy.menu.mapper;
 
-import com.changsoo.copypastestudy.commCd.vo.CommCdVO;
 import com.changsoo.copypastestudy.menu.vo.MenuVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +11,16 @@ public interface MenuMapper {
     int yjsMenuInsert(MenuVO menuVO);
     int yjsMenuUpdate(MenuVO menuVO);
     int yjsMenuDelete(MenuVO menuVO);
+
+
+    /* * 공통코드 ASE ----------- START */
+    public List<MenuVO> selectMenuListAse(MenuVO menuVO);
+    public List<MenuVO> select1DethMenuAse();
+    public List<MenuVO> select2DethMenuAse();
+    public MenuVO selectMenuOneAse(MenuVO menuVO);
+    int insertMenuAse(MenuVO menuVO);
+    int updateMenuAse(MenuVO menuVO);
+    int updateUseYnAse(MenuVO menuVO);
+    /* 공통코드 ASE ----------- END */
+
 }

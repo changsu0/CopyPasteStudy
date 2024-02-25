@@ -72,5 +72,61 @@ public class MenuController {
 
         return rstJson;
     }
+    @GetMapping("/menuListAse")
+    public String menuListAse(Model model){
+
+        return "ase/menu/aseMenu";
+    }
+
+    @GetMapping("/selectMenuListAse")
+    @ResponseBody
+    public String selectMenuListAse(@ModelAttribute MenuVO menuVO){
+        String rstJson = null;
+        List<MenuVO> selectMenuListAse = menuService.selectMenuListAse(menuVO);
+
+        HashMap map = new HashMap();
+        map.put("data", selectMenuListAse);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( map );
+
+        return rstJson;
+    }
+
+    @GetMapping("/insertMenuAse")
+    @ResponseBody
+    public String insertMenuAse(@ModelAttribute MenuVO menuVO){
+        String rstJson = null;
+        int cnt = menuService.insertMenuAse(menuVO);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( cnt );
+
+        return rstJson;
+    }
+
+    @GetMapping("/updateMenuAse")
+    @ResponseBody
+    public String updateMenuAse(@ModelAttribute MenuVO menuVO){
+        String rstJson = null;
+        int cnt = menuService.updateMenuAse(menuVO);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( cnt );
+
+        return rstJson;
+    }
+
+    @GetMapping("/updateUseYnAse")
+    @ResponseBody
+    public String updateUseYnAse(@ModelAttribute MenuVO menuVO){
+        String rstJson = null;
+        int cnt = menuService.updateUseYnAse(menuVO);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( cnt );
+
+        return rstJson;
+    }
 
 }

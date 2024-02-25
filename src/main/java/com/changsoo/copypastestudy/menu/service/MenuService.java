@@ -32,4 +32,35 @@ public class MenuService {
         return menuMapper.yjsMenuDelete(menuVO);
     }
 
+    /* 공통코드 ASE ----------- START */
+    public List<MenuVO> selectMenuListAse(MenuVO menuVO) {
+        return menuMapper.selectMenuListAse(menuVO);
+    }
+
+    public List<MenuVO> select1DethMenuAse() {
+        return menuMapper.select1DethMenuAse();
+    }
+
+
+    public List<MenuVO> select2DethMenuAse() {
+        return menuMapper.select2DethMenuAse();
+    }
+
+    public MenuVO selectMenuOneAse(MenuVO menuVO) {
+        return menuMapper.selectMenuOneAse(menuVO);
+    }
+    public int insertMenuAse(MenuVO menuVO) {
+        return menuMapper.insertMenuAse(menuVO);
+    }
+
+    public int updateMenuAse(MenuVO menuVO) {
+        return menuMapper.updateMenuAse(menuVO);
+    }
+
+    public int updateUseYnAse(MenuVO menuVO) {
+        return menuMapper.updateUseYnAse(menuVO);
+    }
+
+    /* 공통코드 ASE ----------- END */
+
 }
