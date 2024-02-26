@@ -136,10 +136,10 @@
         FROM TB_MENU
         <where>
             <if test="menuId != null and !menuId.equals('')">
-                AND menu_id LIKE '%' || #{menuId} || '%'
+                AND UPPER(menu_id) LIKE '%' || UPPER(#{menuId}) || '%'
             </if>
             <if test="menuNm != null and !menuNm.equals('')">
-                AND menu_nm LIKE '%' || #{menuNm} || '%'
+                AND UPPER(menu_nm) LIKE '%' || UPPER(#{menuNm}) || '%'
             </if>
         </where>
         ORDER BY sort_order
