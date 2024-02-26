@@ -20,13 +20,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <c:forEach items="${first}" var="list" varStatus="status" >
+                <c:forEach items="${sessionScope.first}" var="list" varStatus="status" >
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ${list.menuNm}
                         </a>
                         <c:set var="dethFlag" value="Y"/>
-                            <c:forEach items="${second}" var="list2" varStatus="status2" >
+                            <c:forEach items="${sessionScope.second}" var="list2" varStatus="status2" >
                                 <c:if test="${list.menuId eq list2.menuUpId}">
                                     <c:if test="${ dethFlag eq 'Y'}">
                                         <div class="dropdown-menu" aria-labelledby="nav1">
@@ -34,7 +34,7 @@
                                     <a class="dropdown-item" href="${list2.menuUrl}">
                                         ${list2.menuNm}
                                     </a>
-                                    <c:if test="${status2.index == fn:length(second)}">
+                                    <c:if test="${status2.index == fn:length(sessionScope.second)}">
                                         </div>
                                     </c:if>
                                     <c:set var="dethFlag" value="N"/>
