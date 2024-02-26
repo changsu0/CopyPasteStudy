@@ -164,6 +164,9 @@
             <if test="commNm != null and !commNm.equals('')">
                 AND COMM_NM = #{commNm}
             </if>
+            <if test="commDesc != null and !commDesc.equals('')">
+                AND COMM_DESC = #{commDesc}
+            </if>
         </where>
     </select>
 

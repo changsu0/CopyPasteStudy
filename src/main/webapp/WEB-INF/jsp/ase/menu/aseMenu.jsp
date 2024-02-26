@@ -18,7 +18,7 @@
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/jsp/common/nav.jsp" />
+<jsp:include page="/WEB-INF/jsp/common/navASE.jsp" />
 <div class="col-auto">
     <h3>ASE 메뉴</h3>
 </div>

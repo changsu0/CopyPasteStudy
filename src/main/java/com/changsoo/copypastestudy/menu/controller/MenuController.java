@@ -78,7 +78,10 @@ public class MenuController {
     }
     @GetMapping("/menuListAse")
     public String menuListAse(Model model){
-
+        List<MenuVO> menuVOList = menuService.select1DethMenuAse();
+        List<MenuVO> menuVO2DethList = menuService.select2DethMenuAse();
+        model.addAttribute("first", menuVOList);
+        model.addAttribute("second", menuVO2DethList);
         return "ase/menu/aseMenu";
     }
 

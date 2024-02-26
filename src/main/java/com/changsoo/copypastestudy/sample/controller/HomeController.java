@@ -21,6 +21,7 @@ public class HomeController {
         model.addAttribute("menuVOList", menuList);
         List<MenuVO> yjsMenu2Dep = menuService.yjsMenu2Dep(null);
         model.addAttribute("yjsMenu2Dep", yjsMenu2Dep);
+
         List<MenuVO> menuVOList = menuService.select1DethMenuAse();
         List<MenuVO> menuVO2DethList = menuService.select2DethMenuAse();
         model.addAttribute("first", menuVOList);
