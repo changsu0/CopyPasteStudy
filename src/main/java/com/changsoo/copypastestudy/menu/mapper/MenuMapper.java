@@ -11,6 +11,8 @@ public interface MenuMapper {
     int yjsMenuInsert(MenuVO menuVO);
     int yjsMenuUpdate(MenuVO menuVO);
     int yjsMenuDelete(MenuVO menuVO);
+    public List<MenuVO> yjsMenuUpIdNull(MenuVO menuVO);
+    public List<MenuVO> yjsMenu2Dep(MenuVO menuVO);
 
 
     /* * 공통코드 ASE ----------- START */

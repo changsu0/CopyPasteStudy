@@ -142,7 +142,7 @@
                 AND menu_nm LIKE '%' || #{menuNm} || '%'
             </if>
         </where>
-        ORDER BY menu_id, sort_order
+        ORDER BY sort_order
     </select>
 
     <insert id="yjsMenuInsert" parameterType="menuVO">
@@ -187,4 +187,39 @@
         FROM TB_MENU
         WHERE menu_id = #{menuId}
     </delete>
+
+    <select id="yjsMenuUpIdNull" resultType="menuVO" parameterType="menuVO">
+        /* MenuMapper.yjsMenuUpIdNull */
+        SELECT
+        menu_id
+        , menu_nm
+        , menu_up_id
+        , sort_order
+        , menu_url
+        , use_yn
+        , create_user_id
+        , create_dt
+        , update_user_id
+        , update_dt
+        FROM TB_MENU
+        WHERE MENU_UP_ID IS NULL
+    </select>
+
+    <select id="yjsMenu2Dep" resultType="menuVO" parameterType="menuVO">
+        /* MenuMapper.yjsMenu2Dep */
+        SELECT
+            menu_id
+             , menu_nm
+             , menu_up_id
+             , sort_order
+             , menu_url
+             , use_yn
+             , create_user_id
+             , create_dt
+             , update_user_id
+             , update_dt
+        FROM TB_MENU
+        WHERE MENU_UP_ID IS NOT NULL
+        AND MENU_UP_ID in (select MENU_ID from TB_MENU where MENU_UP_ID is null)
+    </select>
 </mapper>

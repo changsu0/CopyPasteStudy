@@ -63,4 +63,11 @@ public class MenuService {
 
     /* 공통코드 ASE ----------- END */
 
+    public List<MenuVO> yjsMenuUpIdNull(MenuVO menuVO){
+        return menuMapper.yjsMenuUpIdNull(menuVO);
+    }
+    public List<MenuVO> yjsMenu2Dep(MenuVO menuVO){
+        return menuMapper.yjsMenu2Dep(menuVO);
+    }
+
 }
