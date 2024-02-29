@@ -196,10 +196,7 @@
                 'defaultContent': '-',
                 'targets': '_all'
             }
-        ],
-        'select': {
-            'style': 'multi'
-        }
+        ]
     });
 
     const selectMenuList = function() {
@@ -259,7 +256,6 @@
             for (let j = 0; j < dataLength; j++) {
                     if(menuAllList[i] === authMenuList[j]){
                         index = menuAllList.indexOf(menuAllList[i]);
-                        menuTable.rows(':eq('+index+')').select();
                     }
             }
         }
