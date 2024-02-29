@@ -26,6 +26,13 @@
 
 <h3>Yjs 권한</h3>
 <br />
+<form id="searchMenu" onsubmit="return false">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <button id="saveMenu" name="" class="btn btn-info" type="submit">저장</button>
+        </div>
+    </div>
+</form>
 <div id="tableDiv" style="display: flex; width: 100%;">
     <div  style="flex: 80">
         <table id="authGrid" class="display">
@@ -128,7 +135,7 @@
         for (let i = 0; i < menuAll.length; i++) {
             for (let j = 0; j < result.data.length; j++) {
                 if (menuAll[i].menuId === result.data[j].menuId){
-                    console.log(menuAll[i].menuId);
+                    // console.log(menuAll[i].menuId);
                 }
             }
         }
