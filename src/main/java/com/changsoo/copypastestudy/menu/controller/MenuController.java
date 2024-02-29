@@ -21,10 +21,6 @@ public class MenuController {
 
     @GetMapping("/menuListYjs")
     public String menuListYjs(Model model){
-        List<MenuVO> menuVOList = menuService.yjsMenuUpIdNull(null);
-        model.addAttribute("menuVOList", menuVOList);
-        List<MenuVO> yjsMenu2Dep = menuService.yjsMenu2Dep(null);
-        model.addAttribute("yjsMenu2Dep", yjsMenu2Dep);
         return "yjs/menu/yjsMenu";
     }
 

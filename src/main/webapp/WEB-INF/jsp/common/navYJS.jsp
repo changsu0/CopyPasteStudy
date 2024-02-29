@@ -20,19 +20,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <c:forEach var="list" items="${menuVOList}" varStatus="status">
+                <c:forEach var="list" items="${sessionScope.menuVOList}" varStatus="status">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="${list.menuId}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${list.menuNm}
                         </a>
                         <c:set var="dep2Flg" value="Y"/>
-                        <c:forEach var="list2" items="${yjsMenu2Dep}" varStatus="status2">
+                        <c:forEach var="list2" items="${sessionScope.yjsMenu2Dep}" varStatus="status2">
                             <c:if test="${list.menuId eq list2.menuUpId}">
                                 <c:if test="${dep2Flg eq 'Y'}">
                                     <div class="dropdown-menu" aria-labelledby="${list.menuId}">
                                 </c:if>
                                 <a class="dropdown-item" href="${list2.menuUrl}">${list2.menuNm}</a>
-                                <c:if test="${status2.index eq fn:length(yjsMenu2Dep)}">
+                                <c:if test="${status2.index eq fn:length(sessionScope.yjsMenu2Dep)}">
                                     </div>
                                 </c:if>
                                 <c:set var="dep2Flg" value="N"/>

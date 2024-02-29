@@ -14,7 +14,7 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/jsp/common/navYJS.jsp" />
-    qwefqwefqwef
+    ${userId}
 
 <%--    <img src="/image/okdom01.jpg" width="600" height="600">--%>
 

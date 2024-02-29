@@ -203,6 +203,9 @@
         , update_dt
         FROM TB_MENU
         WHERE MENU_UP_ID IS NULL
+        AND MENU_ID IN (SELECT MENU_ID from TB_AUTH_MENU where AUTH_GRP_ID IN (
+            SELECT AUTH_GRP_ID from TB_AUTH_USERS where UPPER(USER_ID) LIKE '%' || UPPER(#{userId}) || '%'
+            ) )
     </select>
 
     <select id="yjsMenu2Dep" resultType="menuVO" parameterType="menuVO">
@@ -221,5 +224,9 @@
         FROM TB_MENU
         WHERE MENU_UP_ID IS NOT NULL
         AND MENU_UP_ID in (select MENU_ID from TB_MENU where MENU_UP_ID is null)
+          AND MENU_ID IN (SELECT MENU_ID from TB_AUTH_MENU where AUTH_GRP_ID IN (
+            SELECT AUTH_GRP_ID from TB_AUTH_USERS where UPPER(USER_ID) LIKE '%' || UPPER(#{userId}) || '%'
+        ) )
+        ORDER BY sort_order
     </select>
 </mapper>
