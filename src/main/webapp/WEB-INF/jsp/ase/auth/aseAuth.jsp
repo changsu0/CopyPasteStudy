@@ -166,11 +166,12 @@
             checkedMenuList(selectedCd);
         }
     } );
-
-
+    /**
+     * selected된 row의 데이터를 INPUT에 뿌리기
+     */
     authTable.on( 'deselect', function ( e, dt, type, indexes ) {
         if ( type === 'row' ) {
-            menuTable.rows().deselect();
+            $('input:checkbox').prop('checked',false);
         }
     } );
     
@@ -184,7 +185,8 @@
                 orderable: false, // 정렬기능
                 className: 'table-active dt-body-center',
                 render: function (data, type, full, meta) {
-                    return '<input type="checkbox" name="menuChk" value="">';
+                    console.log(full);
+                    return '<input type="checkbox" name="menuChk" id="'+full.menuId+'" value="">';
                 }
             },
             { data: 'menuId' },
@@ -228,7 +230,7 @@
      */
     const cb_checkedMenuList = function( result ){
 
-        menuTable.rows().deselect();
+        $('input:checkbox').prop('checked',false);
 
         let menuLength = menuTable.rows().data().length;
         let dataLength = result.data.length;
@@ -244,7 +246,7 @@
         for (let i = 0; i < menuLength; i++) {
             menuAllList.push(menuAllData[i].menuId); //전체메뉴의 메뉴ID를 리스트에 담아줌
         }
-        
+
         
         for (let i = 0; i < dataLength; i++) {
             authMenuList.push(authMenuData[i].menuId); //특정 권한메뉴의 메뉴ID를 리스트에 담아줌
@@ -252,10 +254,12 @@
 
         console.log(authMenuData);
 
+        //메뉴리스트의 체크박스 id값과 authMenu의 menuid값이 같으면 체크
         for (let i = 0; i < menuAllList.length; i++) {
             for (let j = 0; j < dataLength; j++) {
                     if(menuAllList[i] === authMenuList[j]){
                         index = menuAllList.indexOf(menuAllList[i]);
+                        $('#'+menuAllList[i]).prop('checked',true);
                     }
             }
         }
