@@ -17,12 +17,17 @@ public interface MenuMapper {
 
     /* * 공통코드 ASE ----------- START */
     public List<MenuVO> selectMenuListAse(MenuVO menuVO);
-    public List<MenuVO> select1DethMenuAse();
-    public List<MenuVO> select2DethMenuAse();
+    public List<MenuVO> select1DethMenuAse(MenuVO menuVO);
+    public List<MenuVO> select2DethMenuAse(MenuVO menuVO);
     public MenuVO selectMenuOneAse(MenuVO menuVO);
     int insertMenuAse(MenuVO menuVO);
     int updateMenuAse(MenuVO menuVO);
     int updateUseYnAse(MenuVO menuVO);
+    public List<MenuVO> selectAuthListAse(MenuVO menuVO);
+    public List<MenuVO> selectAuthMenuListAse(MenuVO menuVO);
+
+    int deleteAuthMenuAse(MenuVO menuVO);
+    int insertAuthMenuAse(MenuVO menuVO);
     /* 공통코드 ASE ----------- END */
 
 }

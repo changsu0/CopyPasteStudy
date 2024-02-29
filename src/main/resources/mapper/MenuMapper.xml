@@ -102,6 +102,13 @@
         , USE_YN
         FROM TB_MENU
         WHERE MENU_UP_ID IS NULL
+          AND MENU_ID IN (
+            SELECT MENU_ID FROM TB_AUTH_MENU
+            WHERE AUTH_GRP_ID = ( SELECT AUTH_GRP_ID
+                                  FROM TB_AUTH_USERS
+                                  WHERE USER_ID = UPPER(#{userId})
+                                )
+            )
         ORDER BY SORT_ORDER ASC
     </select>
 
@@ -114,9 +121,63 @@
              , SORT_ORDER
              , MENU_URL
              , USE_YN
-        FROM TB_MENU
-        WHERE MENU_UP_ID IS NOT NULL
+          FROM TB_MENU
+         WHERE MENU_UP_ID IS NOT NULL
+           AND MENU_ID IN (
+             SELECT MENU_ID FROM TB_AUTH_MENU
+             WHERE AUTH_GRP_ID = ( SELECT AUTH_GRP_ID
+                                   FROM TB_AUTH_USERS
+                                   WHERE USER_ID = UPPER(#{userId})
+                                 )
+             )
     </select>
+
+    <select id="selectAuthListAse" parameterType="menuVO" resultType="menuVO">
+        /* MenuMapper.selectAuthListAse */
+        SELECT AUTH_GRP_ID
+             , AUTH_GRP_NM
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+        FROM TB_AUTH_GRP
+    </select>
+
+    <select id="selectAuthMenuListAse" parameterType="menuVO" resultType="menuVO">
+        /* MenuMapper.selectAuthMenuListAse */
+        SELECT MENU_ID
+             , MENU_NM
+             , MENU_UP_ID
+             , SORT_ORDER
+             , MENU_URL
+             , USE_YN
+        FROM TB_MENU
+        WHERE MENU_ID IN (SELECT MENU_ID
+                              FROM TB_AUTH_MENU
+                              WHERE AUTH_GRP_ID = #{authGrpId}
+                )
+        ORDER BY SORT_ORDER ASC
+    </select>
+
+
+    <insert id="insertAuthMenuAse" parameterType="menuVO">
+        /* MenuMapper.insertAuthMenuAse */
+        INSERT INTO TB_AUTH_MENU (
+                      AUTH_GRP_ID
+                    , MENU_ID
+        ) VALUES (
+                     #{authGrpId}
+                    , #{menuId}
+         )
+    </insert>
+
+    <delete id="deleteAuthMenuAse" parameterType="menuVO">
+        /* MenuMapper.deleteAuthMenuAse */
+        DELETE
+          FROM TB_AUTH_MENU
+        WHERE MENU_ID = #{menuId}
+          AND AUTH_GRP_ID = #{authGrpId}
+    </delete>
 
     <!-- 공통코드 ASE XML END -->
 

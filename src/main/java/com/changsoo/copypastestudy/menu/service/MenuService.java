@@ -37,13 +37,19 @@ public class MenuService {
         return menuMapper.selectMenuListAse(menuVO);
     }
 
-    public List<MenuVO> select1DethMenuAse() {
-        return menuMapper.select1DethMenuAse();
+    public List<MenuVO> select1DethMenuAse(MenuVO menuVO) {
+        return menuMapper.select1DethMenuAse(menuVO);
     }
 
 
-    public List<MenuVO> select2DethMenuAse() {
-        return menuMapper.select2DethMenuAse();
+    public List<MenuVO> select2DethMenuAse(MenuVO menuVO) {
+        return menuMapper.select2DethMenuAse(menuVO);
+    }
+    public List<MenuVO> selectAuthListAse(MenuVO menuVO) {
+        return menuMapper.selectAuthListAse(menuVO);
+    }
+    public List<MenuVO> selectAuthMenuListAse(MenuVO menuVO) {
+        return menuMapper.selectAuthMenuListAse(menuVO);
     }
 
     public MenuVO selectMenuOneAse(MenuVO menuVO) {
@@ -52,12 +58,18 @@ public class MenuService {
     public int insertMenuAse(MenuVO menuVO) {
         return menuMapper.insertMenuAse(menuVO);
     }
-
     public int updateMenuAse(MenuVO menuVO) {
         return menuMapper.updateMenuAse(menuVO);
     }
-
     public int updateUseYnAse(MenuVO menuVO) {
+        return menuMapper.updateUseYnAse(menuVO);
+    }
+
+    public int deleteAuthMenuAse(MenuVO menuVO) {
+        return menuMapper.updateMenuAse(menuVO);
+    }
+
+    public int insertAuthMenuAse(MenuVO menuVO) {
         return menuMapper.updateUseYnAse(menuVO);
     }
 
@@ -69,5 +81,7 @@ public class MenuService {
     public List<MenuVO> yjsMenu2Dep(MenuVO menuVO){
         return menuMapper.yjsMenu2Dep(menuVO);
     }
+
+
 
 }

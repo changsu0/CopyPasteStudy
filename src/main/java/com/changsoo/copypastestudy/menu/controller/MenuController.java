@@ -1,6 +1,5 @@
 package com.changsoo.copypastestudy.menu.controller;
 
-import com.changsoo.copypastestudy.commCd.vo.CommCdVO;
 import com.changsoo.copypastestudy.menu.service.MenuService;
 import com.changsoo.copypastestudy.menu.vo.MenuVO;
 import com.google.gson.Gson;
@@ -125,6 +124,43 @@ public class MenuController {
 
         Gson gson = new Gson();
         rstJson = gson.toJson( cnt );
+
+        return rstJson;
+    }
+
+    @GetMapping("/authListAse")
+    public String authListAse(Model model){
+
+        return "ase/auth/aseAuth";
+    }
+
+
+    @GetMapping("/selectAuthListAse")
+    @ResponseBody
+    public String selectAuthListAse(@ModelAttribute MenuVO menuVO){
+        String rstJson = null;
+        List<MenuVO> selectAuthListAse = menuService.selectAuthListAse(menuVO);
+
+        HashMap map = new HashMap();
+        map.put("data", selectAuthListAse);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( map );
+
+        return rstJson;
+    }
+
+    @PostMapping("/selectAuthMenuListAse")
+    @ResponseBody
+    public String selectAuthMenuListAse(@RequestBody MenuVO menuVO){
+        String rstJson = null;
+        List<MenuVO> selectAuthMenuListAse = menuService.selectAuthMenuListAse(menuVO);
+
+        HashMap map = new HashMap();
+        map.put("data", selectAuthMenuListAse);
+
+        Gson gson = new Gson();
+        rstJson = gson.toJson( map );
 
         return rstJson;
     }

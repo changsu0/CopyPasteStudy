@@ -13,4 +13,6 @@ public class MenuVO extends CommonVO {
     private String sortOrder;
     private String menuUrl;
     private String userId;
+    private String authGrpId;
+    private String authGrpNm;
 }
