@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.changsoo.copypastestudy.yjs.mapper.YjsAuthMenuMapper">
+
+    <select id="selectAuthGrpAll" parameterType="yjsAuthMenuVO" resultType="yjsAuthMenuVO">
+        /* YjsAuthMenuMapper.selectAuthGrpAll */
+        SELECT AUTH_GRP_ID
+             , AUTH_GRP_NM
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+        FROM TB_AUTH_GRP
+    </select>
+
+    <select id="selectMenuAll" parameterType="yjsAuthMenuVO" resultType="yjsAuthMenuVO">
+        /* YjsAuthMenuMapper.selectMenuAll */
+        SELECT MENU_ID
+             , MENU_NM
+             , MENU_UP_ID
+             , SORT_ORDER
+             , MENU_URL
+             , USE_YN
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+         FROM TB_MENU
+    </select>
+
+    <select id="selectAuthMenuChk" parameterType="yjsAuthMenuVO" resultType="yjsAuthMenuVO">
+        /* YjsAuthMenuMapper.selectAuthMenuChk */
+        SELECT MENU_ID
+             , MENU_NM
+             , MENU_UP_ID
+             , SORT_ORDER
+             , MENU_URL
+             , USE_YN
+             , CREATE_USER_ID
+             , CREATE_DT
+             , UPDATE_USER_ID
+             , UPDATE_DT
+        FROM TB_MENU
+        WHERE MENU_ID IN (SELECT MENU_ID FROM TB_AUTH_MENU
+                                         WHERE AUTH_GRP_ID = #{authGrpId})
+    </select>
+</mapper>
