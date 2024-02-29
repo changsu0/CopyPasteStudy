@@ -185,7 +185,6 @@
                 orderable: false, // 정렬기능
                 className: 'table-active dt-body-center',
                 render: function (data, type, full, meta) {
-                    console.log(full);
                     return '<input type="checkbox" name="menuChk" id="'+full.menuId+'" value="">';
                 }
             },
@@ -225,49 +224,17 @@
     }
 
     /**
-     * 조회 callBack함수 : 조회된 데이터로 checkBox 그리기
+     * 조회 callBack함수 : 조회된 데이터로 checkBox
      * @param result
      */
     const cb_checkedMenuList = function( result ){
-
         $('input:checkbox').prop('checked',false);
+        let authMenuData = result.data; //메뉴권한 데이터
 
-        let menuLength = menuTable.rows().data().length;
-        let dataLength = result.data.length;
-
-        let menuAllData = menuTable.rows().data(); //메뉴그리드 전체데이터
-        let authMenuData = result.data; //메뉴권한데이터
-
-        let menuAllList = [];
-        let authMenuList = [];
-
-        let index;
-
-        for (let i = 0; i < menuLength; i++) {
-            menuAllList.push(menuAllData[i].menuId); //전체메뉴의 메뉴ID를 리스트에 담아줌
+        for (let j = 0; j < authMenuData.length; j++) {
+            $('#'+authMenuData[j].menuId).prop('checked',true);
         }
 
-        
-        for (let i = 0; i < dataLength; i++) {
-            authMenuList.push(authMenuData[i].menuId); //특정 권한메뉴의 메뉴ID를 리스트에 담아줌
-        }
-
-        console.log(authMenuData);
-
-        //메뉴리스트의 체크박스 id값과 authMenu의 menuid값이 같으면 체크
-        for (let i = 0; i < menuAllList.length; i++) {
-            for (let j = 0; j < dataLength; j++) {
-                    if(menuAllList[i] === authMenuList[j]){
-                        index = menuAllList.indexOf(menuAllList[i]);
-                        $('#'+menuAllList[i]).prop('checked',true);
-                    }
-            }
-        }
-
-    }
-
-    const setInputValue = function(inputID, inputVal){
-        $('#'+ inputID).val(inputVal);
     }
 
     const saveAuth = function() {
