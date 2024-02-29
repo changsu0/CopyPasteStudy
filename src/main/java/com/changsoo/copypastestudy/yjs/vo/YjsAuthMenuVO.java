@@ -7,6 +7,4 @@ import org.apache.ibatis.type.Alias;
 @Data
 @Alias("yjsAuthMenuVO")
 public class YjsAuthMenuVO extends MenuVO {
-    private String authGrpId;
-    private String authGrpNm;
 }

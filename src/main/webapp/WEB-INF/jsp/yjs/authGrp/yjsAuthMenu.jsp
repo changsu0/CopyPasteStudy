@@ -84,7 +84,7 @@
                 orderable: false, // 정렬기능
                 className: 'table-active dt-body-center',
                 render: function (data, type, full, meta) {
-                    return '<input type="checkbox" name="menuChk" value="">';
+                    return '<input type="checkbox" name="menuChk" id="' + full.menuId + '" value="">';
                 }
             },
             { data: 'menuId' },
@@ -122,7 +122,7 @@
 
     tableAuth.on('click', 'tbody tr', function () {
         let rowData = tableAuth.row(this).data();
-        console.log(rowData);
+        // console.log(rowData);
         menuGridChk(rowData.authGrpId);
     });
 
@@ -131,13 +131,11 @@
     }
     function cb_authMenuChk(result) {
         console.log(result);
+        $('input:checkbox[name="menuChk"]').prop('checked',false);
         // 메뉴 그리드에 체크
-        for (let i = 0; i < menuAll.length; i++) {
-            for (let j = 0; j < result.data.length; j++) {
-                if (menuAll[i].menuId === result.data[j].menuId){
-                    // console.log(menuAll[i].menuId);
-                }
-            }
+        for (let i = 0; i < result.data.length; i++) {
+            let menuId = result.data[i].menuId
+            $('#'+menuId).prop('checked',true);
         }
     }
 
