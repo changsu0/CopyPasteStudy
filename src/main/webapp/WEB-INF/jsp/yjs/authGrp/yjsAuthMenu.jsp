@@ -94,6 +94,9 @@
             { data: 'useYn' },
             { data: 'createUserId' },
             { data: 'createDt' }
+        ],
+        columnDefs: [
+            { "defaultContent": "-", "targets": "_all" }
         ]
     });
 
@@ -134,7 +137,7 @@
         $('input:checkbox[name="menuChk"]').prop('checked',false);
         // 메뉴 그리드에 체크
         for (let i = 0; i < result.data.length; i++) {
-            let menuId = result.data[i].menuId
+            let menuId = result.data[i].menuId;
             $('#'+menuId).prop('checked',true);
         }
     }
