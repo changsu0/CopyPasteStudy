@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.0/css/fixedColumns.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
+    <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/common/navASE.jsp" />
@@ -87,6 +90,7 @@
             <table id="menu" class="display" style="width:100%">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>메뉴ID</th>
                     <th>메뉴명</th>
                     <th>사용여부</th>
@@ -158,7 +162,6 @@
         if ( type === 'row' ) {
             let selectedData = authTable.rows( indexes ).data();
             let selectedCd = selectedData[0].authGrpId;
-            console.log(selectedCd);
 
             checkedMenuList(selectedCd);
         }
@@ -177,6 +180,13 @@
      */
     let menuTable = new DataTable('#menu', {
         columns: [
+            {
+                orderable: false, // 정렬기능
+                className: 'table-active dt-body-center',
+                render: function (data, type, full, meta) {
+                    return '<input type="checkbox" name="menuChk" value="">';
+                }
+            },
             { data: 'menuId' },
             { data: 'menuNm' },
             { data: 'useYn' }
@@ -237,13 +247,13 @@
         for (let i = 0; i < menuLength; i++) {
             menuAllList.push(menuAllData[i].menuId); //전체메뉴의 메뉴ID를 리스트에 담아줌
         }
-
-        console.log(menuAllList);
         
         
         for (let i = 0; i < dataLength; i++) {
             authMenuList.push(authMenuData[i].menuId); //특정 권한메뉴의 메뉴ID를 리스트에 담아줌
         }
+
+        console.log(authMenuData);
 
         for (let i = 0; i < menuAllList.length; i++) {
             for (let j = 0; j < dataLength; j++) {
